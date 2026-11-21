@@ -305,6 +305,13 @@ section.block { padding: 130px 0; position: relative; }
 .mail { display: inline-flex; align-items: center; gap: 14px; font-size: clamp(19px, 3vw, 30px); color: var(--text); letter-spacing: -.015em; padding-bottom: 6px; border-bottom: 1px solid var(--line-2); transition: border-color .25s, color .25s; }
 .mail:hover { text-decoration: none; border-color: var(--teal); color: var(--teal-2); }
 
+/* Small message at the bottom of the screen (e.g. "address copied") */
+.toast { position: fixed; left: 50%; bottom: 28px; z-index: 80; transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  max-width: calc(100vw - 32px); padding: 14px 20px; border-radius: 999px; font-size: 14.5px; color: #03131a; text-align: center;
+  background: linear-gradient(120deg, var(--teal-2), var(--teal)); box-shadow: 0 16px 50px -10px rgba(44,196,184,.7);
+  transition: opacity .3s, transform .3s; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
 /* Footer */
 .site-footer { margin-top: 40px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; overflow: hidden; }
 .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; padding-top: 40px; padding-bottom: 30px; }

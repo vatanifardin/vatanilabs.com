@@ -75,6 +75,37 @@
     if (next) next.onclick = () => show(cur + 1);
   }
 
+  // Email links: besides opening the mail app (where there is one), copy
+  // the address and say so, so the click always does something visible.
+  let toast, toastTimer;
+  function say(text) {
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'toast'; toast.setAttribute('role', 'status');
+      document.body.appendChild(toast);
+    }
+    toast.textContent = text;
+    toast.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('on'), 3200);
+  }
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise((ok, fail) => {          // older browsers
+      const t = document.createElement('textarea');
+      t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy') ? ok() : fail(); } catch (e) { fail(e); }
+      t.remove();
+    });
+  }
+  all('a[href^="mailto:"]').forEach((a) => a.addEventListener('click', () => {
+    const address = a.getAttribute('href').slice(7).split('?')[0];
+    copy(address).then(
+      () => say('Email address copied: ' + address),
+      () => say('Write to us at ' + address));
+  }));
+
   if (still) return;
   const playing = (el) => { const t = el.closest('.tile'); return !t || t.classList.contains('live'); };
 
