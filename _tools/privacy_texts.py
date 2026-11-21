@@ -1,6 +1,8 @@
 # Changes to the PetroGram privacy policy for the Vatani Labs website
 # (21 November 2026): new studio contact, account / sync / sign-in, crash
 # reports and statistics, in six languages, plus a full Chinese version.
+# 22 November 2026: the phone's own backup (Google on Android) includes the
+# app's data: section 2 and the summary, in all seven languages.
 
 MAIL_OLD = '<a href="mailto:vatanifardin@gmail.com">vatanifardin@gmail.com</a>'
 MAIL_NEW = '<a href="mailto:support@vatanilabs.com">support@vatanilabs.com</a>'
@@ -10,9 +12,10 @@ PRIV = {
 'en': dict(
   label6b='English', heading6c='English', semi=';',
   sum_start='We, the developer,', sum_end='(section 6). ',
-  summary='Your notes and progress stay on your phone. Some optional features send data only when you choose to use them: the quiz scoreboard, where the name you choose and your quiz results are stored with <strong>Google Firebase</strong> and shown to other users (section 6), and an account with sign-in by email, Google or Apple and sync between your phones (sections 6b, 6e, 6f). Anonymous crash reports (<strong>Sentry</strong>) and usage statistics (<strong>PostHog</strong>) help us fix and improve the app; they contain no name, email or anything you type, and you can turn them off in Settings → Privacy (sections 6c, 6d). ',
+  summary='Your notes and progress stay on your phone, and in your phone\'s own backup if you have it turned on (section 2). Some optional features send data only when you choose to use them: the quiz scoreboard, where the name you choose and your quiz results are stored with <strong>Google Firebase</strong> and shown to other users (section 6), and an account with sign-in by email, Google or Apple and sync between your phones (sections 6b, 6e, 6f). Anonymous crash reports (<strong>Sentry</strong>) and usage statistics (<strong>PostHog</strong>) help us fix and improve the app; they contain no name, email or anything you type, and you can turn them off in Settings → Privacy (sections 6c, 6d). ',
   replace=[
-    ('19 November 2026', '21 November 2026'),
+    ('19 November 2026', '22 November 2026'),
+    ("If Android backup is turned on for your phone, Android may include this data in your own Google account backup; we have no access to that backup.", "If Android backup is turned on for your phone, Android includes the app's saved data (your notes, progress and settings and, if you created an account, your sign-in) in your phone's backup in your own Google account. Google stores that backup; we cannot see or access it. The data is restored when you install the app on a new phone. You can turn the backup off in your phone's settings (Settings → Google → Backup; the wording varies by phone); Google then removes the copy under its own rules."),
     ('Developer: Fardin Vatani,', 'Developer: Vatani Labs (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
     ('The app contains no analytics of its own.', 'Crash reports and statistics are used only to fix and improve the app, never for ads.'),
@@ -26,9 +29,10 @@ PRIV = {
 'az': dict(
   label6b='Azərbaycanca', heading6c='Azərbaycanca', semi=';',
   sum_start='Biz, tərtibatçı,', sum_end='(6-cı bənd). ',
-  summary='Qeydləriniz və irəliləyişiniz telefonunuzda qalır. Bəzi könüllü funksiyalar məlumatı yalnız onlardan istifadə etməyi seçdikdə göndərir: test reytinqi, burada seçdiyiniz ad və test nəticələriniz <strong>Google Firebase</strong>-də saxlanılır və digər istifadəçilərə göstərilir (6-cı bənd), həmçinin e-poçt, Google və ya Apple ilə daxil olunan və telefonlarınız arasında sinxronizasiya edən hesab (6b, 6e, 6f bəndləri). Anonim xəta hesabatları (<strong>Sentry</strong>) və istifadə statistikası (<strong>PostHog</strong>) tətbiqi düzəltməyə və yaxşılaşdırmağa kömək edir; onlarda ad, e-poçt və ya yazdıqlarınız olmur və onları Ayarlar → Məxfilik bölməsində söndürə bilərsiniz (6c, 6d bəndləri). ',
+  summary='Qeydləriniz və irəliləyişiniz telefonunuzda qalır; telefonun öz ehtiyat nüsxəsi aktivdirsə, orada da saxlanılır (2-ci bənd). Bəzi könüllü funksiyalar məlumatı yalnız onlardan istifadə etməyi seçdikdə göndərir: test reytinqi, burada seçdiyiniz ad və test nəticələriniz <strong>Google Firebase</strong>-də saxlanılır və digər istifadəçilərə göstərilir (6-cı bənd), həmçinin e-poçt, Google və ya Apple ilə daxil olunan və telefonlarınız arasında sinxronizasiya edən hesab (6b, 6e, 6f bəndləri). Anonim xəta hesabatları (<strong>Sentry</strong>) və istifadə statistikası (<strong>PostHog</strong>) tətbiqi düzəltməyə və yaxşılaşdırmağa kömək edir; onlarda ad, e-poçt və ya yazdıqlarınız olmur və onları Ayarlar → Məxfilik bölməsində söndürə bilərsiniz (6c, 6d bəndləri). ',
   replace=[
-    ('19 noyabr 2026', '21 noyabr 2026'),
+    ('19 noyabr 2026', '22 noyabr 2026'),
+    ("Telefonunuzda Android ehtiyat nüsxəsi aktivdirsə, Android bu məlumatı sizin öz Google hesabınızın ehtiyat nüsxəsinə daxil edə bilər; həmin nüsxəyə bizim çıxışımız yoxdur.", "Telefonunuzda Android ehtiyat nüsxəsi aktivdirsə, Android tətbiqin saxladığı məlumatı (qeydləriniz, irəliləyişiniz və ayarlarınız, hesab yaratmısınızsa, həm də hesaba daxil olma məlumatınız) telefonun sizin öz Google hesabınızdakı ehtiyat nüsxəsinə daxil edir. Həmin nüsxəni Google saxlayır; biz onu görə bilmirik və ona çıxışımız yoxdur. Tətbiqi yeni telefona quraşdırdıqda bu məlumat bərpa olunur. Ehtiyat nüsxəsini telefonun ayarlarında söndürə bilərsiniz (Ayarlar → Google → Ehtiyat nüsxəsi; adlar telefondan asılı olaraq fərqlənə bilər); bundan sonra Google nüsxəni öz qaydalarına uyğun olaraq silir."),
     ('Tərtibatçı: Fardin Vatani,', 'Tərtibatçı: Vatani Labs (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
     ('Tətbiqin öz analitikası yoxdur.', 'Xəta hesabatları və statistika yalnız tətbiqi düzəltmək və yaxşılaşdırmaq üçün istifadə olunur, heç vaxt reklam üçün yox.'),
@@ -42,9 +46,10 @@ PRIV = {
 'ru': dict(
   label6b='Русский', heading6c='Русский', semi=';',
   sum_start='Мы, разработчик,', sum_end='(раздел 6). ',
-  summary='Ваши заметки и прогресс остаются на телефоне. Некоторые необязательные функции отправляют данные, только если вы решите ими пользоваться: рейтинг тестов, где выбранное вами имя и результаты хранятся в <strong>Google Firebase</strong> и видны другим пользователям (раздел 6), а также аккаунт со входом по почте, через Google или Apple и синхронизацией между вашими телефонами (разделы 6b, 6e, 6f). Анонимные отчёты о сбоях (<strong>Sentry</strong>) и статистика использования (<strong>PostHog</strong>) помогают нам исправлять и улучшать приложение; в них нет имени, почты или того, что вы вводите, и их можно отключить в разделе Настройки → Конфиденциальность (разделы 6c, 6d). ',
+  summary='Ваши заметки и прогресс остаются на телефоне, а если включено резервное копирование телефона, то и в его резервной копии (раздел 2). Некоторые необязательные функции отправляют данные, только если вы решите ими пользоваться: рейтинг тестов, где выбранное вами имя и результаты хранятся в <strong>Google Firebase</strong> и видны другим пользователям (раздел 6), а также аккаунт со входом по почте, через Google или Apple и синхронизацией между вашими телефонами (разделы 6b, 6e, 6f). Анонимные отчёты о сбоях (<strong>Sentry</strong>) и статистика использования (<strong>PostHog</strong>) помогают нам исправлять и улучшать приложение; в них нет имени, почты или того, что вы вводите, и их можно отключить в разделе Настройки → Конфиденциальность (разделы 6c, 6d). ',
   replace=[
-    ('19 ноября 2026 г.', '21 ноября 2026 г.'),
+    ('19 ноября 2026 г.', '22 ноября 2026 г.'),
+    ("Если на телефоне включено резервное копирование Android, система может включить эти данные в резервную копию вашего собственного аккаунта Google; у нас нет доступа к этой копии.", "Если на телефоне включено резервное копирование Android, система включает сохранённые данные приложения (заметки, прогресс и настройки, а если вы создали аккаунт, то и вход в него) в резервную копию телефона в вашем собственном аккаунте Google. Эту копию хранит Google; мы не видим её и не имеем к ней доступа. Данные восстанавливаются, когда вы устанавливаете приложение на новый телефон. Резервное копирование можно отключить в настройках телефона (Настройки → Google → Резервное копирование; названия зависят от телефона); после этого Google удаляет копию по своим правилам."),
     ('Разработчик: Fardin Vatani,', 'Разработчик: Vatani Labs (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
     ('Собственной аналитики в приложении нет.', 'Отчёты о сбоях и статистика используются только для исправления и улучшения приложения, но не для рекламы.'),
@@ -58,9 +63,10 @@ PRIV = {
 'ar': dict(
   label6b='العربية', heading6c='العربية', semi='؛',
   sum_start='نحن، المطوّر،', sum_end='(البند 6). ',
-  summary='تبقى ملاحظاتك وتقدّمك على هاتفك. بعض الميزات الاختيارية لا ترسل بيانات إلا إذا اخترت استخدامها: لوحة متصدري الاختبارات، حيث يُخزَّن الاسم الذي تختاره ونتائج اختباراتك لدى <strong>Google Firebase</strong> ويظهران للمستخدمين الآخرين (البند 6)، والحساب مع تسجيل الدخول بالبريد الإلكتروني أو Google أو Apple والمزامنة بين هواتفك (البنود 6ب و6هـ و6و). وتساعدنا تقارير الأعطال المجهولة (<strong>Sentry</strong>) وإحصاءات الاستخدام (<strong>PostHog</strong>) على إصلاح التطبيق وتحسينه؛ فهي لا تحتوي على اسم أو بريد إلكتروني أو أي شيء تكتبه، ويمكنك إيقافها من الإعدادات ← الخصوصية (البندان 6ج و6د). ',
+  summary='تبقى ملاحظاتك وتقدّمك على هاتفك، وكذلك في النسخة الاحتياطية الخاصة بهاتفك إذا كان النسخ الاحتياطي مفعّلًا (البند 2). بعض الميزات الاختيارية لا ترسل بيانات إلا إذا اخترت استخدامها: لوحة متصدري الاختبارات، حيث يُخزَّن الاسم الذي تختاره ونتائج اختباراتك لدى <strong>Google Firebase</strong> ويظهران للمستخدمين الآخرين (البند 6)، والحساب مع تسجيل الدخول بالبريد الإلكتروني أو Google أو Apple والمزامنة بين هواتفك (البنود 6ب و6هـ و6و). وتساعدنا تقارير الأعطال المجهولة (<strong>Sentry</strong>) وإحصاءات الاستخدام (<strong>PostHog</strong>) على إصلاح التطبيق وتحسينه؛ فهي لا تحتوي على اسم أو بريد إلكتروني أو أي شيء تكتبه، ويمكنك إيقافها من الإعدادات ← الخصوصية (البندان 6ج و6د). ',
   replace=[
-    ('19 نوفمبر 2026', '21 نوفمبر 2026'),
+    ('19 نوفمبر 2026', '22 نوفمبر 2026'),
+    ("إذا كان النسخ الاحتياطي في Android مفعّلًا على هاتفك، فقد يضمّن Android هذه البيانات في النسخة الاحتياطية لحسابك الخاص على Google، ولا يمكننا الوصول إلى تلك النسخة.", "إذا كان النسخ الاحتياطي في Android مفعّلًا على هاتفك، فإن Android يضمّن بيانات التطبيق المحفوظة (ملاحظاتك وتقدّمك وإعداداتك، وكذلك تسجيل دخولك إذا أنشأت حسابًا) في النسخة الاحتياطية لهاتفك في حسابك الخاص على Google. تحتفظ Google بهذه النسخة، ولا يمكننا رؤيتها أو الوصول إليها. وتُستعاد البيانات عند تثبيت التطبيق على هاتف جديد. يمكنك إيقاف النسخ الاحتياطي من إعدادات هاتفك (الإعدادات ← Google ← النسخ الاحتياطي؛ وقد تختلف التسميات من هاتف إلى آخر)، وبعد ذلك تحذف Google النسخة وفق قواعدها."),
     ('المطوّر: Fardin Vatani،', 'المطوّر: Vatani Labs (Fardin Vatani)،'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
     ('ولا يحتوي التطبيق على أدوات تحليل خاصة به.', 'وتُستخدم تقارير الأعطال والإحصاءات فقط لإصلاح التطبيق وتحسينه، وليس للإعلانات أبدًا.'),
@@ -74,9 +80,10 @@ PRIV = {
 'es': dict(
   label6b='Español', heading6c='Español', semi=';',
   sum_start='Nosotros, el desarrollador,', sum_end='(sección 6). ',
-  summary='Tus notas y tu progreso se quedan en tu teléfono. Algunas funciones opcionales envían datos solo si decides usarlas: la clasificación de tests, donde el nombre que elijas y tus resultados se guardan en <strong>Google Firebase</strong> y se muestran a otros usuarios (sección 6), y una cuenta con inicio de sesión por correo, Google o Apple y sincronización entre tus teléfonos (secciones 6b, 6e, 6f). Los informes de fallos anónimos (<strong>Sentry</strong>) y las estadísticas de uso (<strong>PostHog</strong>) nos ayudan a corregir y mejorar la app; no contienen nombre, correo ni nada de lo que escribes, y puedes desactivarlos en Ajustes → Privacidad (secciones 6c, 6d). ',
+  summary='Tus notas y tu progreso se quedan en tu teléfono y, si la tienes activada, en la copia de seguridad del propio teléfono (sección 2). Algunas funciones opcionales envían datos solo si decides usarlas: la clasificación de tests, donde el nombre que elijas y tus resultados se guardan en <strong>Google Firebase</strong> y se muestran a otros usuarios (sección 6), y una cuenta con inicio de sesión por correo, Google o Apple y sincronización entre tus teléfonos (secciones 6b, 6e, 6f). Los informes de fallos anónimos (<strong>Sentry</strong>) y las estadísticas de uso (<strong>PostHog</strong>) nos ayudan a corregir y mejorar la app; no contienen nombre, correo ni nada de lo que escribes, y puedes desactivarlos en Ajustes → Privacidad (secciones 6c, 6d). ',
   replace=[
-    ('19 de noviembre de 2026', '21 de noviembre de 2026'),
+    ('19 de noviembre de 2026', '22 de noviembre de 2026'),
+    ("Si la copia de seguridad de Android está activada en tu teléfono, Android puede incluir estos datos en la copia de seguridad de tu propia cuenta de Google; no tenemos acceso a esa copia.", "Si la copia de seguridad de Android está activada en tu teléfono, Android incluye los datos guardados de la aplicación (tus notas, tu progreso y tus ajustes y, si has creado una cuenta, tu inicio de sesión) en la copia de seguridad del teléfono, en tu propia cuenta de Google. Google guarda esa copia; no podemos verla ni acceder a ella. Los datos se restauran cuando instalas la aplicación en un teléfono nuevo. Puedes desactivar la copia de seguridad en los ajustes del teléfono (Ajustes → Google → Copia de seguridad; los nombres varían según el teléfono); después, Google elimina la copia según sus propias normas."),
     ('Desarrollador: Fardin Vatani,', 'Desarrollador: Vatani Labs (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
     ('La aplicación no tiene analíticas propias.', 'Los informes de fallos y las estadísticas solo se usan para corregir y mejorar la app, nunca para publicidad.'),
@@ -90,9 +97,10 @@ PRIV = {
 'fr': dict(
   label6b='Français', heading6c='Français', semi=' ;',
   sum_start='Nous, le développeur,', sum_end='(section 6). ',
-  summary='Vos notes et vos progrès restent sur votre téléphone. Certaines fonctions facultatives n’envoient des données que si vous choisissez de les utiliser : le classement des quiz, où le nom que vous choisissez et vos résultats sont enregistrés chez <strong>Google Firebase</strong> et affichés aux autres utilisateurs (section 6), et un compte avec connexion par e-mail, Google ou Apple et synchronisation entre vos téléphones (sections 6b, 6e, 6f). Les rapports de plantage anonymes (<strong>Sentry</strong>) et les statistiques d’utilisation (<strong>PostHog</strong>) nous aident à corriger et à améliorer l’app ; ils ne contiennent ni nom, ni e-mail, ni rien de ce que vous saisissez, et vous pouvez les désactiver dans Paramètres → Confidentialité (sections 6c, 6d). ',
+  summary='Vos notes et vos progrès restent sur votre téléphone, ainsi que dans la sauvegarde de votre téléphone si elle est activée (section 2). Certaines fonctions facultatives n’envoient des données que si vous choisissez de les utiliser : le classement des quiz, où le nom que vous choisissez et vos résultats sont enregistrés chez <strong>Google Firebase</strong> et affichés aux autres utilisateurs (section 6), et un compte avec connexion par e-mail, Google ou Apple et synchronisation entre vos téléphones (sections 6b, 6e, 6f). Les rapports de plantage anonymes (<strong>Sentry</strong>) et les statistiques d’utilisation (<strong>PostHog</strong>) nous aident à corriger et à améliorer l’app ; ils ne contiennent ni nom, ni e-mail, ni rien de ce que vous saisissez, et vous pouvez les désactiver dans Paramètres → Confidentialité (sections 6c, 6d). ',
   replace=[
-    ('19 novembre 2026', '21 novembre 2026'),
+    ('19 novembre 2026', '22 novembre 2026'),
+    ("Si la sauvegarde Android est activée sur votre téléphone, Android peut inclure ces données dans la sauvegarde de votre propre compte Google ; nous n’avons pas accès à cette sauvegarde.", "Si la sauvegarde Android est activée sur votre téléphone, Android inclut les données enregistrées par l’application (vos notes, votre progression et vos réglages et, si vous avez créé un compte, votre connexion à ce compte) dans la sauvegarde du téléphone, sur votre propre compte Google. Google conserve cette sauvegarde ; nous ne pouvons ni la voir ni y accéder. Les données sont restaurées lorsque vous installez l’application sur un nouveau téléphone. Vous pouvez désactiver la sauvegarde dans les paramètres du téléphone (Paramètres → Google → Sauvegarde ; les intitulés varient selon le téléphone) ; Google supprime ensuite la copie selon ses propres règles."),
     ('Développeur : Fardin Vatani,', 'Développeur : Vatani Labs (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
     ('L’application ne contient aucun outil d’analyse propre.', 'Les rapports de plantage et les statistiques servent uniquement à corriger et à améliorer l’app, jamais à la publicité.'),
@@ -107,11 +115,11 @@ PRIV = {
 
 ZH_SECTION = '''<section id="zh" lang="zh-Hans">
   <h1>PetroGram 隐私政策</h1>
-  <p class="meta">生效日期：2026 年 11 月 21 日<br>
+  <p class="meta">生效日期：2026 年 11 月 22 日<br>
   开发者：Vatani Labs（Fardin Vatani），阿塞拜疆巴库</p>
 
   <h2>1. 概要</h2>
-  <p>PetroGram 是一款面向石油天然气行业的参考与学习应用，支持 Android 和 iPhone。您的笔记和学习进度保存在您的手机上。部分可选功能只有在您选择使用时才会发送数据：测验排行榜（您选择的名称和测验成绩保存在 <strong>Google Firebase</strong> 中，并向其他用户显示，见第 6 节），以及可通过电子邮件、Google 或 Apple 登录并在您的手机之间同步的账户（见第 6b、6e、6f 节）。匿名崩溃报告（<strong>Sentry</strong>）和使用统计（<strong>PostHog</strong>）帮助我们修复和改进应用；其中不含姓名、电子邮件或您输入的任何内容，您可以在“设置 → 隐私”中关闭它们（见第 6c、6d 节）。<strong>Google AdMob</strong> 向未购买“移除广告”的用户显示横幅广告；AdMob 可能为这些广告收集设备数据，在法律要求时会先征得您的同意；在 iPhone 上，只有在您允许跟踪时才会使用 Apple 的广告标识符。<strong>Google Play</strong>（Android）和 <strong>App Store</strong>（iPhone）处理可选的一次性“移除广告”购买。“市场”页面会从美国能源信息署（EIA）下载公开的价格数据。</p>
+  <p>PetroGram 是一款面向石油天然气行业的参考与学习应用，支持 Android 和 iPhone。您的笔记和学习进度保存在您的手机上；如果您开启了手机自带的备份，备份中也会有一份（见第 2 节）。部分可选功能只有在您选择使用时才会发送数据：测验排行榜（您选择的名称和测验成绩保存在 <strong>Google Firebase</strong> 中，并向其他用户显示，见第 6 节），以及可通过电子邮件、Google 或 Apple 登录并在您的手机之间同步的账户（见第 6b、6e、6f 节）。匿名崩溃报告（<strong>Sentry</strong>）和使用统计（<strong>PostHog</strong>）帮助我们修复和改进应用；其中不含姓名、电子邮件或您输入的任何内容，您可以在“设置 → 隐私”中关闭它们（见第 6c、6d 节）。<strong>Google AdMob</strong> 向未购买“移除广告”的用户显示横幅广告；AdMob 可能为这些广告收集设备数据，在法律要求时会先征得您的同意；在 iPhone 上，只有在您允许跟踪时才会使用 Apple 的广告标识符。<strong>Google Play</strong>（Android）和 <strong>App Store</strong>（iPhone）处理可选的一次性“移除广告”购买。“市场”页面会从美国能源信息署（EIA）下载公开的价格数据。</p>
 
   <h2>2. 保存在您设备上的信息</h2>
   <p>应用会在手机的本地存储中保存以下内容：</p>
@@ -124,7 +132,7 @@ ZH_SECTION = '''<section id="zh" lang="zh-Hans">
     <li>您的广告同意选择，由 Google 的同意工具保存（见第 4 节）；</li>
     <li>如果您加入了排行榜：您的随机用户 ID、您选择的名称、尚未发送的成绩以及您选择隐藏的人（见第 6 节）。</li>
   </ul>
-  <p>这些信息保存在您的设备上，不会发送给我们。我们看不到您的笔记或进度（除非您创建账户并使用同步，见第 6f 节）。当您在应用中删除这些信息、清除应用数据或卸载应用时，它们会被删除。您导出的备份文件只会保存或分享到您选择的位置。如果您的手机开启了 Android 备份，Android 可能会将这些数据包含在您自己的 Google 账户备份中；我们无法访问该备份。在 iPhone 上，iOS 可能会将这些数据包含在您自己的 iCloud 或电脑备份中；我们同样无法访问。</p>
+  <p>这些信息保存在您的设备上，不会发送给我们。我们看不到您的笔记或进度（除非您创建账户并使用同步，见第 6f 节）。当您在应用中删除这些信息、清除应用数据或卸载应用时，它们会被删除。您导出的备份文件只会保存或分享到您选择的位置。如果您的手机开启了 Android 备份，Android 会将应用保存的数据（您的笔记、学习进度和设置；如果您创建了账户，还包括登录状态）包含在手机备份中，保存在您自己的 Google 账户里。该备份由 Google 保存，我们无法查看或访问。当您在新手机上安装应用时，这些数据会被恢复。您可以在手机设置中关闭备份（设置 → Google → 备份；不同手机上的名称可能不同）；关闭后，Google 会按其自身规则删除该备份。在 iPhone 上，iOS 可能会将这些数据包含在您自己的 iCloud 或电脑备份中；我们同样无法访问。</p>
 
   <h2>3. 网络使用</h2>
   <ul>
