@@ -58,7 +58,7 @@
     <li><strong>Google Play and App Store.</strong> The app asks Google Play (Android) or the App Store (iPhone) for the price of "Remove ads", and whether you own it (section 5).</li>
     <li><strong>Scoreboard.</strong> Only if you join the optional scoreboard, the app sends the name you chose and your quiz results to Google Firebase, and loads the boards (section 6).</li>
   <li><strong>Account and sync.</strong> Only if you create an account, the app signs in with Google Firebase (by email, Google or Apple) and syncs your data between your phones (sections 6b, 6e, 6f).</li>
-    <li><strong>Crash reports and statistics.</strong> Unless you turn them off in Settings → Privacy, crash reports go to Sentry and anonymous usage counts to PostHog (sections 6c, 6d).</li>
+    <li><strong>Crash reports and statistics.</strong> Crash reports go to Sentry unless you turn them off in Settings → Privacy; anonymous usage counts go to PostHog only if you allow it (sections 6c, 6d).</li>
   </ul>
   <p>Everything else works without an internet connection; offline, no ads are shown. If you tap Contact, Report a problem, Call or Privacy policy, the app hands over to another app on your phone (email, phone or browser). Those apps have their own privacy practices.</p>
 
@@ -96,7 +96,7 @@
   <p>If the app crashes or meets a serious error, a technical report is sent to Sentry (Functional Software, Inc., EU data region): what went wrong and where in the app&#x27;s code, the app version, the phone model and system version. It contains no name, email, notes, answers, IP address or location. Reports are kept for 90 days and used only to fix problems. You can turn them off in Settings → Privacy.</p>
 
   <h2>6d. Anonymous usage statistics</h2>
-  <p>The app counts which features are used (for example &quot;a quiz was finished, 80%&quot; or &quot;the app was opened&quot;) and sends these counts to PostHog (PostHog Inc., EU Cloud) under a random number for this installation. It never sends names, emails, what you type, your answers or your IP address. We use the counts only to improve the app. You can turn them off in Settings → Privacy.</p>
+  <p>The app counts which features are used (for example &quot;a quiz was finished, 80%&quot; or &quot;the app was opened&quot;) and sends these counts to PostHog (PostHog Inc., EU Cloud) under a random number for this installation. It never sends names, emails, what you type, your answers or your IP address. We use the counts only to improve the app. Statistics are off until you allow them: the app asks once, and you can change your choice at any time in Settings → Privacy.</p>
 
   <h2>6e. Sign in with Google or Apple</h2>
   <p>If you choose &quot;Continue with Google&quot; or &quot;Continue with Apple&quot;, Google or Apple confirms your identity and gives us your email address (Apple may give a hidden relay address). We do not receive your password. The account is handled by Google Firebase Authentication. Deleting the account in the app also removes the link with Google or Apple.</p>
@@ -165,7 +165,7 @@
     <li><strong>Google Play və App Store.</strong> Tətbiq Google Play-dən (Android) və ya App Store-dan (iPhone) «Reklamı sil»in qiymətini və onun sizdə olub-olmadığını soruşur (5-ci bənd).</li>
     <li><strong>Reytinq.</strong> Yalnız könüllü reytinqə qoşulsanız, tətbiq seçdiyiniz adı və test nəticələrinizi Google Firebase-ə göndərir və cədvəlləri yükləyir (6-cı bənd).</li>
   <li><strong>Hesab və sinxronizasiya.</strong> Yalnız hesab yaratsanız, tətbiq Google Firebase ilə (e-poçt, Google və ya Apple ilə) daxil olur və məlumatlarınızı telefonlarınız arasında sinxronlaşdırır (6b, 6e, 6f bəndləri).</li>
-    <li><strong>Xəta hesabatları və statistika.</strong> Ayarlar → Məxfilik bölməsində söndürməsəniz, xəta hesabatları Sentry-yə, anonim istifadə sayları isə PostHog-a göndərilir (6c, 6d bəndləri).</li>
+    <li><strong>Xəta hesabatları və statistika.</strong> Ayarlar → Məxfilik bölməsində söndürməsəniz, xəta hesabatları Sentry-yə göndərilir; anonim istifadə sayları isə yalnız icazə versəniz PostHog-a göndərilir (6c, 6d bəndləri).</li>
   </ul>
   <p>Qalan hər şey internetsiz işləyir; internet olmadıqda reklam göstərilmir. «Əlaqə», «Problemi bildir», «Zəng et» və ya «Məxfilik siyasəti» düymələrinə toxunduqda tətbiq telefonunuzdakı başqa tətbiqə (e-poçt, telefon və ya brauzer) keçid edir. Həmin tətbiqlərin öz məxfilik qaydaları var.</p>
 
@@ -203,7 +203,7 @@
   <p>Tətbiq dayandıqda və ya ciddi xəta baş verdikdə Sentry-yə (Functional Software, Inc., AB məlumat regionu) texniki hesabat göndərilir: nəyin səhv getdiyi və tətbiq kodunun harasında, tətbiqin versiyası, telefonun modeli və sistemin versiyası. Hesabatda ad, e-poçt, qeydlər, cavablar, IP ünvanı və ya məkan olmur. Hesabatlar 90 gün saxlanılır və yalnız problemləri düzəltmək üçün istifadə olunur. Onları Ayarlar → Məxfilik bölməsində söndürə bilərsiniz.</p>
 
   <h2>6d. Anonim istifadə statistikası</h2>
-  <p>Tətbiq hansı funksiyaların istifadə olunduğunu sayır (məsələn, &quot;test bitirildi, 80%&quot; və ya &quot;tətbiq açıldı&quot;) və bu sayları bu quraşdırma üçün təsadüfi nömrə ilə PostHog-a (PostHog Inc., EU Cloud) göndərir. Adlar, e-poçtlar, yazdıqlarınız, cavablarınız və ya IP ünvanınız heç vaxt göndərilmir. Bu saylardan yalnız tətbiqi yaxşılaşdırmaq üçün istifadə edirik. Onları Ayarlar → Məxfilik bölməsində söndürə bilərsiniz.</p>
+  <p>Tətbiq hansı funksiyaların istifadə olunduğunu sayır (məsələn, &quot;test bitirildi, 80%&quot; və ya &quot;tətbiq açıldı&quot;) və bu sayları bu quraşdırma üçün təsadüfi nömrə ilə PostHog-a (PostHog Inc., EU Cloud) göndərir. Adlar, e-poçtlar, yazdıqlarınız, cavablarınız və ya IP ünvanınız heç vaxt göndərilmir. Bu saylardan yalnız tətbiqi yaxşılaşdırmaq üçün istifadə edirik. Statistika siz icazə verənə qədər söndürülmüş olur: tətbiq bir dəfə soruşur, seçiminizi istənilən vaxt Ayarlar → Məxfilik bölməsində dəyişə bilərsiniz.</p>
 
   <h2>6e. Google və ya Apple ilə daxil olmaq</h2>
   <p>&quot;Google ilə davam et&quot; və ya &quot;Apple ilə davam et&quot; seçsəniz, Google və ya Apple şəxsiyyətinizi təsdiqləyir və bizə e-poçt ünvanınızı verir (Apple gizli yönləndirmə ünvanı verə bilər). Parolunuzu almırıq. Hesabı Google Firebase Authentication idarə edir. Hesabı tətbiqdə silmək Google və ya Apple ilə əlaqəni də silir.</p>
@@ -272,7 +272,7 @@
     <li><strong>Google Play и App Store.</strong> Приложение запрашивает у Google Play (Android) или App Store (iPhone) цену «Убрать рекламу» и то, есть ли у вас эта покупка (раздел 5).</li>
     <li><strong>Рейтинг.</strong> Только если вы участвуете в необязательном рейтинге, приложение отправляет выбранное имя и результаты тестов в Google Firebase и загружает таблицы (раздел 6).</li>
   <li><strong>Аккаунт и синхронизация.</strong> Только если вы создадите аккаунт, приложение выполняет вход через Google Firebase (по почте, через Google или Apple) и синхронизирует ваши данные между телефонами (разделы 6b, 6e, 6f).</li>
-    <li><strong>Отчёты о сбоях и статистика.</strong> Если вы не отключите их в разделе Настройки → Конфиденциальность, отчёты о сбоях отправляются в Sentry, а анонимные счётчики использования — в PostHog (разделы 6c, 6d).</li>
+    <li><strong>Отчёты о сбоях и статистика.</strong> Отчёты о сбоях отправляются в Sentry, если вы не отключите их в разделе Настройки → Конфиденциальность; анонимные счётчики использования отправляются в PostHog, только если вы это разрешите (разделы 6c, 6d).</li>
   </ul>
   <p>Всё остальное работает без интернета; без подключения реклама не показывается. Если вы нажмёте «Связаться», «Сообщить о проблеме», «Позвонить» или «Политика конфиденциальности», приложение передаст управление другому приложению на телефоне (почте, телефону или браузеру). У этих приложений собственные правила конфиденциальности.</p>
 
@@ -310,7 +310,7 @@
   <p>Если приложение аварийно закрывается или встречает серьёзную ошибку, технический отчёт отправляется в Sentry (Functional Software, Inc., регион хранения данных ЕС): что произошло и в каком месте кода, версия приложения, модель телефона и версия системы. В нём нет имени, электронной почты, заметок, ответов, IP-адреса или местоположения. Отчёты хранятся 90 дней и используются только для исправления ошибок. Их можно отключить в разделе Настройки → Конфиденциальность.</p>
 
   <h2>6d. Анонимная статистика использования</h2>
-  <p>Приложение считает, какие функции используются (например, «тест пройден, 80%» или «приложение открыто»), и отправляет эти данные в PostHog (PostHog Inc., EU Cloud) под случайным номером этой установки. Оно никогда не отправляет имена, адреса почты, то, что вы вводите, ваши ответы или IP-адрес. Мы используем эти данные только для улучшения приложения. Их можно отключить в разделе Настройки → Конфиденциальность.</p>
+  <p>Приложение считает, какие функции используются (например, «тест пройден, 80%» или «приложение открыто»), и отправляет эти данные в PostHog (PostHog Inc., EU Cloud) под случайным номером этой установки. Оно никогда не отправляет имена, адреса почты, то, что вы вводите, ваши ответы или IP-адрес. Мы используем эти данные только для улучшения приложения. Статистика выключена, пока вы её не разрешите: приложение спрашивает один раз, а изменить выбор можно в любое время в разделе Настройки → Конфиденциальность.</p>
 
   <h2>6e. Вход через Google или Apple</h2>
   <p>Если вы выбираете «Продолжить с Google» или «Продолжить с Apple», Google или Apple подтверждает вашу личность и передаёт нам ваш адрес электронной почты (Apple может передать скрытый адрес для пересылки). Ваш пароль мы не получаем. Аккаунтом управляет Google Firebase Authentication. Удаление аккаунта в приложении также удаляет связь с Google или Apple.</p>
@@ -379,7 +379,7 @@
     <li><strong>Google Play وApp Store.</strong> يسأل التطبيق Google Play (Android) أو App Store (iPhone) عن سعر «إزالة الإعلانات» وما إذا كنت تملكه (البند 5).</li>
     <li><strong>لوحة المتصدرين.</strong> فقط إذا انضممت إلى لوحة المتصدرين الاختيارية، يرسل التطبيق الاسم الذي اخترته ونتائج اختباراتك إلى Google Firebase ويحمّل اللوحات (البند 6).</li>
   <li><strong>الحساب والمزامنة.</strong> فقط إذا أنشأت حسابًا، يسجّل التطبيق الدخول عبر Google Firebase (بالبريد الإلكتروني أو Google أو Apple) ويزامن بياناتك بين هواتفك (البنود 6ب و6هـ و6و).</li>
-    <li><strong>تقارير الأعطال والإحصاءات.</strong> ما لم توقفها من الإعدادات ← الخصوصية، تُرسَل تقارير الأعطال إلى Sentry وأعداد الاستخدام المجهولة إلى PostHog (البندان 6ج و6د).</li>
+    <li><strong>تقارير الأعطال والإحصاءات.</strong> تُرسَل تقارير الأعطال إلى Sentry ما لم توقفها من الإعدادات ← الخصوصية؛ أما أعداد الاستخدام المجهولة فلا تُرسَل إلى PostHog إلا إذا سمحت بذلك (البندان 6ج و6د).</li>
   </ul>
   <p>يعمل كل ما عدا ذلك دون اتصال بالإنترنت، ولا تُعرض إعلانات دون اتصال. إذا ضغطت على «تواصل» أو «الإبلاغ عن مشكلة» أو «اتصال» أو «سياسة الخصوصية»، ينقلك التطبيق إلى تطبيق آخر على هاتفك (البريد أو الهاتف أو المتصفح). ولهذه التطبيقات ممارسات خصوصية خاصة بها.</p>
 
@@ -417,7 +417,7 @@
   <p>إذا توقف التطبيق أو واجه خطأً جسيمًا، يُرسَل تقرير تقني إلى Sentry (من Functional Software, Inc.، منطقة بيانات الاتحاد الأوروبي): ما الذي حدث وأين في شيفرة التطبيق، وإصدار التطبيق، وطراز الهاتف، وإصدار النظام. لا يحتوي التقرير على اسم أو بريد إلكتروني أو ملاحظات أو إجابات أو عنوان IP أو الموقع. تُحفظ التقارير مدة 90 يومًا ولا تُستخدم إلا لإصلاح المشكلات. يمكنك إيقافها من الإعدادات ← الخصوصية.</p>
 
   <h2>6د. إحصاءات استخدام مجهولة الهوية</h2>
-  <p>يحسب التطبيق الميزات المستخدمة (مثل &quot;اكتمل اختبار، 80%&quot; أو &quot;فُتح التطبيق&quot;) ويرسل هذه الأعداد إلى PostHog (من PostHog Inc.، EU Cloud) تحت رقم عشوائي خاص بهذا التثبيت. لا يرسل أبدًا الأسماء أو عناوين البريد أو ما تكتبه أو إجاباتك أو عنوان IP الخاص بك. نستخدم هذه الأعداد فقط لتحسين التطبيق. يمكنك إيقافها من الإعدادات ← الخصوصية.</p>
+  <p>يحسب التطبيق الميزات المستخدمة (مثل &quot;اكتمل اختبار، 80%&quot; أو &quot;فُتح التطبيق&quot;) ويرسل هذه الأعداد إلى PostHog (من PostHog Inc.، EU Cloud) تحت رقم عشوائي خاص بهذا التثبيت. لا يرسل أبدًا الأسماء أو عناوين البريد أو ما تكتبه أو إجاباتك أو عنوان IP الخاص بك. نستخدم هذه الأعداد فقط لتحسين التطبيق. تبقى الإحصاءات متوقفة إلى أن تسمح بها: يسألك التطبيق مرة واحدة، ويمكنك تغيير اختيارك في أي وقت من الإعدادات ← الخصوصية.</p>
 
   <h2>6هـ. تسجيل الدخول باستخدام Google أو Apple</h2>
   <p>إذا اخترت &quot;المتابعة باستخدام Google&quot; أو &quot;المتابعة باستخدام Apple&quot;، تؤكد Google أو Apple هويتك وتعطينا عنوان بريدك الإلكتروني (قد تعطي Apple عنوان ترحيل مخفيًا). لا نتلقى كلمة مرورك. تتولى Google Firebase Authentication إدارة الحساب. يؤدي حذف الحساب في التطبيق أيضًا إلى إزالة الربط مع Google أو Apple.</p>
@@ -486,7 +486,7 @@
     <li><strong>Google Play y App Store.</strong> La aplicación pregunta a Google Play (Android) o a la App Store (iPhone) el precio de «Quitar anuncios» y si ya lo tienes (sección 5).</li>
     <li><strong>Clasificación.</strong> Solo si te unes a la clasificación opcional, la aplicación envía el nombre que elegiste y tus resultados a Google Firebase y descarga las tablas (sección 6).</li>
   <li><strong>Cuenta y sincronización.</strong> Solo si creas una cuenta, la app inicia sesión con Google Firebase (por correo, Google o Apple) y sincroniza tus datos entre tus teléfonos (secciones 6b, 6e, 6f).</li>
-    <li><strong>Informes de fallos y estadísticas.</strong> Salvo que los desactives en Ajustes → Privacidad, los informes de fallos se envían a Sentry y los recuentos de uso anónimos a PostHog (secciones 6c, 6d).</li>
+    <li><strong>Informes de fallos y estadísticas.</strong> Los informes de fallos se envían a Sentry salvo que los desactives en Ajustes → Privacidad; los recuentos de uso anónimos se envían a PostHog solo si lo permites (secciones 6c, 6d).</li>
   </ul>
   <p>Todo lo demás funciona sin conexión; sin conexión no se muestran anuncios. Si tocas Contacto, Informar de un problema, Llamar o Política de privacidad, la aplicación te pasa a otra aplicación de tu teléfono (correo, teléfono o navegador). Esas aplicaciones tienen sus propias prácticas de privacidad.</p>
 
@@ -524,7 +524,7 @@
   <p>Si la app se cierra o encuentra un error grave, se envía un informe técnico a Sentry (Functional Software, Inc., región de datos de la UE): qué falló y en qué parte del código, la versión de la app, el modelo del teléfono y la versión del sistema. No contiene nombre, correo, notas, respuestas, dirección IP ni ubicación. Los informes se conservan 90 días y solo se usan para corregir problemas. Puedes desactivarlos en Ajustes → Privacidad.</p>
 
   <h2>6d. Estadísticas de uso anónimas</h2>
-  <p>La app cuenta qué funciones se usan (por ejemplo, «se terminó un test, 80 %» o «se abrió la app») y envía estos recuentos a PostHog (PostHog Inc., EU Cloud) con un número aleatorio para esta instalación. Nunca envía nombres, correos, lo que escribes, tus respuestas ni tu dirección IP. Solo usamos los recuentos para mejorar la app. Puedes desactivarlos en Ajustes → Privacidad.</p>
+  <p>La app cuenta qué funciones se usan (por ejemplo, «se terminó un test, 80 %» o «se abrió la app») y envía estos recuentos a PostHog (PostHog Inc., EU Cloud) con un número aleatorio para esta instalación. Nunca envía nombres, correos, lo que escribes, tus respuestas ni tu dirección IP. Solo usamos los recuentos para mejorar la app. Las estadísticas están desactivadas hasta que las permitas: la app pregunta una sola vez y puedes cambiar tu elección en cualquier momento en Ajustes → Privacidad.</p>
 
   <h2>6e. Iniciar sesión con Google o Apple</h2>
   <p>Si eliges «Continuar con Google» o «Continuar con Apple», Google o Apple confirma tu identidad y nos da tu dirección de correo (Apple puede dar una dirección de reenvío oculta). No recibimos tu contraseña. La cuenta la gestiona Google Firebase Authentication. Al eliminar la cuenta en la app también se elimina el vínculo con Google o Apple.</p>
@@ -593,7 +593,7 @@
     <li><strong>Google Play et App Store.</strong> L’application demande à Google Play (Android) ou à l’App Store (iPhone) le prix de « Supprimer les pubs » et si vous l’avez déjà (section 5).</li>
     <li><strong>Classement.</strong> Seulement si vous rejoignez le classement facultatif, l’application envoie le nom choisi et vos résultats à Google Firebase et charge les tableaux (section 6).</li>
   <li><strong>Compte et synchronisation.</strong> Seulement si vous créez un compte, l’app se connecte via Google Firebase (par e-mail, Google ou Apple) et synchronise vos données entre vos téléphones (sections 6b, 6e, 6f).</li>
-    <li><strong>Rapports de plantage et statistiques.</strong> Sauf si vous les désactivez dans Paramètres → Confidentialité, les rapports de plantage sont envoyés à Sentry et les comptages d’utilisation anonymes à PostHog (sections 6c, 6d).</li>
+    <li><strong>Rapports de plantage et statistiques.</strong> Les rapports de plantage sont envoyés à Sentry sauf si vous les désactivez dans Paramètres → Confidentialité ; les comptages d’utilisation anonymes ne sont envoyés à PostHog que si vous l’autorisez (sections 6c, 6d).</li>
   </ul>
   <p>Tout le reste fonctionne sans connexion ; hors connexion, aucune publicité n’est affichée. Si vous touchez Contact, Signaler un problème, Appeler ou Politique de confidentialité, l’application vous redirige vers une autre application de votre téléphone (e-mail, téléphone ou navigateur). Ces applications ont leurs propres pratiques de confidentialité.</p>
 
@@ -631,7 +631,7 @@
   <p>Si l’app se ferme ou rencontre une erreur grave, un rapport technique est envoyé à Sentry (Functional Software, Inc., région de données UE) : ce qui s’est passé et à quel endroit du code, la version de l’app, le modèle du téléphone et la version du système. Il ne contient ni nom, ni e-mail, ni notes, ni réponses, ni adresse IP, ni localisation. Les rapports sont conservés 90 jours et servent uniquement à corriger les problèmes. Vous pouvez les désactiver dans Paramètres → Confidentialité.</p>
 
   <h2>6d. Statistiques d’utilisation anonymes</h2>
-  <p>L’app compte les fonctions utilisées (par exemple « un quiz a été terminé, 80 % » ou « l’app a été ouverte ») et envoie ces comptages à PostHog (PostHog Inc., EU Cloud) sous un numéro aléatoire propre à cette installation. Elle n’envoie jamais de noms, d’e-mails, ce que vous saisissez, vos réponses ni votre adresse IP. Nous utilisons ces comptages uniquement pour améliorer l’app. Vous pouvez les désactiver dans Paramètres → Confidentialité.</p>
+  <p>L’app compte les fonctions utilisées (par exemple « un quiz a été terminé, 80 % » ou « l’app a été ouverte ») et envoie ces comptages à PostHog (PostHog Inc., EU Cloud) sous un numéro aléatoire propre à cette installation. Elle n’envoie jamais de noms, d’e-mails, ce que vous saisissez, vos réponses ni votre adresse IP. Nous utilisons ces comptages uniquement pour améliorer l’app. Les statistiques sont désactivées tant que vous ne les autorisez pas : l’app pose la question une seule fois et vous pouvez modifier votre choix à tout moment dans Paramètres → Confidentialité.</p>
 
   <h2>6e. Connexion avec Google ou Apple</h2>
   <p>Si vous choisissez « Continuer avec Google » ou « Continuer avec Apple », Google ou Apple confirme votre identité et nous transmet votre adresse e-mail (Apple peut transmettre une adresse de relais masquée). Nous ne recevons pas votre mot de passe. Le compte est géré par Google Firebase Authentication. Supprimer le compte dans l’app supprime aussi le lien avec Google ou Apple.</p>
@@ -700,7 +700,7 @@
     <li><strong>Google Play 和 App Store。</strong>应用会向 Google Play（Android）或 App Store（iPhone）查询“移除广告”的价格以及您是否已拥有它（见第 5 节）。</li>
     <li><strong>排行榜。</strong>只有在您加入可选的排行榜时，应用才会将您选择的名称和测验成绩发送到 Google Firebase，并加载排行榜（见第 6 节）。</li>
     <li><strong>账户和同步。</strong>只有在您创建账户时，应用才会通过 Google Firebase 登录（使用电子邮件、Google 或 Apple），并在您的手机之间同步数据（见第 6b、6e、6f 节）。</li>
-    <li><strong>崩溃报告和统计。</strong>除非您在“设置 → 隐私”中关闭，崩溃报告会发送到 Sentry，匿名使用计数会发送到 PostHog（见第 6c、6d 节）。</li>
+    <li><strong>崩溃报告和统计。</strong>崩溃报告会发送到 Sentry，除非您在“设置 → 隐私”中关闭；匿名使用计数只有在您允许后才会发送到 PostHog（见第 6c、6d 节）。</li>
   </ul>
   <p>其他所有功能无需联网即可使用；离线时不会显示广告。如果您点击“联系”“报告问题”“拨打电话”或“隐私政策”，应用会转到您手机上的其他应用（邮件、电话或浏览器）。这些应用有各自的隐私做法。</p>
 
@@ -738,7 +738,7 @@
   <p>如果应用崩溃或遇到严重错误，会向 Sentry（Functional Software, Inc.，欧盟数据区域）发送一份技术报告：出了什么问题、发生在应用代码的哪个位置、应用版本、手机型号和系统版本。报告不包含姓名、电子邮件、笔记、答案、IP 地址或位置。报告保存 90 天，仅用于修复问题。您可以在“设置 → 隐私”中关闭此功能。</p>
 
   <h2>6d. 匿名使用统计</h2>
-  <p>应用会统计哪些功能被使用（例如“完成了一次测验，80%”或“打开了应用”），并以本次安装的一个随机编号将这些计数发送到 PostHog（PostHog Inc.，EU Cloud）。应用从不发送姓名、电子邮件、您输入的内容、您的答案或您的 IP 地址。我们仅将这些计数用于改进应用。您可以在“设置 → 隐私”中关闭此功能。</p>
+  <p>应用会统计哪些功能被使用（例如“完成了一次测验，80%”或“打开了应用”），并以本次安装的一个随机编号将这些计数发送到 PostHog（PostHog Inc.，EU Cloud）。应用从不发送姓名、电子邮件、您输入的内容、您的答案或您的 IP 地址。我们仅将这些计数用于改进应用。在您允许之前，统计功能处于关闭状态：应用只会询问一次，您可以随时在“设置 → 隐私”中更改选择。</p>
 
   <h2>6e. 使用 Google 或 Apple 登录</h2>
   <p>如果您选择“通过 Google 继续”或“通过 Apple 继续”，Google 或 Apple 会确认您的身份，并向我们提供您的电子邮件地址（Apple 可能提供一个隐藏的中转地址）。我们不会获得您的密码。账户由 Google Firebase Authentication 管理。在应用中删除账户也会解除与 Google 或 Apple 的关联。</p>

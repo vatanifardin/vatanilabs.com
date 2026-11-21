@@ -20,7 +20,7 @@ PRIV = {
     ('<h2>11.', '<p>If you create an account, you can delete it at any time in Settings → Account and check mark → Delete my account; this deletes your email, your scoreboard lines and your synced copy in the cloud. You can turn crash reports and usage statistics off at any time in Settings → Privacy.</p>\n\n  <h2>11.'),
   ],
   sec3='<h2>3.', sec8='<h2>8.',
-  bullet3='<li><strong>Account and sync.</strong> Only if you create an account, the app signs in with Google Firebase (by email, Google or Apple) and syncs your data between your phones (sections 6b, 6e, 6f).</li>\n    <li><strong>Crash reports and statistics.</strong> Unless you turn them off in Settings → Privacy, crash reports go to Sentry and anonymous usage counts to PostHog (sections 6c, 6d).</li>',
+  bullet3='<li><strong>Account and sync.</strong> Only if you create an account, the app signs in with Google Firebase (by email, Google or Apple) and syncs your data between your phones (sections 6b, 6e, 6f).</li>\n    <li><strong>Crash reports and statistics.</strong> Crash reports go to Sentry unless you turn them off in Settings → Privacy; anonymous usage counts go to PostHog only if you allow it (sections 6c, 6d).</li>',
   bullets8='<li>Google Firebase Authentication and Cloud Firestore: the optional account and sync between phones (sections 6b, 6f);</li>\n    <li>Google Sign-In and Sign in with Apple: optional sign-in (section 6e);</li>\n    <li>Sentry (Functional Software, Inc., EU data region): crash reports (section 6c);</li>\n    <li>PostHog (PostHog Inc., EU Cloud): anonymous usage statistics (section 6d).</li>',
 ),
 'az': dict(
@@ -36,7 +36,7 @@ PRIV = {
     ('<h2>11.', '<p>Hesab yaratsanız, onu istənilən vaxt Ayarlar → Hesab və təsdiq nişanı → Hesabımı sil bölməsində silə bilərsiniz; bu, e-poçtunuzu, reytinq sətirlərinizi və buluddakı sinxron nüsxəni silir. Xəta hesabatlarını və istifadə statistikasını istənilən vaxt Ayarlar → Məxfilik bölməsində söndürə bilərsiniz.</p>\n\n  <h2>11.'),
   ],
   sec3='<h2>3.', sec8='<h2>8.',
-  bullet3='<li><strong>Hesab və sinxronizasiya.</strong> Yalnız hesab yaratsanız, tətbiq Google Firebase ilə (e-poçt, Google və ya Apple ilə) daxil olur və məlumatlarınızı telefonlarınız arasında sinxronlaşdırır (6b, 6e, 6f bəndləri).</li>\n    <li><strong>Xəta hesabatları və statistika.</strong> Ayarlar → Məxfilik bölməsində söndürməsəniz, xəta hesabatları Sentry-yə, anonim istifadə sayları isə PostHog-a göndərilir (6c, 6d bəndləri).</li>',
+  bullet3='<li><strong>Hesab və sinxronizasiya.</strong> Yalnız hesab yaratsanız, tətbiq Google Firebase ilə (e-poçt, Google və ya Apple ilə) daxil olur və məlumatlarınızı telefonlarınız arasında sinxronlaşdırır (6b, 6e, 6f bəndləri).</li>\n    <li><strong>Xəta hesabatları və statistika.</strong> Ayarlar → Məxfilik bölməsində söndürməsəniz, xəta hesabatları Sentry-yə göndərilir; anonim istifadə sayları isə yalnız icazə versəniz PostHog-a göndərilir (6c, 6d bəndləri).</li>',
   bullets8='<li>Google Firebase Authentication və Cloud Firestore: könüllü hesab və telefonlar arasında sinxronizasiya (6b, 6f bəndləri);</li>\n    <li>Google Sign-In və Sign in with Apple: könüllü daxil olma (6e bəndi);</li>\n    <li>Sentry (Functional Software, Inc., AB məlumat regionu): xəta hesabatları (6c bəndi);</li>\n    <li>PostHog (PostHog Inc., EU Cloud): anonim istifadə statistikası (6d bəndi).</li>',
 ),
 'ru': dict(
@@ -52,7 +52,7 @@ PRIV = {
     ('<h2>11.', '<p>Если вы создали аккаунт, его можно удалить в любой момент: Настройки → Аккаунт и галочка → Удалить аккаунт; при этом удаляются ваша почта, строки в рейтинге и синхронизированная копия в облаке. Отчёты о сбоях и статистику использования можно в любой момент отключить в разделе Настройки → Конфиденциальность.</p>\n\n  <h2>11.'),
   ],
   sec3='<h2>3.', sec8='<h2>8.',
-  bullet3='<li><strong>Аккаунт и синхронизация.</strong> Только если вы создадите аккаунт, приложение выполняет вход через Google Firebase (по почте, через Google или Apple) и синхронизирует ваши данные между телефонами (разделы 6b, 6e, 6f).</li>\n    <li><strong>Отчёты о сбоях и статистика.</strong> Если вы не отключите их в разделе Настройки → Конфиденциальность, отчёты о сбоях отправляются в Sentry, а анонимные счётчики использования — в PostHog (разделы 6c, 6d).</li>',
+  bullet3='<li><strong>Аккаунт и синхронизация.</strong> Только если вы создадите аккаунт, приложение выполняет вход через Google Firebase (по почте, через Google или Apple) и синхронизирует ваши данные между телефонами (разделы 6b, 6e, 6f).</li>\n    <li><strong>Отчёты о сбоях и статистика.</strong> Отчёты о сбоях отправляются в Sentry, если вы не отключите их в разделе Настройки → Конфиденциальность; анонимные счётчики использования отправляются в PostHog, только если вы это разрешите (разделы 6c, 6d).</li>',
   bullets8='<li>Google Firebase Authentication и Cloud Firestore: необязательный аккаунт и синхронизация между телефонами (разделы 6b, 6f);</li>\n    <li>Google Sign-In и Sign in with Apple: необязательный вход (раздел 6e);</li>\n    <li>Sentry (Functional Software, Inc., регион данных ЕС): отчёты о сбоях (раздел 6c);</li>\n    <li>PostHog (PostHog Inc., EU Cloud): анонимная статистика использования (раздел 6d).</li>',
 ),
 'ar': dict(
@@ -68,7 +68,7 @@ PRIV = {
     ('<h2>11.', '<p>إذا أنشأت حسابًا، يمكنك حذفه في أي وقت من الإعدادات ← الحساب وعلامة التوثيق ← احذف حسابي؛ ويؤدي ذلك إلى حذف بريدك وأسطرك في لوحة النتائج ونسختك المتزامنة في السحابة. ويمكنك إيقاف تقارير الأعطال وإحصاءات الاستخدام في أي وقت من الإعدادات ← الخصوصية.</p>\n\n  <h2>11.'),
   ],
   sec3='<h2>3.', sec8='<h2>8.',
-  bullet3='<li><strong>الحساب والمزامنة.</strong> فقط إذا أنشأت حسابًا، يسجّل التطبيق الدخول عبر Google Firebase (بالبريد الإلكتروني أو Google أو Apple) ويزامن بياناتك بين هواتفك (البنود 6ب و6هـ و6و).</li>\n    <li><strong>تقارير الأعطال والإحصاءات.</strong> ما لم توقفها من الإعدادات ← الخصوصية، تُرسَل تقارير الأعطال إلى Sentry وأعداد الاستخدام المجهولة إلى PostHog (البندان 6ج و6د).</li>',
+  bullet3='<li><strong>الحساب والمزامنة.</strong> فقط إذا أنشأت حسابًا، يسجّل التطبيق الدخول عبر Google Firebase (بالبريد الإلكتروني أو Google أو Apple) ويزامن بياناتك بين هواتفك (البنود 6ب و6هـ و6و).</li>\n    <li><strong>تقارير الأعطال والإحصاءات.</strong> تُرسَل تقارير الأعطال إلى Sentry ما لم توقفها من الإعدادات ← الخصوصية؛ أما أعداد الاستخدام المجهولة فلا تُرسَل إلى PostHog إلا إذا سمحت بذلك (البندان 6ج و6د).</li>',
   bullets8='<li>Google Firebase Authentication وCloud Firestore: الحساب الاختياري والمزامنة بين الهواتف (البندان 6ب و6و)؛</li>\n    <li>Google Sign-In وSign in with Apple: تسجيل الدخول الاختياري (البند 6هـ)؛</li>\n    <li>Sentry (من Functional Software, Inc.، منطقة بيانات الاتحاد الأوروبي): تقارير الأعطال (البند 6ج)؛</li>\n    <li>PostHog (من PostHog Inc.، EU Cloud): إحصاءات استخدام مجهولة الهوية (البند 6د).</li>',
 ),
 'es': dict(
@@ -84,7 +84,7 @@ PRIV = {
     ('<h2>11.', '<p>Si creas una cuenta, puedes eliminarla en cualquier momento en Ajustes → Cuenta e insignia → Eliminar mi cuenta; así se borran tu correo, tus líneas en la clasificación y tu copia sincronizada en la nube. Puedes desactivar los informes de fallos y las estadísticas de uso en cualquier momento en Ajustes → Privacidad.</p>\n\n  <h2>11.'),
   ],
   sec3='<h2>3.', sec8='<h2>8.',
-  bullet3='<li><strong>Cuenta y sincronización.</strong> Solo si creas una cuenta, la app inicia sesión con Google Firebase (por correo, Google o Apple) y sincroniza tus datos entre tus teléfonos (secciones 6b, 6e, 6f).</li>\n    <li><strong>Informes de fallos y estadísticas.</strong> Salvo que los desactives en Ajustes → Privacidad, los informes de fallos se envían a Sentry y los recuentos de uso anónimos a PostHog (secciones 6c, 6d).</li>',
+  bullet3='<li><strong>Cuenta y sincronización.</strong> Solo si creas una cuenta, la app inicia sesión con Google Firebase (por correo, Google o Apple) y sincroniza tus datos entre tus teléfonos (secciones 6b, 6e, 6f).</li>\n    <li><strong>Informes de fallos y estadísticas.</strong> Los informes de fallos se envían a Sentry salvo que los desactives en Ajustes → Privacidad; los recuentos de uso anónimos se envían a PostHog solo si lo permites (secciones 6c, 6d).</li>',
   bullets8='<li>Google Firebase Authentication y Cloud Firestore: la cuenta opcional y la sincronización entre teléfonos (secciones 6b, 6f);</li>\n    <li>Google Sign-In e Iniciar sesión con Apple: el inicio de sesión opcional (sección 6e);</li>\n    <li>Sentry (Functional Software, Inc., región de datos de la UE): informes de fallos (sección 6c);</li>\n    <li>PostHog (PostHog Inc., EU Cloud): estadísticas de uso anónimas (sección 6d).</li>',
 ),
 'fr': dict(
@@ -100,7 +100,7 @@ PRIV = {
     ('<h2>11.', '<p>Si vous créez un compte, vous pouvez le supprimer à tout moment dans Paramètres → Compte et badge → Supprimer mon compte ; cela efface votre e-mail, vos lignes au classement et votre copie synchronisée dans le cloud. Vous pouvez désactiver les rapports de plantage et les statistiques d’utilisation à tout moment dans Paramètres → Confidentialité.</p>\n\n  <h2>11.'),
   ],
   sec3='<h2>3.', sec8='<h2>8.',
-  bullet3='<li><strong>Compte et synchronisation.</strong> Seulement si vous créez un compte, l’app se connecte via Google Firebase (par e-mail, Google ou Apple) et synchronise vos données entre vos téléphones (sections 6b, 6e, 6f).</li>\n    <li><strong>Rapports de plantage et statistiques.</strong> Sauf si vous les désactivez dans Paramètres → Confidentialité, les rapports de plantage sont envoyés à Sentry et les comptages d’utilisation anonymes à PostHog (sections 6c, 6d).</li>',
+  bullet3='<li><strong>Compte et synchronisation.</strong> Seulement si vous créez un compte, l’app se connecte via Google Firebase (par e-mail, Google ou Apple) et synchronise vos données entre vos téléphones (sections 6b, 6e, 6f).</li>\n    <li><strong>Rapports de plantage et statistiques.</strong> Les rapports de plantage sont envoyés à Sentry sauf si vous les désactivez dans Paramètres → Confidentialité ; les comptages d’utilisation anonymes ne sont envoyés à PostHog que si vous l’autorisez (sections 6c, 6d).</li>',
   bullets8='<li>Google Firebase Authentication et Cloud Firestore : le compte facultatif et la synchronisation entre téléphones (sections 6b, 6f) ;</li>\n    <li>Google Sign-In et Se connecter avec Apple : la connexion facultative (section 6e) ;</li>\n    <li>Sentry (Functional Software, Inc., région de données UE) : rapports de plantage (section 6c) ;</li>\n    <li>PostHog (PostHog Inc., EU Cloud) : statistiques d’utilisation anonymes (section 6d).</li>',
 ),
 }
@@ -133,7 +133,7 @@ ZH_SECTION = '''<section id="zh" lang="zh-Hans">
     <li><strong>Google Play 和 App Store。</strong>应用会向 Google Play（Android）或 App Store（iPhone）查询“移除广告”的价格以及您是否已拥有它（见第 5 节）。</li>
     <li><strong>排行榜。</strong>只有在您加入可选的排行榜时，应用才会将您选择的名称和测验成绩发送到 Google Firebase，并加载排行榜（见第 6 节）。</li>
     <li><strong>账户和同步。</strong>只有在您创建账户时，应用才会通过 Google Firebase 登录（使用电子邮件、Google 或 Apple），并在您的手机之间同步数据（见第 6b、6e、6f 节）。</li>
-    <li><strong>崩溃报告和统计。</strong>除非您在“设置 → 隐私”中关闭，崩溃报告会发送到 Sentry，匿名使用计数会发送到 PostHog（见第 6c、6d 节）。</li>
+    <li><strong>崩溃报告和统计。</strong>崩溃报告会发送到 Sentry，除非您在“设置 → 隐私”中关闭；匿名使用计数只有在您允许后才会发送到 PostHog（见第 6c、6d 节）。</li>
   </ul>
   <p>其他所有功能无需联网即可使用；离线时不会显示广告。如果您点击“联系”“报告问题”“拨打电话”或“隐私政策”，应用会转到您手机上的其他应用（邮件、电话或浏览器）。这些应用有各自的隐私做法。</p>
 
