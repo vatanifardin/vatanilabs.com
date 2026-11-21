@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vatani Labs · Knowledge, simplified</title>
+<meta name="description" content="Vatani Labs is an independent app studio building focused, offline-first apps that put expert knowledge in your pocket.">
+<meta name="theme-color" content="#06080f">
+<meta property="og:title" content="Vatani Labs · Knowledge, simplified">
+<meta property="og:description" content="Vatani Labs is an independent app studio building focused, offline-first apps that put expert knowledge in your pocket.">
+<meta property="og:image" content="https://vatanilabs.com/assets/img/icon-512.png">
+<meta property="og:url" content="https://vatanilabs.com/">
+<link rel="icon" type="image/png" href="/assets/img/favicon.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Vatani Labs home"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><polyline points="35,15 60,55 85,15" fill="none" stroke="#2cc4b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Vatani</b><span>Labs</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#apps">Apps</a>
+      <a href="/#principles">How we build</a>
+      <a class="btn" href="/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero" aria-label="Introduction">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="label">Vatani Labs <span class="n">·</span> Independent app studio</p>
+    <h1 style="margin-top:22px">Knowledge, simplified.<br><span class="grey">In your pocket, anywhere.</span></h1>
+    <p class="lead">We build focused mobile apps that turn expert knowledge into tools you can carry everywhere: fast, clear, multilingual, and working offline.</p>
+    <div class="actions">
+      <a class="btn solid" href="#apps">Explore our apps ↓</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="apps">
+  <div class="wrap">
+    <div class="block-head">
+      <div>
+        <p class="label"><span class="n">01 /</span> Our apps</p>
+        <h2>One studio.<br><span class="grey">Focused apps.</span></h2>
+      </div>
+      <p>Each app is built for one field and made with the same care: offline first, simple to use, accurate, and respectful of your privacy.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Apps">
+      <button class="tab" role="tab" id="tab-petrogram" aria-controls="panel-petrogram" aria-selected="true"><span class="n">01</span>PetroGram</button>
+      <button class="tab" role="tab" id="tab-next" aria-controls="panel-next" aria-selected="false" tabindex="-1"><span class="n">02</span>Next app</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-petrogram" aria-labelledby="tab-petrogram">
+      <div class="panel-top">
+        <img class="app-icon" src="/assets/img/petrogram-icon.png" alt="PetroGram app icon">
+        <div>
+          <h3>PetroGram</h3>
+          <div class="sub">The pocket reference for oil &amp; gas.</div>
+        </div>
+      </div>
+      <div class="phones">
+        <div class="phone "><img src="/assets/img/pg-2_learn.jpg" alt="PetroGram learning paths" loading="lazy"></div>
+        <div class="phone mid"><img src="/assets/img/pg-1_home.jpg" alt="PetroGram home screen" loading="lazy"></div>
+        <div class="phone "><img src="/assets/img/pg-5_maps.jpg" alt="PetroGram offline map with drilling rigs" loading="lazy"></div>
+      </div>
+      <div class="panel-bottom">
+        <div>
+          <h4>From the first formula to the next interview.</h4>
+          <p>Unit converter and calculators, a 500-term glossary with flashcards, 600 quiz questions with an exam mode, company structures, offline maps with active rigs, rig counts, prices and interview preparation.</p>
+          <div class="actions"><a class="btn" href="/petrogram/">Discover PetroGram →</a></div>
+        </div>
+        <div class="chips">
+          <span class="chip on">Coming soon</span>
+          <span class="chip">Android</span><span class="chip">iPhone</span>
+          <span class="chip">Offline</span><span class="chip">7 languages</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-next" aria-labelledby="tab-next" hidden>
+      <div class="soon">
+        <div class="big-v"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><polyline points="35,15 60,55 85,15" fill="none" stroke="#2cc4b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p class="label">In development</p>
+        <h3 style="margin-top:14px">More focused apps are on the way.</h3>
+        <p>Mining first, then other fields, each built on the same principles. Want to hear when they launch? Write to us.</p>
+        <div class="actions" style="justify-content:center;margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=Tell%20me%20about%20new%20apps">Keep me posted</a></div>
+      </div>
+    </div>
+
+    <div class="showcase-foot">
+      <span>Built offline-first. Made in Baku.</span>
+      <div class="pager">
+        <button type="button" id="prev" aria-label="Previous app">←</button>
+        <span id="count">01 / 02</span>
+        <button type="button" id="next" aria-label="Next app">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="principles">
+  <div class="wrap">
+    <div class="block-head">
+      <div>
+        <p class="label"><span class="n">02 /</span> How we build</p>
+        <h2>Small team.<br><span class="grey">Clear principles.</span></h2>
+      </div>
+      <p>Whatever the topic, every Vatani Labs app follows the same four rules.</p>
+    </div>
+    <div class="grid4">
+      <div class="card"><span class="label"><span class="n">01</span></span><h3>Offline first</h3><p>On a rig, at a mine or on a plane: the answer should not depend on a signal.</p></div>
+      <div class="card"><span class="label"><span class="n">02</span></span><h3>Simple and focused</h3><p>One clear purpose per app, no clutter, readable at any text size.</p></div>
+      <div class="card"><span class="label"><span class="n">03</span></span><h3>Accurate content</h3><p>Carefully prepared, checked against sources, and improved with every report.</p></div>
+      <div class="card"><span class="label"><span class="n">04</span></span><h3>Privacy respected</h3><p>No unnecessary data. What you write stays on your phone unless you choose otherwise.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <p class="label"><span class="n">03 /</span> Contact</p>
+    <h2>Questions, ideas or corrections?</h2>
+    <p>We read every message and reply personally. Reports from the people who use our apps make them better.</p>
+    <a class="mail" href="mailto:support@vatanilabs.com">support@vatanilabs.com</a>
+  </div>
+</section>
+</main>
+<script src="/assets/hero.js" defer></script>
+<script>
+(function () {
+  const tabs = [...document.querySelectorAll('.tab')];
+  const count = document.getElementById('count');
+  function show(i) {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    count.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(tabs.length).padStart(2, '0');
+  }
+  let cur = 0;
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(cur = i));
+    t.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        cur = (cur + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+        show(cur); tabs[cur].focus();
+      }
+    });
+  });
+  document.getElementById('prev').onclick = () => show(cur = (cur + tabs.length - 1) % tabs.length);
+  document.getElementById('next').onclick = () => show(cur = (cur + 1) % tabs.length);
+})();
+</script>
+<footer class="site-footer">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Vatani Labs home"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><polyline points="35,15 60,55 85,15" fill="none" stroke="#2cc4b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Vatani</b><span>Labs</span></a>
+    <span>© 2026 Vatani Labs · Baku, Azerbaijan</span>
+    <nav aria-label="Footer">
+      <a href="/petrogram/">PetroGram</a>
+      <a href="/petrogram/privacy/">Privacy policy</a>
+      <a href="/petrogram/terms/">Terms of use</a>
+      <a href="mailto:support@vatanilabs.com">support@vatanilabs.com</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
