@@ -113,11 +113,14 @@
     nebula: (t) => [t * 0.1, 0, 0.2],
   };
   const hold = { mark: 4.6, globe: 9, drop: 5.2 };
-  const captions = {
-    mark: ['01', 'Vatani Labs'],
+  // Captions: number, text and, where given, the language of the text. The
+  // page hands them over in its own language (see build.py).
+  let captions = {
+    mark: ['01', 'Vatani Labs', 'en'],
     globe: ['02', 'Anywhere on Earth, offline'],
     drop: ['03', 'PetroGram · oil & gas'],
   };
+  try { captions = JSON.parse(cv.dataset.captions) || captions; } catch (e) { /* keep the English ones */ }
   const shapes = names.map((n) => ({ name: n, data: makers[n]() }));
   const nebula = { name: 'nebula', data: makeNebula() };
 
@@ -168,7 +171,11 @@
     if (!cap || !captions[name]) return;
     cap.classList.remove('on');
     setTimeout(() => {
-      cap.innerHTML = `<b>${captions[name][0]}</b> ${captions[name][1]}`;
+      const num = document.createElement('b'), text = document.createElement('span');
+      num.textContent = captions[name][0];
+      text.textContent = captions[name][1];
+      if (captions[name][2]) text.lang = captions[name][2];
+      cap.replaceChildren(num, ' ', text);
       cap.classList.add('on');
     }, 350);
   }

@@ -99,22 +99,37 @@
       t.remove();
     });
   }
+  // The page carries these two messages in its own language (see build.py).
+  const own = document.body.dataset;
   all('a[href^="mailto:"]').forEach((a) => a.addEventListener('click', () => {
     const address = a.getAttribute('href').slice(7).split('?')[0];
     copy(address).then(
-      () => say('Email address copied: ' + address),
-      () => say('Write to us at ' + address));
+      () => say((own.copied || 'Email address copied: ') + address),
+      () => say((own.write || 'Write to us at ') + address));
   }));
+
+  // Language menu: close it with a click elsewhere or with Escape.
+  const menu = document.querySelector('.lang');
+  if (menu) {
+    document.addEventListener('click', (e) => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+    });
+  }
 
   if (still) return;
   const playing = (el) => { const t = el.closest('.tile'); return !t || t.classList.contains('live'); };
+  // Lists the page hands over in its own language, as data- attributes.
+  const given = (el, name, fallback) => {
+    try { return JSON.parse(el.dataset[name]) || fallback; } catch (e) { return fallback; }
+  };
 
   // Converter: real conversions, numbers roll into place
-  const pairs = [
-    ['1', 'bbl', '158.987', 'L'], ['1,000', 'psi', '68.948', 'bar'],
-    ['10,000', 'ft', '3,048', 'm'], ['1', 'm³', '6.2898', 'bbl'],
-  ];
   all('[data-conv]').forEach((box) => {
+    const pairs = given(box, 'pairs', [
+      ['1', 'bbl', '158.987', 'L'], ['1,000', 'psi', '68.948', 'bar'],
+      ['10,000', 'ft', '3,048', 'm'], ['1', 'm³', '6.2898', 'bbl'],
+    ]);
     const a = box.querySelector('[data-a]'), ua = box.querySelector('[data-ua]');
     const b = box.querySelector('[data-b]'), ub = box.querySelector('[data-ub]');
     let i = 0;
@@ -135,12 +150,12 @@
   });
 
   // Flashcard: flip, then the next term
-  const terms = [
-    ['Blowout preventer', 'Valves at the wellhead that seal the well if pressure control is lost.'],
-    ['Kick', 'An unwanted flow of formation fluid into the wellbore.'],
-    ['Porosity', 'The share of a rock’s volume made of pores that can hold fluids.'],
-  ];
   all('.flash').forEach((card) => {
+    const terms = given(card, 'cards', [
+      ['Blowout preventer', 'Valves at the wellhead that seal the well if pressure control is lost.'],
+      ['Kick', 'An unwanted flow of formation fluid into the wellbore.'],
+      ['Porosity', 'The share of a rock’s volume made of pores that can hold fluids.'],
+    ]);
     const front = card.querySelector('.front b'), back = card.querySelector('.back span');
     let i = 0, flipped = false;
     setInterval(() => {
