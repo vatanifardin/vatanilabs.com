@@ -9,7 +9,8 @@ site_texts.py (English, Azerbaijani, Russian); the page layout is here.
 
 Other inputs in this folder: flat_map.json (from make_land.py), terms.json
 (the app's terms of use in 7 languages), privacy_old.html + privacy_texts.py
-(the privacy policy and its 21 November 2026 changes).
+(the privacy policy and its 21 November 2026 changes), delete_texts.py (the
+page for deleting an account, in 7 languages).
 The folder name starts with "_", so GitHub Pages does not publish it.
 """
 import html, json, re
@@ -566,6 +567,8 @@ for l in ['en', 'az', 'ru', 'ar', 'es', 'fr']:
     privacy_secs[l] = sec
 privacy_secs['zh'] = ZH_SECTION.replace('{BLOCKS6CF}', blocks_6c('简体中文'))
 
+exec(rd(T / 'delete_texts.py'))   # defines delete_secs() and its rows of TX
+
 
 def notfound():
     return f'''<main class="doc" style="text-align:center;padding:160px 24px">
@@ -583,10 +586,12 @@ for L in LANGS:
     wr(out / 'petrogram/index.html', page('pg', petro(), '/petrogram/', ['/assets/hero.js'] + JS))
     wr(out / 'petrogram/terms/index.html', page('terms', doc('terms', terms_secs), '/petrogram/terms/', JS))
     wr(out / 'petrogram/privacy/index.html', page('privacy', doc('privacy', privacy_secs), '/petrogram/privacy/', JS))
+    wr(out / 'petrogram/delete-account/index.html',
+       page('delete', doc('delete-account', delete_secs()), '/petrogram/delete-account/', JS))
     wr(out / '404.html', page('nf', notfound(), '/404.html', JS, found=False))
 
 # The list of pages for search engines, each with its other languages.
-PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/']
+PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/']
 rows = ''.join(
     f'  <url><loc>{SITE}{PRE[l]}{p}</loc>'
     + ''.join(f'<xhtml:link rel="alternate" hreflang="{x}" href="{SITE}{PRE[x]}{p}"/>' for x in LANGS)
