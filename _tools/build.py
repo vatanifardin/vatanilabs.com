@@ -74,8 +74,8 @@ def data(value):
 
 
 MARK = ('<svg viewBox="0 0 120 100" aria-hidden="true">'
-        '<polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>'
-        '<polyline points="35,15 60,55 85,15" fill="none" stroke="#2cc4b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+        '<polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>'
+        '<polyline points="36.7,15 60,51.4 83.3,15" fill="none" stroke="#2cc4b8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>')
 
 
 def fonts():
@@ -279,6 +279,44 @@ def band(words):
     return f'<div class="band" aria-hidden="true"><div class="band-track">{one}{one}</div></div>'
 
 
+# The apps that are still being made: address name, name, the colour of the
+# glow under the icon, and the captions of its three cards (rows of
+# site_texts.py; the texts of an app are its rows "<key>_sub", "<key>_lead",
+# "<key>_h1" ... "<key>_p3").
+SOON = [
+    ('mining-atlas', 'Mining Atlas', 'ma', '194,97,28', ('conv_cap', 'flash_cap', 'map_cap')),
+    ('domino-freedom', 'Domino Freedom', 'df', '22,160,102', ('off_cap', 'cap_together', 'cap_light')),
+    ('domino-global', 'Domino Global', 'dg', '139,53,201', ('more_cap', 'cap_together', 'cap_family')),
+]
+
+
+def soon_tab(n, app):
+    slug, name = app[0], app[1]
+    return (f'      <button class="tab" role="tab" id="tab-{slug}" aria-controls="panel-{slug}" aria-selected="false" tabindex="-1">'
+            f'<span class="n">{n:02d}</span>{name}</button>\n')
+
+
+def soon_panel(app):
+    slug, name, k, glow, caps = app
+    cards = ''.join(
+        f'        <div class="card glow"><span class="label">{t(c)}</span><h3>{t(f"{k}_h{i}")}</h3><p>{t(f"{k}_p{i}")}</p></div>\n'
+        for i, c in enumerate(caps, 1))
+    subject = quote(t('next_subject') + ': ' + name)
+    return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}" hidden>
+      <div class="app-line">
+        <img src="/assets/img/{slug}-icon.png" alt="{html.escape(t('icon_alt_of').format(name))}" style="--glow:rgba({glow},.9)">
+        <div><h3 lang="en">{name}</h3><div class="sub">{t(k + '_sub')}</div></div>
+        <div class="chips"><span class="chip on">{t('dev')}</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
+      </div>
+      <p class="app-lead">{t(k + '_lead')}</p>
+      <div class="grid3">
+{cards}      </div>
+      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject={subject}">{t('next_cta')} <span class="arr">→</span></a></div>
+    </div>
+
+'''
+
+
 # ------------------------------------------------------------------ home
 def home():
     # Captions under the hero picture: number, text and, for the studio's
@@ -323,8 +361,7 @@ def home():
 
     <div class="tabs rv" role="tablist" aria-label="{e('nav_apps')}">
       <button class="tab" role="tab" id="tab-petrogram" aria-controls="panel-petrogram" aria-selected="true"><span class="n">01</span>PetroGram</button>
-      <button class="tab" role="tab" id="tab-next" aria-controls="panel-next" aria-selected="false" tabindex="-1"><span class="n">02</span>{t('tab_next')}</button>
-    </div>
+{''.join(soon_tab(n, a) for n, a in enumerate(SOON, 2))}    </div>
 
     <div class="panel" role="tabpanel" id="panel-petrogram" aria-labelledby="tab-petrogram">
       <div class="app-line rv">
@@ -342,21 +379,12 @@ def home():
       <div class="actions rv" style="margin-top:26px"><a class="btn solid" href="{u('/petrogram/')}">{t('discover')} <span class="arr">→</span></a></div>
     </div>
 
-    <div class="panel" role="tabpanel" id="panel-next" aria-labelledby="tab-next" hidden>
-      <div class="soon">
-        <div class="orbit">{MARK}</div>
-        <p class="label">{t('dev')}</p>
-        <h3>{t('next_h3')}</h3>
-        <p>{t('next_p')}</p>
-        <div class="actions" style="justify-content:center;margin-top:28px"><a class="btn" href="mailto:support@vatanilabs.com?subject={quote(t('next_subject'))}">{t('next_cta')} <span class="arr">→</span></a></div>
-      </div>
-    </div>
-
+{''.join(soon_panel(a) for a in SOON)}
     <div class="showcase-foot">
       <span>{t('made')}</span>
       <div class="pager">
         <button type="button" id="prev" aria-label="{e('prev_app')}">←</button>
-        <span id="count">01 / 02</span>
+        <span id="count">01 / {len(SOON) + 1:02d}</span>
         <button type="button" id="next" aria-label="{e('next_app')}">→</button>
       </div>
     </div>

@@ -11,6 +11,10 @@ other languages.
 - `index.html`: home. The hero is a cloud of light points that forms the
   logo, a turning Earth (real coastlines from PetroGram's own map) and an
   oil drop (`assets/hero.js`). Then the app showcase, principles, contact.
+  The showcase has one tab per app: PetroGram, then the apps still being
+  made (Mining Atlas, Domino Freedom, Domino Global), which are the `SOON`
+  list in `_tools/build.py`. Icons and logo come from the PetroGram
+  repository's `branding/` folder.
 - `petrogram/`: the PetroGram page, its privacy policy and terms of use
   (7 languages on one page; the app links to these).
 - `az/`, `ru/`: the same pages in Azerbaijani and Russian. Their privacy

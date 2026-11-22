@@ -179,7 +179,8 @@ section.block { padding: 130px 0; position: relative; }
 .panel { animation: rise .7s cubic-bezier(.2,.7,.2,1); }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
 .app-line { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
-.app-line img { width: 68px; height: 68px; border-radius: 17px; box-shadow: 0 16px 50px -12px rgba(63,81,181,.9); }
+.app-line img { width: 68px; height: 68px; border-radius: 17px; box-shadow: 0 16px 50px -12px var(--glow, rgba(63,81,181,.9)); }
+.app-lead { color: var(--muted); font-size: 17px; max-width: 720px; margin: 0 0 26px; }
 .app-line h3 { font-size: clamp(30px, 4vw, 46px); font-weight: 700; line-height: 1.05; }
 .app-line .sub { color: var(--muted); margin-top: 2px; }
 .app-line .chips { margin-left: auto; }

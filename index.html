@@ -25,7 +25,7 @@
 <body data-copied="Email address copied: " data-write="Write to us at ">
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="Vatani Labs home"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><polyline points="35,15 60,55 85,15" fill="none" stroke="#2cc4b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Vatani</b><span>Labs</span></a>
+    <a class="brand" href="/" aria-label="Vatani Labs home"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><polyline points="36.7,15 60,51.4 83.3,15" fill="none" stroke="#2cc4b8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Vatani</b><span>Labs</span></a>
     <nav class="nav" aria-label="Main">
       <a href="/#apps">Apps</a>
       <a href="/#principles">How we build</a>
@@ -71,12 +71,14 @@
         <p class="label"><span class="n">01 /</span> Our apps</p>
         <h2>One studio.<br><span class="grey">Focused</span> <em class="s">apps.</em></h2>
       </div>
-      <p class="rv" style="--d:.1s">Each app is built for one field and made with the same care: offline first, simple to use, accurate, and respectful of your privacy.</p>
+      <p class="rv" style="--d:.1s">Each app has one clear purpose and is made with the same care: simple to use, accurate, and respectful of your privacy.</p>
     </div>
 
     <div class="tabs rv" role="tablist" aria-label="Apps">
       <button class="tab" role="tab" id="tab-petrogram" aria-controls="panel-petrogram" aria-selected="true"><span class="n">01</span>PetroGram</button>
-      <button class="tab" role="tab" id="tab-next" aria-controls="panel-next" aria-selected="false" tabindex="-1"><span class="n">02</span>Next app</button>
+      <button class="tab" role="tab" id="tab-mining-atlas" aria-controls="panel-mining-atlas" aria-selected="false" tabindex="-1"><span class="n">02</span>Mining Atlas</button>
+      <button class="tab" role="tab" id="tab-domino-freedom" aria-controls="panel-domino-freedom" aria-selected="false" tabindex="-1"><span class="n">03</span>Domino Freedom</button>
+      <button class="tab" role="tab" id="tab-domino-global" aria-controls="panel-domino-global" aria-selected="false" tabindex="-1"><span class="n">04</span>Domino Global</button>
     </div>
 
     <div class="panel" role="tabpanel" id="panel-petrogram" aria-labelledby="tab-petrogram">
@@ -110,21 +112,57 @@
       <div class="actions rv" style="margin-top:26px"><a class="btn solid" href="/petrogram/">Discover PetroGram <span class="arr">→</span></a></div>
     </div>
 
-    <div class="panel" role="tabpanel" id="panel-next" aria-labelledby="tab-next" hidden>
-      <div class="soon">
-        <div class="orbit"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><polyline points="35,15 60,55 85,15" fill="none" stroke="#2cc4b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <p class="label">In development</p>
-        <h3>More focused apps are <em class="s">on the way.</em></h3>
-        <p>New fields, the same principles. Want to hear when they launch? Write to us.</p>
-        <div class="actions" style="justify-content:center;margin-top:28px"><a class="btn" href="mailto:support@vatanilabs.com?subject=Tell%20me%20about%20new%20apps">Keep me posted <span class="arr">→</span></a></div>
+    <div class="panel" role="tabpanel" id="panel-mining-atlas" aria-labelledby="tab-mining-atlas" hidden>
+      <div class="app-line">
+        <img src="/assets/img/mining-atlas-icon.png" alt="Mining Atlas app icon" style="--glow:rgba(194,97,28,.9)">
+        <div><h3 lang="en">Mining Atlas</h3><div class="sub">The pocket reference for mining.</div></div>
+        <div class="chips"><span class="chip on">In development</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
       </div>
+      <p class="app-lead">What PetroGram does for oil &amp; gas, now for mining: the tools and knowledge of the industry, in your pocket and working without a signal.</p>
+      <div class="grid3">
+        <div class="card glow"><span class="label">Calculate</span><h3>Converter and calculators</h3><p>Units and everyday mining formulas, ready when you need a quick answer.</p></div>
+        <div class="card glow"><span class="label">Learn</span><h3>Glossary and flashcards</h3><p>The terms of the industry, explained clearly and easy to memorise.</p></div>
+        <div class="card glow"><span class="label">Explore</span><h3>Offline maps</h3><p>The mining world on a map that opens underground and far from any town.</p></div>
+      </div>
+      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=Tell%20me%20about%20new%20apps%3A%20Mining%20Atlas">Keep me posted <span class="arr">→</span></a></div>
     </div>
 
+    <div class="panel" role="tabpanel" id="panel-domino-freedom" aria-labelledby="tab-domino-freedom" hidden>
+      <div class="app-line">
+        <img src="/assets/img/domino-freedom-icon.png" alt="Domino Freedom app icon" style="--glow:rgba(22,160,102,.9)">
+        <div><h3 lang="en">Domino Freedom</h3><div class="sub">Dominoes, wherever you are.</div></div>
+        <div class="chips"><span class="chip on">In development</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
+      </div>
+      <p class="app-lead">A light, quick domino game. Play with no signal, or invite friends to a game online.</p>
+      <div class="grid3">
+        <div class="card glow"><span class="label">Anywhere</span><h3>Works offline</h3><p>No signal needed: open the app and play.</p></div>
+        <div class="card glow"><span class="label">Together</span><h3>Play with friends</h3><p>Invite friends to a game online, wherever they are.</p></div>
+        <div class="card glow"><span class="label">Light</span><h3>Small and fast</h3><p>A simple game that starts quickly and stays out of your way.</p></div>
+      </div>
+      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=Tell%20me%20about%20new%20apps%3A%20Domino%20Freedom">Keep me posted <span class="arr">→</span></a></div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="panel-domino-global" aria-labelledby="tab-domino-global" hidden>
+      <div class="app-line">
+        <img src="/assets/img/domino-global-icon.png" alt="Domino Global app icon" style="--glow:rgba(139,53,201,.9)">
+        <div><h3 lang="en">Domino Global</h3><div class="sub">Dominoes with the whole world.</div></div>
+        <div class="chips"><span class="chip on">In development</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
+      </div>
+      <p class="app-lead">The bigger sibling of Domino Freedom: the same game, with more ways to play. More details soon.</p>
+      <div class="grid3">
+        <div class="card glow"><span class="label">And more</span><h3>More ways to play</h3><p>A fuller game, for players who want more.</p></div>
+        <div class="card glow"><span class="label">Together</span><h3>Players everywhere</h3><p>Made for playing with people near and far.</p></div>
+        <div class="card glow"><span class="label">Family</span><h3>One studio, two games</h3><p>Choose the light Domino Freedom or the fuller Domino Global.</p></div>
+      </div>
+      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=Tell%20me%20about%20new%20apps%3A%20Domino%20Global">Keep me posted <span class="arr">→</span></a></div>
+    </div>
+
+
     <div class="showcase-foot">
-      <span>Built offline-first. Made in Baku.</span>
+      <span>Made with care in Baku.</span>
       <div class="pager">
         <button type="button" id="prev" aria-label="Previous app">←</button>
-        <span id="count">01 / 02</span>
+        <span id="count">01 / 04</span>
         <button type="button" id="next" aria-label="Next app">→</button>
       </div>
     </div>
@@ -162,7 +200,7 @@
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="Vatani Labs home"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><polyline points="35,15 60,55 85,15" fill="none" stroke="#2cc4b8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Vatani</b><span>Labs</span></a>
+    <a class="brand" href="/" aria-label="Vatani Labs home"><svg viewBox="0 0 120 100" aria-hidden="true"><polyline points="15,15 60,85 105,15" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><polyline points="36.7,15 60,51.4 83.3,15" fill="none" stroke="#2cc4b8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Vatani</b><span>Labs</span></a>
     <span>© 2026 Vatani Labs · Baku, Azerbaijan</span>
     <nav aria-label="Footer">
       <a href="/petrogram/">PetroGram</a>
