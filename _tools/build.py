@@ -115,6 +115,8 @@ def page(key, body, path='/', scripts=(), found=True):
     tags = ''.join(f'<script src="{s}" defer></script>\n' for s in scripts)
     if found:   # tell search engines where the page is and where its other languages are
         seo = (f'<link rel="canonical" href="{SITE}{u(path)}">\n'
+               # proves to Google Search Console that the site is ours (not a secret)
+               + '<meta name="google-site-verification" content="VTXQPLOQSYm-PyBicOfBXb4ScrtuZDwoSpe1uawuOJQ">\n'
                + ''.join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{PRE[l]}{path}">\n' for l in LANGS)
                + f'<link rel="alternate" hreflang="x-default" href="{SITE}{path}">\n')
         switch = lang_links(path)
