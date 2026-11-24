@@ -150,7 +150,7 @@ def page(key, body, path='/', scripts=(), found=True):
 <body data-copied="{e('copied')}" data-write="{e('write_to')}">
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="{u('/')}" aria-label="{e('home_aria')}">{MARK}<b>Vatani</b><span>Labs</span></a>
+    <a class="brand" href="{u('/')}" aria-label="{e('home_aria')}">{MARK}<b>Vatani</b><span>Tech</span></a>
     <nav class="nav" aria-label="{e('nav_main')}">
       <a href="{u('/#apps')}">{t('nav_apps')}</a>
       <a href="{u('/#principles')}">{t('nav_how')}</a>
@@ -165,8 +165,8 @@ def page(key, body, path='/', scripts=(), found=True):
 {body}
 <footer class="site-footer">
   <div class="wrap">
-    <a class="brand" href="{u('/')}" aria-label="{e('home_aria')}">{MARK}<b>Vatani</b><span>Labs</span></a>
-    <span>© 2026 Vatani Labs · {t('foot_place')}</span>
+    <a class="brand" href="{u('/')}" aria-label="{e('home_aria')}">{MARK}<b>Vatani</b><span>Tech</span></a>
+    <span>© 2026 Vatani Tech · {t('foot_place')}</span>
     <nav aria-label="{e('nav_footer')}">
       <a href="{u('/petrogram/')}">PetroGram</a>
       <a href="{u('/petrogram/privacy/')}">{t('privacy')}</a>
@@ -175,7 +175,7 @@ def page(key, body, path='/', scripts=(), found=True):
     </nav>
     <nav class="foot-langs" aria-label="{e('lang')}">{switch}</nav>
   </div>
-  <div class="wordmark" aria-hidden="true">Vatani Labs</div>
+  <div class="wordmark" aria-hidden="true">Vatani Tech</div>
 </footer>
 {tags}</body>
 </html>
@@ -323,7 +323,7 @@ def soon_panel(app):
 def home():
     # Captions under the hero picture: number, text and, for the studio's
     # name, its language (so that capital letters follow English rules).
-    caps = {'mark': ['01', 'Vatani Labs', 'en'], 'globe': ['02', t('cap_globe')], 'drop': ['03', t('cap_drop')]}
+    caps = {'mark': ['01', 'Vatani Tech', 'en'], 'globe': ['02', t('cap_globe')], 'drop': ['03', t('cap_drop')]}
     return f'''<main>
 <section class="hero" aria-label="{e('hero_aria')}">
   <div class="sculpt"><canvas id="sculpture" data-shapes="mark,globe,drop" data-captions="{data(caps)}" aria-hidden="true"></canvas><div class="sculpt-cap" id="sculpture-cap"></div></div>
@@ -568,7 +568,7 @@ def blocks_6c(heading):
     chunk = md[i:j if j > 0 else None]
     out = [f'<h2>{m.group(1).rstrip(".")}. {html.escape(m.group(2))}</h2>\n  <p>{html.escape(m.group(3))}</p>'
            for m in re.finditer(r'\*\*(6\S+?)\s(.+?)[.。]\*\*\s(.+)', chunk)]
-    assert len(out) == 4, (heading, len(out))
+    assert len(out) == 5, (heading, len(out))
     return '\n\n  '.join(out)
 
 

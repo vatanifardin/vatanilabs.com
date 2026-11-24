@@ -1,6 +1,6 @@
 # vatanilabs.com
 
-The Vatani Labs website. Plain HTML, CSS and a little JavaScript: no
+The Vatani Tech website. Plain HTML, CSS and a little JavaScript: no
 framework, nothing to install.
 
 The site is in three languages. English is the top of the site, Azerbaijani

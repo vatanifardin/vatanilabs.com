@@ -9,7 +9,7 @@ MAILTO = '<a href="mailto:support@vatanilabs.com">support@vatanilabs.com</a>'
 
 TX = {
 # ---------------------------------------------------- header and footer
-'home_aria': ('Vatani Labs home', 'Vatani Labs: əsas səhifə', 'Vatani Labs: главная'),
+'home_aria': ('Vatani Tech home', 'Vatani Tech: əsas səhifə', 'Vatani Tech: главная'),
 'nav_main': ('Main', 'Əsas menyu', 'Главное меню'),
 'nav_apps': ('Apps', 'Tətbiqlər', 'Приложения'),
 'nav_how': ('How we build', 'Yanaşmamız', 'Наш подход'),
@@ -24,12 +24,12 @@ TX = {
 'write_to': ('Write to us at ', 'Bizə yazın: ', 'Напишите нам: '),
 
 # ------------------------------------------------------------ home page
-'home_title': ('Vatani Labs · Knowledge, simplified',
-               'Vatani Labs · Bilik, sadə dillə',
-               'Vatani Labs · Знания — просто'),
-'home_desc': ('Vatani Labs is an independent app studio building focused apps that put expert knowledge in your pocket and work offline whenever possible.',
-              'Vatani Labs ekspert biliyini cibinizə gətirən və mümkün olan hər yerdə oflayn işləyən məqsədyönlü tətbiqlər yaradan müstəqil studiyadır.',
-              'Vatani Labs — независимая студия, которая создаёт специализированные приложения: экспертные знания всегда у вас в кармане, и везде, где возможно, они работают офлайн.'),
+'home_title': ('Vatani Tech · Knowledge, simplified',
+               'Vatani Tech · Bilik, sadə dillə',
+               'Vatani Tech · Знания — просто'),
+'home_desc': ('Vatani Tech is an independent app studio building focused apps that put expert knowledge in your pocket and work offline whenever possible.',
+              'Vatani Tech ekspert biliyini cibinizə gətirən və mümkün olan hər yerdə oflayn işləyən məqsədyönlü tətbiqlər yaradan müstəqil studiyadır.',
+              'Vatani Tech — независимая студия, которая создаёт специализированные приложения: экспертные знания всегда у вас в кармане, и везде, где возможно, они работают офлайн.'),
 'hero_aria': ('Introduction', 'Giriş', 'Введение'),
 'hero_pill': ('Independent app studio · Baku', 'Müstəqil tətbiq studiyası · Bakı', 'Независимая студия приложений · Баку'),
 'hero_h1': ('Knowledge,<br><em class="s">simplified.</em>',
@@ -71,9 +71,9 @@ TX = {
 'how_h2': ('Small team.<br><span class="grey">Clear</span> <em class="s">principles.</em>',
            'Kiçik komanda.<br><span class="grey">Aydın</span> <em class="s">prinsiplər.</em>',
            'Небольшая команда.<br><span class="grey">Ясные</span> <em class="s">принципы.</em>'),
-'how_p': ('Whatever the topic, we build every Vatani Labs app by the same four principles.',
-          'Mövzudan asılı olmayaraq, hər Vatani Labs tətbiqini eyni dörd prinsiplə yaradırıq.',
-          'Какой бы ни была тема, мы создаём каждое приложение Vatani Labs по одним и тем же четырём принципам.'),
+'how_p': ('Whatever the topic, we build every Vatani Tech app by the same four principles.',
+          'Mövzudan asılı olmayaraq, hər Vatani Tech tətbiqini eyni dörd prinsiplə yaradırıq.',
+          'Какой бы ни была тема, мы создаём каждое приложение Vatani Tech по одним и тем же четырём принципам.'),
 'p1_h': ('Offline whenever possible', 'Mümkün olan hər yerdə oflayn', 'Офлайн везде, где возможно'),
 'p1_p': ('We do our best to make our apps work without a signal: on a rig, at a mine or on a plane.',
          'Tətbiqlərimizin şəbəkə olmadan işləməsi üçün əlimizdən gələni edirik: qazma qurğusunda, şaxtada və ya təyyarədə.',
@@ -241,7 +241,7 @@ TX = {
            'Всё, что должно быть в карманном справочнике, и ничего лишнего.'),
 
 # ------------------------------------------------------- PetroGram page
-'pg_title': ('PetroGram · Vatani Labs', 'PetroGram · Vatani Labs', 'PetroGram · Vatani Labs'),
+'pg_title': ('PetroGram · Vatani Tech', 'PetroGram · Vatani Tech', 'PetroGram · Vatani Tech'),
 'pg_desc': ('PetroGram: the offline pocket reference for oil & gas, in seven languages.',
             'PetroGram: neft-qaz üzrə oflayn cib bələdçisi, yeddi dildə.',
             'PetroGram: карманный офлайн-справочник по нефти и газу на семи языках.'),
@@ -294,11 +294,11 @@ TX = {
 
 # ------------------------------------------- privacy, terms, "not found"
 'doc_langs': ('Languages', 'Dillər', 'Языки'),
-'terms_title': ('PetroGram terms of use · Vatani Labs', 'PetroGram istifadə şərtləri · Vatani Labs', 'Условия использования PetroGram · Vatani Labs'),
+'terms_title': ('PetroGram terms of use · Vatani Tech', 'PetroGram istifadə şərtləri · Vatani Tech', 'Условия использования PetroGram · Vatani Tech'),
 'terms_desc': ('Terms of use of the PetroGram app.', 'PetroGram tətbiqinin istifadə şərtləri.', 'Условия использования приложения PetroGram.'),
-'privacy_title': ('PetroGram privacy policy · Vatani Labs', 'PetroGram məxfilik siyasəti · Vatani Labs', 'Политика конфиденциальности PetroGram · Vatani Labs'),
+'privacy_title': ('PetroGram privacy policy · Vatani Tech', 'PetroGram məxfilik siyasəti · Vatani Tech', 'Политика конфиденциальности PetroGram · Vatani Tech'),
 'privacy_desc': ('Privacy policy of the PetroGram app, in seven languages.', 'PetroGram tətbiqinin məxfilik siyasəti.', 'Политика конфиденциальности приложения PetroGram.'),
-'nf_title': ('Not found · Vatani Labs', 'Səhifə tapılmadı · Vatani Labs', 'Страница не найдена · Vatani Labs'),
+'nf_title': ('Not found · Vatani Tech', 'Səhifə tapılmadı · Vatani Tech', 'Страница не найдена · Vatani Tech'),
 'nf_desc': ('Page not found.', 'Səhifə tapılmadı.', 'Страница не найдена.'),
 'nf_h1': ('This page does <em class="s">not exist.</em>', 'Belə bir səhifə <em class="s">yoxdur.</em>', 'Такой страницы <em class="s">нет.</em>'),
 'nf_go': ('Go to the home page →', 'Əsas səhifəyə keçin →', 'Перейти на главную →'),

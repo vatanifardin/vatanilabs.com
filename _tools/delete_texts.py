@@ -21,12 +21,12 @@ DEL_ASK = '<a href="mailto:support@vatanilabs.com">support@vatanilabs.com</a>'
 
 TX.update({
 'delete-account': ('Delete your account', 'Hesabın silinməsi', 'Удаление аккаунта'),
-'delete_title': ('Delete your PetroGram account · Vatani Labs',
-                 'PetroGram hesabının silinməsi · Vatani Labs',
-                 'Удаление аккаунта PetroGram · Vatani Labs'),
-'delete_desc': ('How to delete your account in the PetroGram app by Vatani Labs, and which data is deleted or kept. In seven languages.',
-                'Vatani Labs-ın PetroGram tətbiqində hesabı necə silmək olar, hansı məlumat silinir və hansı qalır.',
-                'Как удалить аккаунт в приложении PetroGram от Vatani Labs, какие данные удаляются и какие остаются.'),
+'delete_title': ('Delete your PetroGram account · Vatani Tech',
+                 'PetroGram hesabının silinməsi · Vatani Tech',
+                 'Удаление аккаунта PetroGram · Vatani Tech'),
+'delete_desc': ('How to delete your account in the PetroGram app by Vatani Tech, and which data is deleted or kept. In seven languages.',
+                'Vatani Tech-in PetroGram tətbiqində hesabı necə silmək olar, hansı məlumat silinir və hansı qalır.',
+                'Как удалить аккаунт в приложении PetroGram от Vatani Tech, какие данные удаляются и какие остаются.'),
 })
 for _k in ('delete-account', 'delete_title', 'delete_desc'):
     assert len(TX[_k]) == len(LANGS) and all(TX[_k]), ('a text is missing in delete_texts.py', _k)
@@ -34,7 +34,7 @@ for _k in ('delete-account', 'delete_title', 'delete_desc'):
 DEL = {
 'en': dict(
   h1='Delete your PetroGram account',
-  meta='App: PetroGram · Developer: Vatani Labs<br>\n  Last updated: 22 November 2026',
+  meta='App: PetroGram · Developer: Vatani Tech<br>\n  Last updated: 22 November 2026',
   intro='An account in the PetroGram app is optional. If you created one, you can delete it at any time: in the app, or by email if you no longer have the app. A deleted account cannot be brought back.',
   h_app='Way 1: in the app',
   app_steps=[
@@ -69,7 +69,7 @@ DEL = {
 ),
 'az': dict(
   h1='PetroGram hesabınızın silinməsi',
-  meta='Tətbiq: PetroGram · Tərtibatçı: Vatani Labs<br>\n  Son yenilənmə: 22 noyabr 2026',
+  meta='Tətbiq: PetroGram · Tərtibatçı: Vatani Tech<br>\n  Son yenilənmə: 22 noyabr 2026',
   intro='PetroGram tətbiqində hesab könüllüdür. Hesab yaratmısınızsa, onu istənilən vaxt silə bilərsiniz: tətbiqdə və ya tətbiq artıq sizdə yoxdursa, e-poçtla. Silinmiş hesabı geri qaytarmaq olmur.',
   h_app='1-ci yol: tətbiqdə',
   app_steps=[
@@ -104,7 +104,7 @@ DEL = {
 ),
 'ru': dict(
   h1='Удаление аккаунта PetroGram',
-  meta='Приложение: PetroGram · Разработчик: Vatani Labs<br>\n  Обновлено: 22 ноября 2026 г.',
+  meta='Приложение: PetroGram · Разработчик: Vatani Tech<br>\n  Обновлено: 22 ноября 2026 г.',
   intro='Аккаунт в приложении PetroGram не обязателен. Если вы его создали, его можно удалить в любой момент: в приложении или по почте, если приложения у вас уже нет. Удалённый аккаунт нельзя восстановить.',
   h_app='Способ 1: в приложении',
   app_steps=[
@@ -139,7 +139,7 @@ DEL = {
 ),
 'ar': dict(
   h1='حذف حسابك في PetroGram',
-  meta='التطبيق: PetroGram · المطوّر: Vatani Labs<br>\n  آخر تحديث: 22 نوفمبر 2026',
+  meta='التطبيق: PetroGram · المطوّر: Vatani Tech<br>\n  آخر تحديث: 22 نوفمبر 2026',
   intro='الحساب في تطبيق PetroGram اختياري. إذا أنشأت حسابًا، يمكنك حذفه في أي وقت: من داخل التطبيق، أو بالبريد الإلكتروني إذا لم يعد التطبيق لديك. لا يمكن استرجاع الحساب بعد حذفه.',
   h_app='الطريقة 1: من داخل التطبيق',
   app_steps=[
@@ -174,7 +174,7 @@ DEL = {
 ),
 'es': dict(
   h1='Eliminar tu cuenta de PetroGram',
-  meta='Aplicación: PetroGram · Desarrollador: Vatani Labs<br>\n  Última actualización: 22 de noviembre de 2026',
+  meta='Aplicación: PetroGram · Desarrollador: Vatani Tech<br>\n  Última actualización: 22 de noviembre de 2026',
   intro='La cuenta en la app PetroGram es opcional. Si creaste una, puedes eliminarla en cualquier momento: en la app, o por correo si ya no tienes la app. Una cuenta eliminada no se puede recuperar.',
   h_app='Opción 1: en la app',
   app_steps=[
@@ -209,7 +209,7 @@ DEL = {
 ),
 'fr': dict(
   h1='Supprimer votre compte PetroGram',
-  meta='Application : PetroGram · Développeur : Vatani Labs<br>\n  Dernière mise à jour : 22 novembre 2026',
+  meta='Application : PetroGram · Développeur : Vatani Tech<br>\n  Dernière mise à jour : 22 novembre 2026',
   intro='Le compte dans l’app PetroGram est facultatif. Si vous en avez créé un, vous pouvez le supprimer à tout moment : dans l’app, ou par e-mail si vous n’avez plus l’app. Un compte supprimé ne peut pas être récupéré.',
   h_app='Méthode 1 : dans l’app',
   app_steps=[
@@ -244,7 +244,7 @@ DEL = {
 ),
 'zh': dict(
   h1='删除您的 PetroGram 账号',
-  meta='应用：PetroGram · 开发者：Vatani Labs<br>\n  最后更新：2026 年 11 月 22 日',
+  meta='应用：PetroGram · 开发者：Vatani Tech<br>\n  最后更新：2026 年 11 月 22 日',
   intro='PetroGram 应用中的账号是可选的。如果您创建了账号，可以随时删除：在应用内删除；如果您已经没有应用，也可以通过电子邮件申请。账号删除后无法恢复。',
   h_app='方法一：在应用内',
   app_steps=[

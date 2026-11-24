@@ -1,5 +1,5 @@
 // The hero "sculpture": a few thousand points of light that gather into
-// the Vatani Labs mark, a slowly turning Earth (real coastlines, from
+// the Vatani Tech mark, a slowly turning Earth (real coastlines, from
 // PetroGram's own map) and an oil drop. Plain canvas, no libraries.
 // It pauses off screen and stays still for people who prefer less motion.
 (function () {
@@ -116,7 +116,7 @@
   // Captions: number, text and, where given, the language of the text. The
   // page hands them over in its own language (see build.py).
   let captions = {
-    mark: ['01', 'Vatani Labs', 'en'],
+    mark: ['01', 'Vatani Tech', 'en'],
     globe: ['02', 'Anywhere on Earth, offline'],
     drop: ['03', 'PetroGram · oil & gas'],
   };
