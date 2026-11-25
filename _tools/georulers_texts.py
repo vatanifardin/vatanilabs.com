@@ -1,5 +1,6 @@
-# Geo-Rulers (25 November 2026): its privacy policy and its page for deleting
-# an account, /geo-rulers/privacy/ and /geo-rulers/delete-account/.
+# Geo-Rulers (25 November 2026): its privacy policy, its page for deleting
+# an account and its terms of use, /geo-rulers/privacy/,
+# /geo-rulers/delete-account/ and /geo-rulers/terms/.
 #
 # Geo-Rulers is a sister app of PetroGram with the same code and the same
 # kinds of outside services, so its two pages are PetroGram's pages with:
@@ -114,3 +115,27 @@ GEO_PRIV = {
 }
 assert list(GEO_PRIV) == list(DOC_LANGS), 'georulers_texts.py: one list per language, in the order of DOC_LANGS'
 assert all(len(v) == len(GEO_PRIV['en']) for v in GEO_PRIV.values()), 'georulers_texts.py: the same changes in every language'
+
+
+# The terms of use: PetroGram's terms (terms.json) with the name changed and
+# section 3 (market data) as the Geo-Rulers app says it, in its
+# lib/strings_services.dart and lib/zh/zh_services.dart. The date stays
+# 20 November 2026, as in the app. Every pair is (PetroGram's text, Geo-Rulers'
+# text); the build stops if a text is not found exactly once.
+GEO_TERMS = {
+'en': [('Prices and rig counts come from public sources (U.S. EIA, Baker Hughes)',
+        'Prices and counts of mines and quarries come from public sources (World Bank, MSHA)')],
+'az': [('Qiymətlər və qazma qurğularının sayı açıq mənbələrdən (ABŞ EIA, Baker Hughes)',
+        'Qiymətlər və mədən və karxanaların sayı açıq mənbələrdən (Dünya Bankı, MSHA)')],
+'ru': [('Цены и число буровых установок берутся из открытых источников (EIA США, Baker Hughes)',
+        'Цены и число шахт и карьеров берутся из открытых источников (Всемирный банк, MSHA)')],
+'ar': [('تأتي الأسعار وأعداد الحفارات من مصادر عامة (EIA الأمريكية، Baker Hughes)',
+        'تأتي الأسعار وأعداد المناجم والمحاجر من مصادر عامة (البنك الدولي، MSHA)')],
+'es': [('Los precios y el número de equipos de perforación proceden de fuentes públicas (EIA de EE. UU., Baker Hughes)',
+        'Los precios y el número de minas y canteras proceden de fuentes públicas (Banco Mundial, MSHA)')],
+'fr': [('Les prix et le nombre d’appareils de forage proviennent de sources publiques (EIA américaine, Baker Hughes)',
+        'Les prix et le nombre de mines et de carrières proviennent de sources publiques (Banque mondiale, MSHA)')],
+'zh': [('价格和钻机数量来自公开来源（美国 EIA、Baker Hughes）',
+        '价格以及矿山和采石场数量来自公开来源（世界银行、MSHA）')],
+}
+assert list(GEO_TERMS) == list(DOC_LANGS), 'georulers_texts.py: one list of terms changes per language, in the order of DOC_LANGS'

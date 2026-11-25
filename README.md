@@ -12,14 +12,18 @@ other languages.
   logo, a turning Earth (real coastlines from PetroGram's own map) and an
   oil drop (`assets/hero.js`). Then the app showcase, principles, contact.
   The showcase has one tab per app: PetroGram, then the apps still being
-  made (Mining Atlas, Domino Freedom, Domino Global), which are the `SOON`
+  made (Geo-Rulers, Domino Freedom, Domino Global), which are the `SOON`
   list in `_tools/build.py`. Icons and logo come from the PetroGram
-  repository's `branding/` folder.
+  repository's `branding/` folder; the Geo-Rulers icon
+  (`assets/img/geo-rulers-icon.png`, 256 × 256) from the Geo-Rulers
+  repository's `branding/apps/geo-rulers/icon-1024.png`.
 - `petrogram/`: the PetroGram page, its privacy policy and terms of use
   (7 languages on one page; the app links to these).
-- `geo-rulers/`: the two pages the Geo-Rulers app links to: its privacy
-  policy and the page for deleting an account (7 languages on one page).
-  Geo-Rulers has no page of its own and no terms of use on the site yet.
+- `geo-rulers/`: the Geo-Rulers page (the app is still being made: no
+  store buttons, no screenshots yet; the slogans "Ore what?", "Mine your
+  business." and "Dig it." stay in English in every language), its privacy
+  policy, terms of use and page for deleting an account (7 languages on
+  one page; the app links to these).
 - `az/`, `ru/`: the same pages in Azerbaijani and Russian. Their privacy
   and terms pages show that one language and link to the others.
 - `assets/`: `site.css` (all styles), `site.js` (scroll effects and the small
@@ -32,11 +36,14 @@ other languages.
   - `_tools/site_texts.py`: every text of the site, one row per text:
     English, Azerbaijani, Russian. To change or add a text, edit it there
     and rebuild. The build stops if a language is missing.
-  - `_tools/georulers_texts.py`: what the Geo-Rulers privacy policy and
-    delete page say differently from PetroGram's (name, date, what the app is
-    about, prices), in seven languages. Everything else in those two pages is
-    PetroGram's text, so a change to PetroGram's policy reaches Geo-Rulers
-    too; the build stops if a text to be replaced is no longer found.
+  - `_tools/georulers_texts.py`: what the Geo-Rulers privacy policy,
+    delete page and terms of use say differently from PetroGram's (name,
+    date, what the app is about, prices), in seven languages. Everything else
+    in those three pages is PetroGram's text, so a change to PetroGram's
+    policy or terms reaches Geo-Rulers too; the build stops if a text to be
+    replaced is no longer found. The Geo-Rulers terms must say what the app's
+    own terms say (`lib/strings_services.dart` and `lib/zh/zh_services.dart`
+    in the Geo-Rulers repository): change both together.
   - `python3 -I _tools/make_land.py` rebuilds the globe and map dots.
 - `CNAME`: the custom domain for GitHub Pages.
 - `geo-rulers/data/prices.json`: the monthly metal and mineral prices that
