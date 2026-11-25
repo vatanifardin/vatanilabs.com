@@ -118,10 +118,11 @@ assert all(len(v) == len(GEO_PRIV['en']) for v in GEO_PRIV.values()), 'georulers
 
 
 # The terms of use: PetroGram's terms (terms.json) with the name changed and
-# section 3 (market data) as the Geo-Rulers app says it, in its
-# lib/strings_services.dart and lib/zh/zh_services.dart. The date stays
-# 20 November 2026, as in the app. Every pair is (PetroGram's text, Geo-Rulers'
-# text); the build stops if a text is not found exactly once.
+# what the Geo-Rulers app says differently, in its lib/strings_services.dart
+# and lib/zh/zh_services.dart: section 1 names mining standards (ISO, JORC,
+# NI 43-101), section 3 (market data) names its sources, and the date is
+# 25 November 2026 (GEO_TERMS_DAY). Every pair is (PetroGram's text,
+# Geo-Rulers' text); the build stops if a text is not found exactly once.
 GEO_TERMS = {
 'en': [('Prices and rig counts come from public sources (U.S. EIA, Baker Hughes)',
         'Prices and counts of mines and quarries come from public sources (World Bank, MSHA)')],
@@ -139,3 +140,16 @@ GEO_TERMS = {
         '价格以及矿山和采石场数量来自公开来源（世界银行、MSHA）')],
 }
 assert list(GEO_TERMS) == list(DOC_LANGS), 'georulers_texts.py: one list of terms changes per language, in the order of DOC_LANGS'
+
+GEO_TERMS_DAY = 25   # November 2026: the date of the app's terms of use
+for _l, _std in [('en', ('(API, ISO, IWCF…)', '(ISO, JORC, NI 43-101…)')),
+                 ('az', ('(API, ISO, IWCF…)', '(ISO, JORC, NI 43-101…)')),
+                 ('ru', ('(API, ISO, IWCF…)', '(ISO, JORC, NI 43-101…)')),
+                 ('ar', ('(API، ISO، IWCF…)', '(ISO، JORC، NI 43-101…)')),
+                 ('es', ('(API, ISO, IWCF…)', '(ISO, JORC, NI 43-101…)')),
+                 ('fr', ('(API, ISO, IWCF…)', '(ISO, JORC, NI 43-101…)')),
+                 ('zh', ('（API、ISO、IWCF…）', '（ISO、JORC、NI 43-101…）'))]:
+    # section 1: the standards; the date (PetroGram's terms are of 20 November)
+    GEO_TERMS[_l] += [_std, (GEO_DATE[_l].format(20), GEO_DATE[_l].format(GEO_TERMS_DAY))]
+# The app writes "company’s" with a curly apostrophe.
+GEO_TERMS['en'].append(("your company's procedures", 'your company’s procedures'))
