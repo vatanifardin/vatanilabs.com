@@ -7,6 +7,12 @@
 # docs/PRIVACY_ADDITIONS.md: more counts and the approximate region.
 # 24 November 2026: section 6g (a message written in the app goes to
 # Sentry), also from docs/PRIVACY_ADDITIONS.md, in all seven languages.
+# 25 November 2026: five things the app already did are now said (found
+# while writing the Geo-Rulers policy). Here: the update check with Firebase
+# Remote Config (sections 1, 3 and 8) and section 2 (the data on the phone
+# is sent only through the optional scoreboard and sync). In the app's
+# docs/PRIVACY_ADDITIONS.md: 6c (Sentry's random installation number), 6e
+# (Google passes the name and picture link) and 6f (all that sync copies).
 
 MAIL_OLD = '<a href="mailto:vatanifardin@gmail.com">vatanifardin@gmail.com</a>'
 MAIL_NEW = '<a href="mailto:support@vatanilabs.com">support@vatanilabs.com</a>'
@@ -18,7 +24,12 @@ PRIV = {
   sum_start='We, the developer,', sum_end='(section 6). ',
   summary='Your notes and progress stay on your phone, and in your phone\'s own backup if you have it turned on (section 2). Some optional features send data only when you choose to use them: the quiz scoreboard, where the name you choose and your quiz results are stored with <strong>Google Firebase</strong> and shown to other users (section 6), and an account with sign-in by email, Google or Apple and sync between your phones (sections 6b, 6e, 6f). Anonymous crash reports (<strong>Sentry</strong>) and usage statistics (<strong>PostHog</strong>) help us fix and improve the app; they contain no name, email or anything you type, and you can turn them off in Settings → Privacy (sections 6c, 6d). ',
   replace=[
-    ('19 November 2026', '24 November 2026'),
+    ('19 November 2026', '25 November 2026'),
+    # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
+    ('The Market page downloads public price data from the U.S. Energy Information Administration (EIA).', 'The Market page downloads public price data from the U.S. Energy Information Administration (EIA). When it starts, the app also asks Google Firebase whether an update is required (section 3).'),
+    ('This information stays on your device and is never sent to us. We cannot see your notes or progress.', 'This information stays on your device. It is sent only if you use the optional features that need it: the scoreboard (section 6) and sync between your phones (section 6f). Otherwise we cannot see your notes or progress.'),
+    ('<li><strong>Scoreboard.</strong>', '<li><strong>Update check.</strong> When the app starts, it asks Google Firebase (Remote Config) which is the oldest version of the app that may still be used, so that it can tell you when an update is necessary. The request carries a random number that Firebase creates for this installation, the app version, the system version, and the language, country and time zone set on your phone; it contains no name, no email and nothing you have typed. As with any internet connection, Google\'s servers receive your device\'s IP address. This check cannot be turned off.</li>\n    <li><strong>Scoreboard.</strong>'),
+    ('<li>Google Firebase (Authentication and Cloud Firestore): the optional scoreboard (section 6);</li>', '<li>Google Firebase (Authentication and Cloud Firestore): the optional scoreboard (section 6);</li>\n    <li>Google Firebase Remote Config: the update check (section 3);</li>'),
     ("If Android backup is turned on for your phone, Android may include this data in your own Google account backup; we have no access to that backup.", "If Android backup is turned on for your phone, Android includes the app's saved data (your notes, progress and settings and, if you created an account, your sign-in) in your phone's backup in your own Google account. Google stores that backup; we cannot see or access it. The data is restored when you install the app on a new phone. You can turn the backup off in your phone's settings (Settings → Google → Backup; the wording varies by phone); Google then removes the copy under its own rules."),
     ('Developer: Fardin Vatani,', 'Developer: Vatani Tech (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
@@ -35,7 +46,12 @@ PRIV = {
   sum_start='Biz, tərtibatçı,', sum_end='(6-cı bənd). ',
   summary='Qeydləriniz və irəliləyişiniz telefonunuzda qalır; telefonun öz ehtiyat nüsxəsi aktivdirsə, orada da saxlanılır (2-ci bənd). Bəzi könüllü funksiyalar məlumatı yalnız onlardan istifadə etməyi seçdikdə göndərir: test reytinqi, burada seçdiyiniz ad və test nəticələriniz <strong>Google Firebase</strong>-də saxlanılır və digər istifadəçilərə göstərilir (6-cı bənd), həmçinin e-poçt, Google və ya Apple ilə daxil olunan və telefonlarınız arasında sinxronizasiya edən hesab (6b, 6e, 6f bəndləri). Anonim xəta hesabatları (<strong>Sentry</strong>) və istifadə statistikası (<strong>PostHog</strong>) tətbiqi düzəltməyə və yaxşılaşdırmağa kömək edir; onlarda ad, e-poçt və ya yazdıqlarınız olmur və onları Ayarlar → Məxfilik bölməsində söndürə bilərsiniz (6c, 6d bəndləri). ',
   replace=[
-    ('19 noyabr 2026', '24 noyabr 2026'),
+    ('19 noyabr 2026', '25 noyabr 2026'),
+    # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
+    ('«Bazar» səhifəsi ABŞ Energetika İnformasiya İdarəsindən (EIA) açıq qiymət məlumatlarını yükləyir.', '«Bazar» səhifəsi ABŞ Energetika İnformasiya İdarəsindən (EIA) açıq qiymət məlumatlarını yükləyir. Tətbiq açılanda həmçinin Google Firebase-dən yeniləmənin vacib olub-olmadığını soruşur (3-cü bənd).'),
+    ('Bu məlumat cihazınızda qalır və bizə heç vaxt göndərilmir. Biz qeydlərinizi və irəliləyişinizi görə bilmirik.', 'Bu məlumat cihazınızda qalır. O, yalnız bunu tələb edən könüllü funksiyalardan istifadə etdikdə göndərilir: reytinq (6-cı bənd) və telefonlarınız arasında sinxronizasiya (6f bəndi). Əks halda biz qeydlərinizi və irəliləyişinizi görə bilmirik.'),
+    ('<li><strong>Reytinq.</strong>', '<li><strong>Yenilənmənin yoxlanması.</strong> Tətbiq açılanda Google Firebase-dən (Remote Config) tətbiqin hələ istifadə oluna bilən ən köhnə versiyasını soruşur ki, yeniləmə vacib olduqda sizə bildirə bilsin. Sorğuda Firebase-in bu quraşdırma üçün yaratdığı təsadüfi nömrə, tətbiqin versiyası, sistemin versiyası, həmçinin telefonunuzda seçilmiş dil, ölkə və saat qurşağı olur; ad, e-poçt və yazdığınız heç nə olmur. Hər internet bağlantısında olduğu kimi, Google serverləri cihazınızın IP ünvanını görür. Bu yoxlamanı söndürmək olmur.</li>\n    <li><strong>Reytinq.</strong>'),
+    ('<li>Google Firebase (Authentication və Cloud Firestore): könüllü reytinq (6-cı bənd);</li>', '<li>Google Firebase (Authentication və Cloud Firestore): könüllü reytinq (6-cı bənd);</li>\n    <li>Google Firebase Remote Config: yenilənmənin yoxlanması (3-cü bənd);</li>'),
     ("Telefonunuzda Android ehtiyat nüsxəsi aktivdirsə, Android bu məlumatı sizin öz Google hesabınızın ehtiyat nüsxəsinə daxil edə bilər; həmin nüsxəyə bizim çıxışımız yoxdur.", "Telefonunuzda Android ehtiyat nüsxəsi aktivdirsə, Android tətbiqin saxladığı məlumatı (qeydləriniz, irəliləyişiniz və ayarlarınız, hesab yaratmısınızsa, həm də hesaba daxil olma məlumatınız) telefonun sizin öz Google hesabınızdakı ehtiyat nüsxəsinə daxil edir. Həmin nüsxəni Google saxlayır; biz onu görə bilmirik və ona çıxışımız yoxdur. Tətbiqi yeni telefona quraşdırdıqda bu məlumat bərpa olunur. Ehtiyat nüsxəsini telefonun ayarlarında söndürə bilərsiniz (Ayarlar → Google → Ehtiyat nüsxəsi; adlar telefondan asılı olaraq fərqlənə bilər); bundan sonra Google nüsxəni öz qaydalarına uyğun olaraq silir."),
     ('Tərtibatçı: Fardin Vatani,', 'Tərtibatçı: Vatani Tech (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
@@ -52,7 +68,12 @@ PRIV = {
   sum_start='Мы, разработчик,', sum_end='(раздел 6). ',
   summary='Ваши заметки и прогресс остаются на телефоне, а если включено резервное копирование телефона, то и в его резервной копии (раздел 2). Некоторые необязательные функции отправляют данные, только если вы решите ими пользоваться: рейтинг тестов, где выбранное вами имя и результаты хранятся в <strong>Google Firebase</strong> и видны другим пользователям (раздел 6), а также аккаунт со входом по почте, через Google или Apple и синхронизацией между вашими телефонами (разделы 6b, 6e, 6f). Анонимные отчёты о сбоях (<strong>Sentry</strong>) и статистика использования (<strong>PostHog</strong>) помогают нам исправлять и улучшать приложение; в них нет имени, почты или того, что вы вводите, и их можно отключить в разделе Настройки → Конфиденциальность (разделы 6c, 6d). ',
   replace=[
-    ('19 ноября 2026 г.', '24 ноября 2026 г.'),
+    ('19 ноября 2026 г.', '25 ноября 2026 г.'),
+    # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
+    ('Страница «Рынок» загружает общедоступные данные о ценах Управления энергетической информации США (EIA).', 'Страница «Рынок» загружает общедоступные данные о ценах Управления энергетической информации США (EIA). При запуске приложение также спрашивает у Google Firebase, не требуется ли обновление (раздел 3).'),
+    ('Эти данные остаются на устройстве и никогда не передаются нам. Мы не видим ваших заметок и прогресса.', 'Эти данные остаются на устройстве. Они отправляются, только если вы пользуетесь необязательными функциями, которым они нужны: рейтингом (раздел 6) и синхронизацией между вашими телефонами (раздел 6f). В остальных случаях мы не видим ваших заметок и прогресса.'),
+    ('<li><strong>Рейтинг.</strong>', '<li><strong>Проверка обновления.</strong> При запуске приложение спрашивает у Google Firebase (Remote Config), какая самая старая версия приложения ещё может использоваться, чтобы сообщить вам, когда обновление необходимо. Запрос содержит случайный номер, который Firebase создаёт для этой установки, версию приложения, версию системы, а также язык, страну и часовой пояс, заданные на телефоне; в нём нет имени, почты и ничего из того, что вы ввели. Как и при любом подключении к интернету, серверы Google получают IP-адрес вашего устройства. Отключить эту проверку нельзя.</li>\n    <li><strong>Рейтинг.</strong>'),
+    ('<li>Google Firebase (Authentication и Cloud Firestore): необязательный рейтинг (раздел 6);</li>', '<li>Google Firebase (Authentication и Cloud Firestore): необязательный рейтинг (раздел 6);</li>\n    <li>Google Firebase Remote Config: проверка обновления (раздел 3);</li>'),
     ("Если на телефоне включено резервное копирование Android, система может включить эти данные в резервную копию вашего собственного аккаунта Google; у нас нет доступа к этой копии.", "Если на телефоне включено резервное копирование Android, система включает сохранённые данные приложения (заметки, прогресс и настройки, а если вы создали аккаунт, то и вход в него) в резервную копию телефона в вашем собственном аккаунте Google. Эту копию хранит Google; мы не видим её и не имеем к ней доступа. Данные восстанавливаются, когда вы устанавливаете приложение на новый телефон. Резервное копирование можно отключить в настройках телефона (Настройки → Google → Резервное копирование; названия зависят от телефона); после этого Google удаляет копию по своим правилам."),
     ('Разработчик: Fardin Vatani,', 'Разработчик: Vatani Tech (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
@@ -69,7 +90,12 @@ PRIV = {
   sum_start='نحن، المطوّر،', sum_end='(البند 6). ',
   summary='تبقى ملاحظاتك وتقدّمك على هاتفك، وكذلك في النسخة الاحتياطية الخاصة بهاتفك إذا كان النسخ الاحتياطي مفعّلًا (البند 2). بعض الميزات الاختيارية لا ترسل بيانات إلا إذا اخترت استخدامها: لوحة متصدري الاختبارات، حيث يُخزَّن الاسم الذي تختاره ونتائج اختباراتك لدى <strong>Google Firebase</strong> ويظهران للمستخدمين الآخرين (البند 6)، والحساب مع تسجيل الدخول بالبريد الإلكتروني أو Google أو Apple والمزامنة بين هواتفك (البنود 6ب و6هـ و6و). وتساعدنا تقارير الأعطال المجهولة (<strong>Sentry</strong>) وإحصاءات الاستخدام (<strong>PostHog</strong>) على إصلاح التطبيق وتحسينه؛ فهي لا تحتوي على اسم أو بريد إلكتروني أو أي شيء تكتبه، ويمكنك إيقافها من الإعدادات ← الخصوصية (البندان 6ج و6د). ',
   replace=[
-    ('19 نوفمبر 2026', '24 نوفمبر 2026'),
+    ('19 نوفمبر 2026', '25 نوفمبر 2026'),
+    # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
+    ('وتنزّل صفحة السوق بيانات أسعار عامة من إدارة معلومات الطاقة الأمريكية (EIA).', 'وتنزّل صفحة السوق بيانات أسعار عامة من إدارة معلومات الطاقة الأمريكية (EIA). وعند التشغيل يسأل التطبيق أيضًا Google Firebase عمّا إذا كان التحديث مطلوبًا (البند 3).'),
+    ('تبقى هذه المعلومات على جهازك ولا تُرسل إلينا أبدًا، ولا يمكننا رؤية ملاحظاتك أو تقدّمك.', 'تبقى هذه المعلومات على جهازك. ولا تُرسَل إلا إذا استخدمت الميزات الاختيارية التي تحتاج إليها: لوحة المتصدرين (البند 6) والمزامنة بين هواتفك (البند 6و). وفيما عدا ذلك لا يمكننا رؤية ملاحظاتك أو تقدّمك.'),
+    ('<li><strong>لوحة المتصدرين.</strong>', '<li><strong>التحقق من التحديث.</strong> عند تشغيل التطبيق يسأل Google Firebase (Remote Config) عن أقدم إصدار من التطبيق ما زال استخدامه ممكنًا، حتى يخبرك عندما يصبح التحديث ضروريًا. يحمل الطلب رقمًا عشوائيًا تنشئه Firebase لهذا التثبيت، وإصدار التطبيق، وإصدار النظام، واللغة والبلد والمنطقة الزمنية المضبوطة على هاتفك؛ ولا يحتوي على اسم أو بريد إلكتروني أو أي شيء كتبته. وكما في أي اتصال بالإنترنت، تتلقى خوادم Google عنوان IP لجهازك. لا يمكن إيقاف هذا التحقق.</li>\n    <li><strong>لوحة المتصدرين.</strong>'),
+    ('<li>Google Firebase (Authentication وCloud Firestore): لوحة المتصدرين الاختيارية (البند 6)؛</li>', '<li>Google Firebase (Authentication وCloud Firestore): لوحة المتصدرين الاختيارية (البند 6)؛</li>\n    <li>Google Firebase Remote Config: التحقق من التحديث (البند 3)؛</li>'),
     ("إذا كان النسخ الاحتياطي في Android مفعّلًا على هاتفك، فقد يضمّن Android هذه البيانات في النسخة الاحتياطية لحسابك الخاص على Google، ولا يمكننا الوصول إلى تلك النسخة.", "إذا كان النسخ الاحتياطي في Android مفعّلًا على هاتفك، فإن Android يضمّن بيانات التطبيق المحفوظة (ملاحظاتك وتقدّمك وإعداداتك، وكذلك تسجيل دخولك إذا أنشأت حسابًا) في النسخة الاحتياطية لهاتفك في حسابك الخاص على Google. تحتفظ Google بهذه النسخة، ولا يمكننا رؤيتها أو الوصول إليها. وتُستعاد البيانات عند تثبيت التطبيق على هاتف جديد. يمكنك إيقاف النسخ الاحتياطي من إعدادات هاتفك (الإعدادات ← Google ← النسخ الاحتياطي؛ وقد تختلف التسميات من هاتف إلى آخر)، وبعد ذلك تحذف Google النسخة وفق قواعدها."),
     ('المطوّر: Fardin Vatani،', 'المطوّر: Vatani Tech (Fardin Vatani)،'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
@@ -86,7 +112,12 @@ PRIV = {
   sum_start='Nosotros, el desarrollador,', sum_end='(sección 6). ',
   summary='Tus notas y tu progreso se quedan en tu teléfono y, si la tienes activada, en la copia de seguridad del propio teléfono (sección 2). Algunas funciones opcionales envían datos solo si decides usarlas: la clasificación de tests, donde el nombre que elijas y tus resultados se guardan en <strong>Google Firebase</strong> y se muestran a otros usuarios (sección 6), y una cuenta con inicio de sesión por correo, Google o Apple y sincronización entre tus teléfonos (secciones 6b, 6e, 6f). Los informes de fallos anónimos (<strong>Sentry</strong>) y las estadísticas de uso (<strong>PostHog</strong>) nos ayudan a corregir y mejorar la app; no contienen nombre, correo ni nada de lo que escribes, y puedes desactivarlos en Ajustes → Privacidad (secciones 6c, 6d). ',
   replace=[
-    ('19 de noviembre de 2026', '24 de noviembre de 2026'),
+    ('19 de noviembre de 2026', '25 de noviembre de 2026'),
+    # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
+    ('La página Mercado descarga datos públicos de precios de la Administración de Información Energética de EE. UU. (EIA).', 'La página Mercado descarga datos públicos de precios de la Administración de Información Energética de EE. UU. (EIA). Al iniciarse, la aplicación también pregunta a Google Firebase si hace falta una actualización (sección 3).'),
+    ('Esta información permanece en tu dispositivo y nunca se nos envía. No podemos ver tus notas ni tu progreso.', 'Esta información permanece en tu dispositivo. Solo se envía si usas las funciones opcionales que la necesitan: la clasificación (sección 6) y la sincronización entre tus teléfonos (sección 6f). En los demás casos no podemos ver tus notas ni tu progreso.'),
+    ('<li><strong>Clasificación.</strong>', '<li><strong>Comprobación de actualización.</strong> Al iniciarse, la aplicación pregunta a Google Firebase (Remote Config) cuál es la versión más antigua de la aplicación que todavía se puede usar, para poder avisarte cuando una actualización sea necesaria. La solicitud lleva un número aleatorio que Firebase crea para esta instalación, la versión de la aplicación, la versión del sistema y el idioma, el país y la zona horaria configurados en tu teléfono; no contiene nombre, correo ni nada de lo que hayas escrito. Como en cualquier conexión a internet, los servidores de Google reciben la dirección IP de tu dispositivo. Esta comprobación no se puede desactivar.</li>\n    <li><strong>Clasificación.</strong>'),
+    ('<li>Google Firebase (Authentication y Cloud Firestore): la clasificación opcional (sección 6);</li>', '<li>Google Firebase (Authentication y Cloud Firestore): la clasificación opcional (sección 6);</li>\n    <li>Google Firebase Remote Config: la comprobación de actualización (sección 3);</li>'),
     ("Si la copia de seguridad de Android está activada en tu teléfono, Android puede incluir estos datos en la copia de seguridad de tu propia cuenta de Google; no tenemos acceso a esa copia.", "Si la copia de seguridad de Android está activada en tu teléfono, Android incluye los datos guardados de la aplicación (tus notas, tu progreso y tus ajustes y, si has creado una cuenta, tu inicio de sesión) en la copia de seguridad del teléfono, en tu propia cuenta de Google. Google guarda esa copia; no podemos verla ni acceder a ella. Los datos se restauran cuando instalas la aplicación en un teléfono nuevo. Puedes desactivar la copia de seguridad en los ajustes del teléfono (Ajustes → Google → Copia de seguridad; los nombres varían según el teléfono); después, Google elimina la copia según sus propias normas."),
     ('Desarrollador: Fardin Vatani,', 'Desarrollador: Vatani Tech (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
@@ -103,7 +134,12 @@ PRIV = {
   sum_start='Nous, le développeur,', sum_end='(section 6). ',
   summary='Vos notes et vos progrès restent sur votre téléphone, ainsi que dans la sauvegarde de votre téléphone si elle est activée (section 2). Certaines fonctions facultatives n’envoient des données que si vous choisissez de les utiliser : le classement des quiz, où le nom que vous choisissez et vos résultats sont enregistrés chez <strong>Google Firebase</strong> et affichés aux autres utilisateurs (section 6), et un compte avec connexion par e-mail, Google ou Apple et synchronisation entre vos téléphones (sections 6b, 6e, 6f). Les rapports de plantage anonymes (<strong>Sentry</strong>) et les statistiques d’utilisation (<strong>PostHog</strong>) nous aident à corriger et à améliorer l’app ; ils ne contiennent ni nom, ni e-mail, ni rien de ce que vous saisissez, et vous pouvez les désactiver dans Paramètres → Confidentialité (sections 6c, 6d). ',
   replace=[
-    ('19 novembre 2026', '24 novembre 2026'),
+    ('19 novembre 2026', '25 novembre 2026'),
+    # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
+    ('La page Marché télécharge des données de prix publiques de l’Energy Information Administration des États-Unis (EIA).', 'La page Marché télécharge des données de prix publiques de l’Energy Information Administration des États-Unis (EIA). Au démarrage, l’application demande aussi à Google Firebase si une mise à jour est nécessaire (section 3).'),
+    ('Ces informations restent sur votre appareil et ne nous sont jamais envoyées. Nous ne pouvons voir ni vos notes ni votre progression.', 'Ces informations restent sur votre appareil. Elles ne sont envoyées que si vous utilisez les fonctions facultatives qui en ont besoin : le classement (section 6) et la synchronisation entre vos téléphones (section 6f). Dans les autres cas, nous ne pouvons voir ni vos notes ni votre progression.'),
+    ('<li><strong>Classement.</strong>', '<li><strong>Vérification de mise à jour.</strong> Au démarrage, l’application demande à Google Firebase (Remote Config) quelle est la plus ancienne version de l’application encore utilisable, afin de vous prévenir lorsqu’une mise à jour est nécessaire. La requête contient un numéro aléatoire que Firebase crée pour cette installation, la version de l’application, la version du système, ainsi que la langue, le pays et le fuseau horaire réglés sur votre téléphone ; elle ne contient ni nom, ni e-mail, ni rien de ce que vous avez saisi. Comme pour toute connexion internet, les serveurs de Google reçoivent l’adresse IP de votre appareil. Cette vérification ne peut pas être désactivée.</li>\n    <li><strong>Classement.</strong>'),
+    ('<li>Google Firebase (Authentication et Cloud Firestore) : le classement facultatif (section 6) ;</li>', '<li>Google Firebase (Authentication et Cloud Firestore) : le classement facultatif (section 6) ;</li>\n    <li>Google Firebase Remote Config : la vérification de mise à jour (section 3) ;</li>'),
     ("Si la sauvegarde Android est activée sur votre téléphone, Android peut inclure ces données dans la sauvegarde de votre propre compte Google ; nous n’avons pas accès à cette sauvegarde.", "Si la sauvegarde Android est activée sur votre téléphone, Android inclut les données enregistrées par l’application (vos notes, votre progression et vos réglages et, si vous avez créé un compte, votre connexion à ce compte) dans la sauvegarde du téléphone, sur votre propre compte Google. Google conserve cette sauvegarde ; nous ne pouvons ni la voir ni y accéder. Les données sont restaurées lorsque vous installez l’application sur un nouveau téléphone. Vous pouvez désactiver la sauvegarde dans les paramètres du téléphone (Paramètres → Google → Sauvegarde ; les intitulés varient selon le téléphone) ; Google supprime ensuite la copie selon ses propres règles."),
     ('Développeur : Fardin Vatani,', 'Développeur : Vatani Tech (Fardin Vatani),'),
     CONTACT, (MAIL_OLD, MAIL_NEW),
@@ -119,11 +155,11 @@ PRIV = {
 
 ZH_SECTION = '''<section id="zh" lang="zh-Hans">
   <h1>PetroGram 隐私政策</h1>
-  <p class="meta">生效日期：2026 年 11 月 24 日<br>
+  <p class="meta">生效日期：2026 年 11 月 25 日<br>
   开发者：Vatani Tech（Fardin Vatani），阿塞拜疆巴库</p>
 
   <h2>1. 概要</h2>
-  <p>PetroGram 是一款面向石油天然气行业的参考与学习应用，支持 Android 和 iPhone。您的笔记和学习进度保存在您的手机上；如果您开启了手机自带的备份，备份中也会有一份（见第 2 节）。部分可选功能只有在您选择使用时才会发送数据：测验排行榜（您选择的名称和测验成绩保存在 <strong>Google Firebase</strong> 中，并向其他用户显示，见第 6 节），以及可通过电子邮件、Google 或 Apple 登录并在您的手机之间同步的账号（见第 6b、6e、6f 节）。匿名崩溃报告（<strong>Sentry</strong>）和使用统计（<strong>PostHog</strong>）帮助我们修复和改进应用；其中不含姓名、电子邮件或您输入的任何内容，您可以在“设置 → 隐私”中关闭它们（见第 6c、6d 节）。<strong>Google AdMob</strong> 向未购买“去除广告”的用户显示横幅广告；AdMob 可能为这些广告收集设备数据，在法律要求时会先征得您的同意；在 iPhone 上，只有在您允许跟踪时才会使用 Apple 的广告标识符。<strong>Google Play</strong>（Android）和 <strong>App Store</strong>（iPhone）处理可选的一次性“去除广告”购买。“市场”页面会从美国能源信息署（EIA）下载公开的价格数据。</p>
+  <p>PetroGram 是一款面向石油天然气行业的参考与学习应用，支持 Android 和 iPhone。您的笔记和学习进度保存在您的手机上；如果您开启了手机自带的备份，备份中也会有一份（见第 2 节）。部分可选功能只有在您选择使用时才会发送数据：测验排行榜（您选择的名称和测验成绩保存在 <strong>Google Firebase</strong> 中，并向其他用户显示，见第 6 节），以及可通过电子邮件、Google 或 Apple 登录并在您的手机之间同步的账号（见第 6b、6e、6f 节）。匿名崩溃报告（<strong>Sentry</strong>）和使用统计（<strong>PostHog</strong>）帮助我们修复和改进应用；其中不含姓名、电子邮件或您输入的任何内容，您可以在“设置 → 隐私”中关闭它们（见第 6c、6d 节）。<strong>Google AdMob</strong> 向未购买“去除广告”的用户显示横幅广告；AdMob 可能为这些广告收集设备数据，在法律要求时会先征得您的同意；在 iPhone 上，只有在您允许跟踪时才会使用 Apple 的广告标识符。<strong>Google Play</strong>（Android）和 <strong>App Store</strong>（iPhone）处理可选的一次性“去除广告”购买。“市场”页面会从美国能源信息署（EIA）下载公开的价格数据。应用启动时还会向 Google Firebase 查询是否必须更新（见第 3 节）。</p>
 
   <h2>2. 保存在您设备上的信息</h2>
   <p>应用会在手机的本地存储中保存以下内容：</p>
@@ -136,13 +172,14 @@ ZH_SECTION = '''<section id="zh" lang="zh-Hans">
     <li>您的广告同意选择，由 Google 的同意工具保存（见第 4 节）；</li>
     <li>如果您加入了排行榜：您的随机用户 ID、您选择的名称、尚未发送的成绩以及您选择隐藏的人（见第 6 节）。</li>
   </ul>
-  <p>这些信息保存在您的设备上，不会发送给我们。我们看不到您的笔记或进度（除非您创建账号并使用同步，见第 6f 节）。当您在应用中删除这些信息、清除应用数据或卸载应用时，它们会被删除。您导出的备份文件只会保存或分享到您选择的位置。如果您的手机开启了 Android 备份，Android 会将应用保存的数据（您的笔记、学习进度和设置；如果您创建了账号，还包括登录状态）包含在手机备份中，保存在您自己的 Google 账号里。该备份由 Google 保存，我们无法查看或访问。当您在新手机上安装应用时，这些数据会被恢复。您可以在手机设置中关闭备份（设置 → Google → 备份；不同手机上的名称可能不同）；关闭后，Google 会按其自身规则删除该备份。在 iPhone 上，iOS 可能会将这些数据包含在您自己的 iCloud 或电脑备份中；我们同样无法访问。</p>
+  <p>这些信息保存在您的设备上。只有在您使用需要这些信息的可选功能时才会发送：排行榜（见第 6 节）和手机之间的同步（见第 6f 节）。除此之外，我们看不到您的笔记或进度。当您在应用中删除这些信息、清除应用数据或卸载应用时，它们会被删除。您导出的备份文件只会保存或分享到您选择的位置。如果您的手机开启了 Android 备份，Android 会将应用保存的数据（您的笔记、学习进度和设置；如果您创建了账号，还包括登录状态）包含在手机备份中，保存在您自己的 Google 账号里。该备份由 Google 保存，我们无法查看或访问。当您在新手机上安装应用时，这些数据会被恢复。您可以在手机设置中关闭备份（设置 → Google → 备份；不同手机上的名称可能不同）；关闭后，Google 会按其自身规则删除该备份。在 iPhone 上，iOS 可能会将这些数据包含在您自己的 iCloud 或电脑备份中；我们同样无法访问。</p>
 
   <h2>3. 网络使用</h2>
   <ul>
     <li><strong>市场价格。</strong>当您打开“市场”页面时，应用会从 api.eia.gov 下载 EIA 的公开价格数据。请求中只包含所需的价格列表和应用的访问密钥，不含任何个人数据或您输入的内容。与任何网络连接一样，EIA 的服务器会收到您设备的 IP 地址；EIA 依据其在 eia.gov 上公布的隐私政策处理该地址。</li>
     <li><strong>广告。</strong>如果您没有购买“去除广告”，应用会连接 Google 以显示广告（见第 4 节）。</li>
     <li><strong>Google Play 和 App Store。</strong>应用会向 Google Play（Android）或 App Store（iPhone）查询“去除广告”的价格以及您是否已拥有它（见第 5 节）。</li>
+    <li><strong>更新检查。</strong>应用启动时会向 Google Firebase（Remote Config）查询仍可使用的最低应用版本，以便在必须更新时提醒您。请求中包含 Firebase 为本次安装创建的一个随机编号、应用版本、系统版本，以及您手机上设置的语言、国家/地区和时区；不含姓名、电子邮件或您输入的任何内容。与任何网络连接一样，Google 的服务器会收到您设备的 IP 地址。此项检查无法关闭。</li>
     <li><strong>排行榜。</strong>只有在您加入可选的排行榜时，应用才会将您选择的名称和测验成绩发送到 Google Firebase，并加载排行榜（见第 6 节）。</li>
     <li><strong>账号和同步。</strong>只有在您创建账号时，应用才会通过 Google Firebase 登录（使用电子邮件、Google 或 Apple），并在您的手机之间同步数据（见第 6b、6e、6f 节）。</li>
     <li><strong>崩溃报告和统计。</strong>崩溃报告会发送到 Sentry，除非您在“设置 → 隐私”中关闭；匿名使用计数只有在您允许后才会发送到 PostHog（见第 6c、6d 节）。</li>
@@ -190,6 +227,7 @@ ZH_SECTION = '''<section id="zh" lang="zh-Hans">
     <li>美国能源信息署（EIA）：公开价格数据（见第 3 节）；</li>
     <li>Google AdMob，包括 Google 的同意工具（User Messaging Platform）：广告（见第 4 节）；</li>
     <li>Google Firebase（Authentication 和 Cloud Firestore）：可选的排行榜、账号以及手机之间的同步（见第 6、6b、6f 节）；</li>
+    <li>Google Firebase Remote Config：更新检查（见第 3 节）；</li>
     <li>Google Play 结算（Android）和 Apple 的 App Store（iPhone）：“去除广告”购买（见第 5 节）；</li>
     <li>Google Sign-In 和“通过 Apple 登录”：可选登录（见第 6e 节）；</li>
     <li>Sentry（Functional Software, Inc.，欧盟数据区域）：崩溃报告，以及您在应用内发给我们的留言（见第 6c、6g 节）；</li>

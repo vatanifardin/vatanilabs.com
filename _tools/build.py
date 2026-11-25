@@ -631,7 +631,7 @@ exec(rd(T / 'delete_texts.py'))   # defines delete_secs() and its rows of TX
 # Geo-Rulers: the same policy with the sections 6b to 6g of its own app
 # folder, then the differences listed in georulers_texts.py.
 exec(rd(T / 'georulers_texts.py'))  # defines GEO_NAME, GEO_APP, geo_adapt()
-geo_privacy_secs = {l: geo_adapt(sec, GEO_PRIV[l], l, 24) for l, sec in policy(GEO).items()}
+geo_privacy_secs = {l: geo_adapt(sec, GEO_PRIV[l], l, 25) for l, sec in policy(GEO).items()}
 
 
 def geo_delete_secs():

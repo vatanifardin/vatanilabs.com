@@ -33,8 +33,8 @@ other languages.
     English, Azerbaijani, Russian. To change or add a text, edit it there
     and rebuild. The build stops if a language is missing.
   - `_tools/georulers_texts.py`: what the Geo-Rulers privacy policy and
-    delete page say differently from PetroGram's (name, date, prices, update
-    check), in seven languages. Everything else in those two pages is
+    delete page say differently from PetroGram's (name, date, what the app is
+    about, prices), in seven languages. Everything else in those two pages is
     PetroGram's text, so a change to PetroGram's policy reaches Geo-Rulers
     too; the build stops if a text to be replaced is no longer found.
   - `python3 -I _tools/make_land.py` rebuilds the globe and map dots.
