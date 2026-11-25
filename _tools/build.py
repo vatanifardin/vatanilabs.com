@@ -11,7 +11,8 @@ Other inputs in this folder: flat_map.json (from make_land.py), terms.json
 (the app's terms of use in 7 languages), privacy_old.html + privacy_texts.py
 (the privacy policy and its 21 November 2026 changes), delete_texts.py (the
 page for deleting an account, in 7 languages), georulers_texts.py (what the
-Geo-Rulers privacy policy and delete page say differently from PetroGram's).
+Geo-Rulers privacy policy, delete page and terms say differently from
+PetroGram's).
 The folder name starts with "_", so GitHub Pages does not publish it.
 """
 import html, json, os, re
@@ -121,11 +122,11 @@ def lang_links(path):
         for l in LANGS)
 
 
-def page(key, body, path='/', scripts=(), found=True, name=None, app_privacy=None):
+def page(key, body, path='/', scripts=(), found=True, name=None, app=None):
     """One whole page. key picks its title and description in site_texts.py;
     path is its address in English ("/petrogram/"), the same in every language.
-    name: another app whose page reuses PetroGram's title and description;
-    app_privacy: the address of that app's privacy policy, for the footer."""
+    name: another app, whose name replaces PetroGram in the title and
+    description; app: that app's folder on the site, for the footer."""
     title, desc = html.escape(t(key + '_title')), html.escape(t(key + '_desc'))
     if name:
         title, desc = title.replace('PetroGram', name), desc.replace('PetroGram', name)
@@ -145,12 +146,12 @@ def page(key, body, path='/', scripts=(), found=True, name=None, app_privacy=Non
             # wrong address under /az/ or /ru/ is sent on to that language's own page.
             seo += ('<script>(function(){var m=location.pathname.match(/^\\/(az|ru)(\\/|$)/);'
                     "if(m&&!/\\/404\\.html$/.test(location.pathname))location.replace('/'+m[1]+'/404.html')})()</script>\n")
-    # The footer leads to PetroGram's pages. On the pages of another app it
-    # leads to that app's own privacy policy instead (the only page it has).
-    foot = (f'''<a href="{u('/petrogram/')}">PetroGram</a>
-      <a href="{u('/petrogram/privacy/')}">{t('privacy')}</a>
-      <a href="{u('/petrogram/terms/')}">{t('terms')}</a>''' if not name else
-            f'''<a href="{u(app_privacy)}">{name}: {t('privacy')}</a>''')
+    # The footer leads to PetroGram's pages; on the pages of another app, to
+    # that app's own page, privacy policy and terms of use.
+    fname, fapp = (name, app) if app else ('PetroGram', 'petrogram')
+    foot = f'''<a href="{u(f'/{fapp}/')}">{fname}</a>
+      <a href="{u(f'/{fapp}/privacy/')}">{t('privacy')}</a>
+      <a href="{u(f'/{fapp}/terms/')}">{t('terms')}</a>'''
     return f'''<!doctype html>
 <html lang="{L}">
 <head>
@@ -305,12 +306,14 @@ def band(words):
 # The apps that are still being made: address name, name, the colour of the
 # glow under the icon, and the captions of its three cards (rows of
 # site_texts.py; the texts of an app are its rows "<key>_sub", "<key>_lead",
-# "<key>_h1" ... "<key>_p3").
+# "<key>_h1" ... "<key>_p3"). The icon is assets/img/<address name>-icon.png.
+# An app in PAGES has its own page at /<address name>/, and its panel links to it.
 SOON = [
-    ('mining-atlas', 'Mining Atlas', 'ma', '194,97,28', ('conv_cap', 'flash_cap', 'map_cap')),
+    ('geo-rulers', 'Geo-Rulers', 'gr', '194,97,28', ('conv_cap', 'flash_cap', 'map_cap')),
     ('domino-freedom', 'Domino Freedom', 'df', '22,160,102', ('off_cap', 'cap_together', 'cap_light')),
     ('domino-global', 'Domino Global', 'dg', '139,53,201', ('more_cap', 'cap_together', 'cap_family')),
 ]
+PAGES = {'geo-rulers'}
 
 
 def soon_tab(n, app):
@@ -325,6 +328,8 @@ def soon_panel(app):
         f'        <div class="card glow"><span class="label">{t(c)}</span><h3>{t(f"{k}_h{i}")}</h3><p>{t(f"{k}_p{i}")}</p></div>\n'
         for i, c in enumerate(caps, 1))
     subject = quote(t('next_subject') + ': ' + name)
+    own = (f'<a class="btn solid" href="{u(f"/{slug}/")}">{t("discover_of").format(name)} <span class="arr">→</span></a>'
+           if slug in PAGES else '')
     return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}" hidden>
       <div class="app-line">
         <img src="/assets/img/{slug}-icon.png" alt="{html.escape(t('icon_alt_of').format(name))}" style="--glow:rgba({glow},.9)">
@@ -334,7 +339,7 @@ def soon_panel(app):
       <p class="app-lead">{t(k + '_lead')}</p>
       <div class="grid3">
 {cards}      </div>
-      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject={subject}">{t('next_cta')} <span class="arr">→</span></a></div>
+      <div class="actions" style="margin-top:26px">{own}<a class="btn" href="mailto:support@vatanilabs.com?subject={subject}">{t('next_cta')} <span class="arr">→</span></a></div>
     </div>
 
 '''
@@ -520,6 +525,85 @@ def petro():
 </main>'''
 
 
+# ------------------------------------------------------------ Geo-Rulers
+# The page of an app that is still being made: like PetroGram's, but with
+# no store buttons and no screenshots (there are none yet). The hero shows
+# the turning Earth (the app's maps of mines and deposits); the icon stands
+# where the screens would be. The slogans stay in English (lang="en").
+def geo():
+    slug, name, k, glow = SOON[0][:4]
+    assert slug == GEO_APP and name == GEO_NAME, 'Geo-Rulers must be the first app of SOON'
+    icon = f'/assets/img/{slug}-icon.png'
+    alt = e('icon_alt_of').format(name)
+    ore, _, dig = t('gr_slogans')   # the second one heads the features (gr_feat_h2)
+    mail = f'mailto:support@vatanilabs.com?subject={quote(t("next_subject") + ": " + name)}'
+    caps = ['conv_cap', 'flash_cap', 'quiz_cap', 'gr_cap_read', 'map_cap', 'gr_cap_companies', 'market_cap', 'lang_cap', 'off_cap']
+    heads = [f'gr_c{i}_h' for i in range(1, 8)] + ['lang_h', 'off_h']
+    texts = [f'gr_c{i}_p' for i in range(1, 8)] + ['lang_p', 'gr_c9_p']
+    cards = '\n'.join(
+        f'      <div class="card glow rv" style="--d:{(i % 3) * .08:.2f}s"><span class="label">{t(c)}</span><h3>{t(h)}</h3><p>{t(p)}</p></div>'
+        for i, (c, h, p) in enumerate(zip(caps, heads, texts)))
+    return f'''<main>
+<section class="app-hero">
+  <div class="sculpt"><canvas id="sculpture" data-shapes="globe" aria-hidden="true"></canvas></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="pill rv"><i></i>{t('gr_pill')}</span>
+      <div class="top rv" style="--d:.08s">
+        <img class="app-icon" src="{icon}" alt="{alt}" style="--glow:rgba({glow},.95)">
+        <h1>Geo-<em class="s">Rulers</em></h1>
+      </div>
+      <p class="slogan rv" style="--d:.12s" lang="en"><em class="s">{ore}</em></p>
+      <p class="lead rv" style="--d:.16s">{t('gr_page_lead')}</p>
+      <div class="actions rv" style="--d:.24s">
+        <span class="btn" aria-disabled="true">{t('dev')}</span>
+        <a class="btn solid" href="{mail}">{t('next_cta')} <span class="arr">→</span></a>
+      </div>
+      <p class="store-note rv" style="--d:.3s">{t('gr_note')}</p>
+    </div>
+  </div>
+</section>
+{band(t('gr_band'))}
+
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="rv">
+        <p class="label"><span class="n">{t('feat_n')}</span> {t('feat_label')}</p>
+        <h2>{t('gr_feat_h2')}</h2>
+      </div>
+      <p class="rv" style="--d:.1s">{t('gr_feat_p')}</p>
+    </div>
+    <div class="grid3">
+{cards}
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:20px">
+  <div class="wrap">
+    <div class="soon rv">
+      <div class="orbit"><img src="{icon}" alt="{alt}" style="--glow:rgba({glow},.9)"></div>
+      <p class="label">{t('dev')}</p>
+      <h3 lang="en">{dig}</h3>
+      <p>{t('gr_soon_p')}</p>
+      <div class="actions" style="justify-content:center;margin-top:28px"><a class="btn" href="{mail}">{t('next_cta')} <span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:20px">
+  <div class="wrap">
+    <div class="grid3">
+      <div class="card glow rv"><span class="label">{t('sup_label')}</span><h3>{t('sup_h')}</h3><p>{t('sup_p')}</p></div>
+      <div class="card glow rv" style="--d:.08s"><span class="label">{t('prv_label')}</span><h3>{t('privacy')}</h3><p>{t('prv_p')} <a href="{u(f'/{slug}/privacy/')}">{t('read_it')}</a><br><a href="{u(f'/{slug}/delete-account/')}">{t('delete-account')} →</a></p></div>
+      <div class="card glow rv" style="--d:.16s"><span class="label">{t('trm_label')}</span><h3>{t('terms')}</h3><p>{t('trm_p')} <a href="{u(f'/{slug}/terms/')}">{t('read_them')}</a></p></div>
+    </div>
+  </div>
+</section>
+</main>'''
+
+
 # ------------------------------------------------------ privacy and terms
 # The app's two long texts exist in seven languages. The English page shows
 # all seven, one after the other (the app links to it); the Azerbaijani and
@@ -553,21 +637,33 @@ def doc(slug, sections, app='petrogram', name='PetroGram'):
 </main>'''
 
 
-terms_secs = {}
-for l, m in json.loads(rd(T / 'terms.json')).items():
-    rtl = ' dir="rtl"' if l == 'ar' else ''
-    hl = ' lang="zh-Hans"' if l == 'zh' else f' lang="{l}"'
-    items = []
-    for i in range(1, 13):
-        if f'tm_{i}' not in m:
-            break
-        items.append(f'<h2>{i}. {html.escape(m[f"tm_{i}_t"])}</h2>\n<p>{html.escape(m[f"tm_{i}"])}</p>')
-    terms_secs[l] = f'''<section id="{l}"{hl}{rtl}>
-<h1>PetroGram – {html.escape(m["tm_title"])}</h1>
+def terms(name='PetroGram', changes=None):
+    """The terms of use (language -> HTML). For another app: its name in place
+    of PetroGram, then changes, a list of (old text, new text) per language."""
+    secs = {}
+    for l, m in json.loads(rd(T / 'terms.json')).items():
+        m = {k: v.replace('PetroGram', name) for k, v in m.items()}
+        for x, y in (changes or {}).get(l, []):
+            hit = [k for k, v in m.items() if x in v]
+            assert len(hit) == 1 and m[hit[0]].count(x) == 1, ('terms', name, l, x[:60])
+            m[hit[0]] = m[hit[0]].replace(x, y)
+        rtl = ' dir="rtl"' if l == 'ar' else ''
+        hl = ' lang="zh-Hans"' if l == 'zh' else f' lang="{l}"'
+        items = []
+        for i in range(1, 13):
+            if f'tm_{i}' not in m:
+                break
+            items.append(f'<h2>{i}. {html.escape(m[f"tm_{i}_t"])}</h2>\n<p>{html.escape(m[f"tm_{i}"])}</p>')
+        secs[l] = f'''<section id="{l}"{hl}{rtl}>
+<h1>{name} – {html.escape(m["tm_title"])}</h1>
 <p>{html.escape(m["tm_intro"])}</p>
 {chr(10).join(items)}
 <p class="meta">{html.escape(m["tm_date"])}</p>
 </section>'''
+    return secs
+
+
+terms_secs = terms()
 
 exec(rd(T / 'privacy_texts.py'))  # defines PRIV and ZH_SECTION
 old = rd(T / 'privacy_old.html')
@@ -630,8 +726,9 @@ exec(rd(T / 'delete_texts.py'))   # defines delete_secs() and its rows of TX
 
 # Geo-Rulers: the same policy with the sections 6b to 6g of its own app
 # folder, then the differences listed in georulers_texts.py.
-exec(rd(T / 'georulers_texts.py'))  # defines GEO_NAME, GEO_APP, geo_adapt()
+exec(rd(T / 'georulers_texts.py'))  # defines GEO_NAME, GEO_APP, geo_adapt(), GEO_TERMS
 geo_privacy_secs = {l: geo_adapt(sec, GEO_PRIV[l], l, 25) for l, sec in policy(GEO).items()}
+geo_terms_secs = terms(GEO_NAME, GEO_TERMS)
 
 
 def geo_delete_secs():
@@ -657,17 +754,20 @@ for L in LANGS:
     wr(out / 'petrogram/privacy/index.html', page('privacy', doc('privacy', privacy_secs), '/petrogram/privacy/', JS))
     wr(out / 'petrogram/delete-account/index.html',
        page('delete', doc('delete-account', delete_secs()), '/petrogram/delete-account/', JS))
-    # Geo-Rulers has no page of its own and no terms page yet: only the two
-    # pages its app links to.
+    # Geo-Rulers: its page, and its privacy policy, delete page and terms of use.
+    wr(out / GEO_APP / 'index.html',
+       page('gr', geo(), f'/{GEO_APP}/', ['/assets/land.js', '/assets/hero.js'] + JS, name=GEO_NAME, app=GEO_APP))
     wr(out / GEO_APP / 'privacy/index.html',
-       page('privacy', doc('privacy', geo_privacy_secs, GEO_APP, GEO_NAME), f'/{GEO_APP}/privacy/', JS, name=GEO_NAME, app_privacy=f'/{GEO_APP}/privacy/'))
+       page('privacy', doc('privacy', geo_privacy_secs, GEO_APP, GEO_NAME), f'/{GEO_APP}/privacy/', JS, name=GEO_NAME, app=GEO_APP))
     wr(out / GEO_APP / 'delete-account/index.html',
-       page('delete', doc('delete-account', geo_delete_secs(), GEO_APP, GEO_NAME), f'/{GEO_APP}/delete-account/', JS, name=GEO_NAME, app_privacy=f'/{GEO_APP}/privacy/'))
+       page('delete', doc('delete-account', geo_delete_secs(), GEO_APP, GEO_NAME), f'/{GEO_APP}/delete-account/', JS, name=GEO_NAME, app=GEO_APP))
+    wr(out / GEO_APP / 'terms/index.html',
+       page('terms', doc('terms', geo_terms_secs, GEO_APP, GEO_NAME), f'/{GEO_APP}/terms/', JS, name=GEO_NAME, app=GEO_APP))
     wr(out / '404.html', page('nf', notfound(), '/404.html', JS, found=False))
 
 # The list of pages for search engines, each with its other languages.
 PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/',
-         f'/{GEO_APP}/privacy/', f'/{GEO_APP}/delete-account/']
+         f'/{GEO_APP}/', f'/{GEO_APP}/privacy/', f'/{GEO_APP}/terms/', f'/{GEO_APP}/delete-account/']
 rows = ''.join(
     f'  <url><loc>{SITE}{PRE[l]}{p}</loc>'
     + ''.join(f'<xhtml:link rel="alternate" hreflang="{x}" href="{SITE}{PRE[x]}{p}"/>' for x in LANGS)

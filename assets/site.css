@@ -304,6 +304,7 @@ section.block { padding: 130px 0; position: relative; }
   background: radial-gradient(60% 80% at 50% 0%, rgba(44,196,184,.12), transparent 70%), linear-gradient(180deg, rgba(20,28,54,.6), rgba(9,13,26,.7)); }
 .orbit { width: 170px; height: 170px; margin: 0 auto 34px; position: relative; display: grid; place-items: center; }
 .orbit svg { width: 84px; }
+.orbit img { width: 96px; height: 96px; border-radius: 23px; position: relative; z-index: 1; box-shadow: 0 24px 70px -14px var(--glow, rgba(63,81,181,.95)); }
 .orbit::before, .orbit::after { content: ""; position: absolute; border-radius: 50%; border: 1px dashed rgba(127,240,228,.4); }
 .orbit::before { inset: 0; animation: turn 22s linear infinite; }
 .orbit::after { inset: 20px; border-color: rgba(150,170,230,.3); animation: turn 16s linear infinite reverse; }
@@ -351,7 +352,9 @@ section.block { padding: 130px 0; position: relative; }
 .app-hero { position: relative; overflow: hidden; min-height: min(92svh, 860px); display: flex; align-items: center; }
 .app-hero .wrap { position: relative; z-index: 2; width: 100%; padding-top: 40px; padding-bottom: 60px; }
 .app-hero .top { display: flex; align-items: center; gap: 24px; margin: 26px 0 28px; }
-.app-hero img.app-icon { width: 96px; height: 96px; border-radius: 23px; box-shadow: 0 24px 70px -14px rgba(63,81,181,.95); }
+.app-hero img.app-icon { width: 96px; height: 96px; border-radius: 23px; box-shadow: 0 24px 70px -14px var(--glow, rgba(63,81,181,.95)); }
+/* An app's slogan under its name (Geo-Rulers) */
+.app-hero .slogan { font-size: clamp(26px, 3.2vw, 40px); line-height: 1.1; color: var(--teal-2); margin: -10px 0 22px; }
 .app-hero h1 { font-size: clamp(50px, 8vw, 112px); font-weight: 700; line-height: .95; letter-spacing: -.05em; }
 .app-hero p.lead { color: var(--muted); font-size: 19px; max-width: 560px; margin: 0 0 34px; }
 .store-note { color: var(--dim); font: 500 11.5px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; margin-top: 18px; }
