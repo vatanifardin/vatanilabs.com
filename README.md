@@ -17,6 +17,9 @@ other languages.
   repository's `branding/` folder.
 - `petrogram/`: the PetroGram page, its privacy policy and terms of use
   (7 languages on one page; the app links to these).
+- `geo-rulers/`: the two pages the Geo-Rulers app links to: its privacy
+  policy and the page for deleting an account (7 languages on one page).
+  Geo-Rulers has no page of its own and no terms of use on the site yet.
 - `az/`, `ru/`: the same pages in Azerbaijani and Russian. Their privacy
   and terms pages show that one language and link to the others.
 - `assets/`: `site.css` (all styles), `site.js` (scroll effects and the small
@@ -29,11 +32,22 @@ other languages.
   - `_tools/site_texts.py`: every text of the site, one row per text:
     English, Azerbaijani, Russian. To change or add a text, edit it there
     and rebuild. The build stops if a language is missing.
+  - `_tools/georulers_texts.py`: what the Geo-Rulers privacy policy and
+    delete page say differently from PetroGram's (name, date, prices, update
+    check), in seven languages. Everything else in those two pages is
+    PetroGram's text, so a change to PetroGram's policy reaches Geo-Rulers
+    too; the build stops if a text to be replaced is no longer found.
   - `python3 -I _tools/make_land.py` rebuilds the globe and map dots.
 - `CNAME`: the custom domain for GitHub Pages.
 
-The build reads a few privacy texts from the PetroGram app folder
-(`~/Developer/petrogram` on the Mac, `~/petrogram` on the PC). The PC has no
+The build reads a few privacy texts (sections 6b to 6g of each policy) from
+the two app folders: PetroGram (`~/Developer/petrogram` on the Mac,
+`~/petrogram` on the PC) and Geo-Rulers (`~/Developer/geo-rulers`,
+`~/geo-rulers`), from `docs/ACCOUNT_SETUP.md` part 3 and
+`docs/PRIVACY_ADDITIONS.md` of each. Both folders must be there and up to
+date (`git pull`). To read an app from another folder for one run, name it
+in `PETROGRAM_APP` or `GEO_RULERS_APP`:
+`GEO_RULERS_APP=/path/to/geo-rulers python3 -I _tools/build.py`. The PC has no
 Python of its own; the one inside the Android SDK works:
 `%LOCALAPPDATA%\Android\Sdk\ndk\<version>\toolchains\llvm\prebuilt\windows-x86_64\python3\python.exe -I _tools\build.py`.
 

@@ -284,17 +284,18 @@ for _l, _d in DEL.items():
     assert all(len(_d[_k]) == len(DEL['en'][_k]) for _k in ('app_steps', 'mail_steps', 'del_items', 'keep_items')), _l
 
 
-def delete_secs():
+def delete_secs(app='petrogram'):
     """The sections of the page (language -> HTML), for the site language
     being built. The link to the privacy policy leads to the same language:
     its own page in Azerbaijani and Russian, its part of the English page
-    for the others."""
+    for the others. app: the app's folder on the site (build.py changes the
+    name and the date for an app other than PetroGram)."""
     def items(rows):
         return '\n'.join(f'    <li>{r}</li>' for r in rows)
 
     out = {}
     for l, d in DEL.items():
-        privacy = f'/petrogram/privacy/#{l}' if L == 'en' else f'{PRE[L]}/petrogram/privacy/'
+        privacy = f'/{app}/privacy/#{l}' if L == 'en' else f'{PRE[L]}/{app}/privacy/'
         rtl = ' dir="rtl"' if l == 'ar' else ''
         hl = 'zh-Hans' if l == 'zh' else l
         sec = f'''<section id="{l}" lang="{hl}"{rtl}>

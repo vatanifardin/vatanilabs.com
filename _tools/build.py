@@ -10,21 +10,34 @@ site_texts.py (English, Azerbaijani, Russian); the page layout is here.
 Other inputs in this folder: flat_map.json (from make_land.py), terms.json
 (the app's terms of use in 7 languages), privacy_old.html + privacy_texts.py
 (the privacy policy and its 21 November 2026 changes), delete_texts.py (the
-page for deleting an account, in 7 languages).
+page for deleting an account, in 7 languages), georulers_texts.py (what the
+Geo-Rulers privacy policy and delete page say differently from PetroGram's).
 The folder name starts with "_", so GitHub Pages does not publish it.
 """
-import html, json, re
+import html, json, os, re
 from pathlib import Path
 from urllib.parse import quote
 
 T = Path(__file__).resolve().parent
 OUT = T.parent
-# The PetroGram app folder (some privacy texts are read from its docs):
-# the Mac keeps it in ~/Developer/petrogram, the PC in ~/petrogram.
-APP = next((p for p in (Path('/Users/fardinvatani/Developer/petrogram'),
-                        Path.home() / 'Developer/petrogram', Path.home() / 'petrogram')
-            if (p / 'docs').is_dir()), None)
+
+
+def app_folder(folder, env):
+    """The folder of an app (some privacy texts are read from its docs): the
+    Mac keeps it in ~/Developer/<folder>, the PC in ~/<folder>. Another place
+    can be given for one run in the environment variable <env>, for example
+    GEO_RULERS_APP=/path/to/geo-rulers python3 -I _tools/build.py"""
+    places = [Path('/Users/fardinvatani/Developer') / folder,
+              Path.home() / 'Developer' / folder, Path.home() / folder]
+    if os.environ.get(env):
+        places = [Path(os.environ[env]).expanduser()]
+    return next((p for p in places if (p / 'docs').is_dir()), None)
+
+
+APP = app_folder('petrogram', 'PETROGRAM_APP')
 assert APP, 'PetroGram app folder not found'
+GEO = app_folder('geo-rulers', 'GEO_RULERS_APP')
+assert GEO, 'Geo-Rulers app folder not found'
 
 
 def rd(p):
@@ -108,10 +121,14 @@ def lang_links(path):
         for l in LANGS)
 
 
-def page(key, body, path='/', scripts=(), found=True):
+def page(key, body, path='/', scripts=(), found=True, name=None, app_privacy=None):
     """One whole page. key picks its title and description in site_texts.py;
-    path is its address in English ("/petrogram/"), the same in every language."""
+    path is its address in English ("/petrogram/"), the same in every language.
+    name: another app whose page reuses PetroGram's title and description;
+    app_privacy: the address of that app's privacy policy, for the footer."""
     title, desc = html.escape(t(key + '_title')), html.escape(t(key + '_desc'))
+    if name:
+        title, desc = title.replace('PetroGram', name), desc.replace('PetroGram', name)
     tags = ''.join(f'<script src="{s}" defer></script>\n' for s in scripts)
     if found:   # tell search engines where the page is and where its other languages are
         seo = (f'<link rel="canonical" href="{SITE}{u(path)}">\n'
@@ -128,6 +145,12 @@ def page(key, body, path='/', scripts=(), found=True):
             # wrong address under /az/ or /ru/ is sent on to that language's own page.
             seo += ('<script>(function(){var m=location.pathname.match(/^\\/(az|ru)(\\/|$)/);'
                     "if(m&&!/\\/404\\.html$/.test(location.pathname))location.replace('/'+m[1]+'/404.html')})()</script>\n")
+    # The footer leads to PetroGram's pages. On the pages of another app it
+    # leads to that app's own privacy policy instead (the only page it has).
+    foot = (f'''<a href="{u('/petrogram/')}">PetroGram</a>
+      <a href="{u('/petrogram/privacy/')}">{t('privacy')}</a>
+      <a href="{u('/petrogram/terms/')}">{t('terms')}</a>''' if not name else
+            f'''<a href="{u(app_privacy)}">{name}: {t('privacy')}</a>''')
     return f'''<!doctype html>
 <html lang="{L}">
 <head>
@@ -168,9 +191,7 @@ def page(key, body, path='/', scripts=(), found=True):
     <a class="brand" href="{u('/')}" aria-label="{e('home_aria')}">{MARK}<b>Vatani</b><span>Tech</span></a>
     <span>© 2026 Vatani Tech · {t('foot_place')}</span>
     <nav aria-label="{e('nav_footer')}">
-      <a href="{u('/petrogram/')}">PetroGram</a>
-      <a href="{u('/petrogram/privacy/')}">{t('privacy')}</a>
-      <a href="{u('/petrogram/terms/')}">{t('terms')}</a>
+      {foot}
       <a href="mailto:support@vatanilabs.com">support@vatanilabs.com</a>
     </nav>
     <nav class="foot-langs" aria-label="{e('lang')}">{switch}</nav>
@@ -507,26 +528,27 @@ DOC_LANGS = {'en': 'English', 'az': 'Azərbaycanca', 'ru': 'Русский', 'ar
              'es': 'Español', 'fr': 'Français', 'zh': '简体中文'}
 
 
-def langnav(slug):
+def langnav(slug, app='petrogram'):
     def link(l):
         if L == 'en':
             return f'<a href="#{l}">'
         if l == L:
             return f'<a href="#{l}" aria-current="true">'
         if l in PRE and l != 'en':
-            return f'<a href="{PRE[l]}/petrogram/{slug}/">'
-        return f'<a href="/petrogram/{slug}/#{l}">'
+            return f'<a href="{PRE[l]}/{app}/{slug}/">'
+        return f'<a href="/{app}/{slug}/#{l}">'
     return (f'<nav class="langs" aria-label="{e("doc_langs")}">'
             + ''.join(link(l) + n + '</a>' for l, n in DOC_LANGS.items()) + '</nav>')
 
 
-def doc(slug, sections):
-    """A long text page: all languages in English, one language elsewhere."""
+def doc(slug, sections, app='petrogram', name='PetroGram'):
+    """A long text page: all languages in English, one language elsewhere.
+    app and name: the app's folder on the site and the name people see."""
     shown = list(sections.values()) if L == 'en' else [sections[L]]
     sep = '\n' if slug == 'terms' else '\n\n'
     return f'''<main class="doc">
-<p class="label"><span class="n">PetroGram /</span> {t(slug)}</p>
-{langnav(slug)}
+<p class="label"><span class="n">{name} /</span> {t(slug)}</p>
+{langnav(slug, app)}
 {sep.join(shown)}
 </main>'''
 
@@ -551,8 +573,8 @@ exec(rd(T / 'privacy_texts.py'))  # defines PRIV and ZH_SECTION
 old = rd(T / 'privacy_old.html')
 
 
-def block_6b(lang_label):
-    md = rd(APP / 'docs/ACCOUNT_SETUP.md')
+def block_6b(app, lang_label):
+    md = rd(app / 'docs/ACCOUNT_SETUP.md')
     i = md.index(f'**{lang_label}.** ')
     j = md.find('\n\n', i)
     txt = ' '.join(md[i:j].split('\n')).split('** ', 1)[1]
@@ -561,8 +583,8 @@ def block_6b(lang_label):
     return f'<h2>{num.rstrip(".")}. {html.escape(title)}</h2>\n  <p>{html.escape(body)}</p>'
 
 
-def blocks_6c(heading):
-    md = rd(APP / 'docs/PRIVACY_ADDITIONS.md')
+def blocks_6c(app, heading):
+    md = rd(app / 'docs/PRIVACY_ADDITIONS.md')
     i = md.index(f'## {heading}\n')
     j = md.find('\n## ', i + 3)
     chunk = md[i:j if j > 0 else None]
@@ -572,32 +594,49 @@ def blocks_6c(heading):
     return '\n\n  '.join(out)
 
 
-privacy_secs = {}
-for l in ['en', 'az', 'ru', 'ar', 'es', 'fr']:
-    a = old.index(f'<section id="{l}"')
-    sec = old[a:old.index('</section>', a) + len('</section>')]
-    p = PRIV[l]
-    for x, y in p['replace']:
-        assert sec.count(x) == 1, (l, x[:60], sec.count(x))
-        sec = sec.replace(x, y)
-    s0 = sec.index(p['sum_start'])
-    s1 = sec.index(p['sum_end'], s0) + len(p['sum_end'])
-    sec = sec[:s0] + p['summary'] + sec[s1:]
-    k = sec.index('<h2>7.')
-    sec = sec[:k] + block_6b(p['label6b']) + '\n\n  ' + blocks_6c(p['heading6c']) + '\n\n  ' + sec[k:]
-    for marker, add in [(p['sec3'], p['bullet3']), (p['sec8'], p['bullets8'])]:
-        m0 = sec.index(marker)
-        m1 = sec.index('</ul>', m0)
-        if marker == p['sec8']:          # the old last item ended the list with "."
-            last = sec.rindex('.</li>', m0, m1)
-            sec = sec[:last] + p['semi'] + sec[last + 1:]
+def policy(app):
+    """The PetroGram privacy policy (language -> HTML), with sections 6b to 6g
+    read from the docs of the app folder given."""
+    secs = {}
+    for l in ['en', 'az', 'ru', 'ar', 'es', 'fr']:
+        a = old.index(f'<section id="{l}"')
+        sec = old[a:old.index('</section>', a) + len('</section>')]
+        p = PRIV[l]
+        for x, y in p['replace']:
+            assert sec.count(x) == 1, (l, x[:60], sec.count(x))
+            sec = sec.replace(x, y)
+        s0 = sec.index(p['sum_start'])
+        s1 = sec.index(p['sum_end'], s0) + len(p['sum_end'])
+        sec = sec[:s0] + p['summary'] + sec[s1:]
+        k = sec.index('<h2>7.')
+        sec = sec[:k] + block_6b(app, p['label6b']) + '\n\n  ' + blocks_6c(app, p['heading6c']) + '\n\n  ' + sec[k:]
+        for marker, add in [(p['sec3'], p['bullet3']), (p['sec8'], p['bullets8'])]:
+            m0 = sec.index(marker)
             m1 = sec.index('</ul>', m0)
-        sec = sec[:m1] + add + '\n  ' + sec[m1:]
-    assert 'gmail' not in sec, l
-    privacy_secs[l] = sec
-privacy_secs['zh'] = ZH_SECTION.replace('{BLOCKS6CF}', blocks_6c('简体中文'))
+            if marker == p['sec8']:          # the old last item ended the list with "."
+                last = sec.rindex('.</li>', m0, m1)
+                sec = sec[:last] + p['semi'] + sec[last + 1:]
+                m1 = sec.index('</ul>', m0)
+            sec = sec[:m1] + add + '\n  ' + sec[m1:]
+        assert 'gmail' not in sec, l
+        secs[l] = sec
+    secs['zh'] = ZH_SECTION.replace('{BLOCKS6CF}', blocks_6c(app, '简体中文'))
+    return secs
+
+
+privacy_secs = policy(APP)
 
 exec(rd(T / 'delete_texts.py'))   # defines delete_secs() and its rows of TX
+
+# Geo-Rulers: the same policy with the sections 6b to 6g of its own app
+# folder, then the differences listed in georulers_texts.py.
+exec(rd(T / 'georulers_texts.py'))  # defines GEO_NAME, GEO_APP, geo_adapt()
+geo_privacy_secs = {l: geo_adapt(sec, GEO_PRIV[l], l, 24) for l, sec in policy(GEO).items()}
+
+
+def geo_delete_secs():
+    return {l: geo_adapt(sec, GEO_DELETE.get(l, []), l, 22)
+            for l, sec in delete_secs(GEO_APP).items()}
 
 
 def notfound():
@@ -618,10 +657,17 @@ for L in LANGS:
     wr(out / 'petrogram/privacy/index.html', page('privacy', doc('privacy', privacy_secs), '/petrogram/privacy/', JS))
     wr(out / 'petrogram/delete-account/index.html',
        page('delete', doc('delete-account', delete_secs()), '/petrogram/delete-account/', JS))
+    # Geo-Rulers has no page of its own and no terms page yet: only the two
+    # pages its app links to.
+    wr(out / GEO_APP / 'privacy/index.html',
+       page('privacy', doc('privacy', geo_privacy_secs, GEO_APP, GEO_NAME), f'/{GEO_APP}/privacy/', JS, name=GEO_NAME, app_privacy=f'/{GEO_APP}/privacy/'))
+    wr(out / GEO_APP / 'delete-account/index.html',
+       page('delete', doc('delete-account', geo_delete_secs(), GEO_APP, GEO_NAME), f'/{GEO_APP}/delete-account/', JS, name=GEO_NAME, app_privacy=f'/{GEO_APP}/privacy/'))
     wr(out / '404.html', page('nf', notfound(), '/404.html', JS, found=False))
 
 # The list of pages for search engines, each with its other languages.
-PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/']
+PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/',
+         f'/{GEO_APP}/privacy/', f'/{GEO_APP}/delete-account/']
 rows = ''.join(
     f'  <url><loc>{SITE}{PRE[l]}{p}</loc>'
     + ''.join(f'<xhtml:link rel="alternate" hreflang="{x}" href="{SITE}{PRE[x]}{p}"/>' for x in LANGS)
