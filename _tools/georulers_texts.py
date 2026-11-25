@@ -125,19 +125,19 @@ assert all(len(v) == len(GEO_PRIV['en']) for v in GEO_PRIV.values()), 'georulers
 # Geo-Rulers' text); the build stops if a text is not found exactly once.
 GEO_TERMS = {
 'en': [('Prices and rig counts come from public sources (U.S. EIA, Baker Hughes)',
-        'Prices and counts of mines and quarries come from public sources (World Bank, MSHA)')],
+        'Prices and counts of mines and quarries come from public sources (World Bank, USGS, EIA, MSHA)')],
 'az': [('Qiymətlər və qazma qurğularının sayı açıq mənbələrdən (ABŞ EIA, Baker Hughes)',
-        'Qiymətlər və mədən və karxanaların sayı açıq mənbələrdən (Dünya Bankı, MSHA)')],
+        'Qiymətlər və mədən və karxanaların sayı açıq mənbələrdən (Dünya Bankı, USGS, EIA, MSHA)')],
 'ru': [('Цены и число буровых установок берутся из открытых источников (EIA США, Baker Hughes)',
-        'Цены и число шахт и карьеров берутся из открытых источников (Всемирный банк, MSHA)')],
+        'Цены и число шахт и карьеров берутся из открытых источников (Всемирный банк, USGS, EIA, MSHA)')],
 'ar': [('تأتي الأسعار وأعداد الحفارات من مصادر عامة (EIA الأمريكية، Baker Hughes)',
-        'تأتي الأسعار وأعداد المناجم والمحاجر من مصادر عامة (البنك الدولي، MSHA)')],
+        'تأتي الأسعار وأعداد المناجم والمحاجر من مصادر عامة (البنك الدولي، USGS، EIA، MSHA)')],
 'es': [('Los precios y el número de equipos de perforación proceden de fuentes públicas (EIA de EE. UU., Baker Hughes)',
-        'Los precios y el número de minas y canteras proceden de fuentes públicas (Banco Mundial, MSHA)')],
+        'Los precios y el número de minas y canteras proceden de fuentes públicas (Banco Mundial, USGS, EIA, MSHA)')],
 'fr': [('Les prix et le nombre d’appareils de forage proviennent de sources publiques (EIA américaine, Baker Hughes)',
-        'Les prix et le nombre de mines et de carrières proviennent de sources publiques (Banque mondiale, MSHA)')],
+        'Les prix et le nombre de mines et de carrières proviennent de sources publiques (Banque mondiale, USGS, EIA, MSHA)')],
 'zh': [('价格和钻机数量来自公开来源（美国 EIA、Baker Hughes）',
-        '价格以及矿山和采石场数量来自公开来源（世界银行、MSHA）')],
+        '价格以及矿山和采石场数量来自公开来源（世界银行、USGS、EIA、MSHA）')],
 }
 assert list(GEO_TERMS) == list(DOC_LANGS), 'georulers_texts.py: one list of terms changes per language, in the order of DOC_LANGS'
 
