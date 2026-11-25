@@ -39,6 +39,20 @@ other languages.
     too; the build stops if a text to be replaced is no longer found.
   - `python3 -I _tools/make_land.py` rebuilds the globe and map dots.
 - `CNAME`: the custom domain for GitHub Pages.
+- `geo-rulers/data/prices.json`: the monthly metal and mineral prices that
+  the Geo-Rulers app reads (World Bank "Pink Sheet" data, CC BY 4.0,
+  adapted; monthly averages, not live prices). **A robot rewrites this
+  file once a month**: the GitHub Actions workflow
+  `.github/workflows/geo-rulers-prices.yml` runs on the 6th and the 16th,
+  downloads the current World Bank file, runs
+  `_tools/geo-rulers/build_prices.py` and commits the new file if it
+  changed. Nobody has to do anything. Because the robot commits to `main`,
+  **always `git pull` before changing the site**. To run it by hand: on
+  GitHub, Actions → "Geo-Rulers monthly prices" → Run workflow. If a run
+  fails, GitHub sends an email and the old file stays. The script's master
+  copy is in the Geo-Rulers repository (`tool/prices/`); copy it here
+  after changing it there. Never edit `prices.json` by hand, and do not
+  move it: the app has this address built in.
 
 The build reads a few privacy texts (sections 6b to 6g of each policy) from
 the two app folders: PetroGram (`~/Developer/petrogram` on the Mac,

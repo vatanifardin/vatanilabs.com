@@ -1,0 +1,67 @@
+# Geo-Rulers: monthly metal and mineral prices.
+#
+# Once a month this downloads the World Bank "Pink Sheet" monthly file,
+# builds geo-rulers/data/prices.json from it and commits the file if it
+# changed. GitHub Pages then publishes it, and the Geo-Rulers app reads it
+# from https://<this site>/geo-rulers/data/prices.json.
+#
+# Nobody has to do anything. If the World Bank file cannot be found or looks
+# wrong, the run fails (GitHub sends an email) and the old file stays.
+# To run it by hand: Actions -> "Geo-Rulers monthly prices" -> Run workflow.
+name: Geo-Rulers monthly prices
+
+on:
+  schedule:
+    # The World Bank publishes on the 2nd business day of each month.
+    - cron: '17 6 6 * *'   # the 6th, 06:17 UTC
+    - cron: '17 6 16 * *'  # a second try in the middle of the month
+  workflow_dispatch:
+
+# Only what is needed: write the one file to this repository, and ask
+# GitHub Pages to publish. The default token; no secrets.
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: geo-rulers-prices
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the build script
+        run: python3 -I _tools/geo-rulers/test_build_prices.py
+
+      - name: Build prices.json from the current World Bank file
+        run: >
+          python3 -I _tools/geo-rulers/build_prices.py --fetch
+          --out geo-rulers/data/prices.json
+
+      - name: Commit the file if it changed
+        id: commit
+        run: |
+          if git diff --quiet -- geo-rulers/data/prices.json; then
+            echo "No change: nothing to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          month=$(python3 -I -c "import json,sys; print(json.load(open(sys.argv[1]))['asOf'])" geo-rulers/data/prices.json)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add geo-rulers/data/prices.json
+          git commit -m "Geo-Rulers prices: monthly averages to ${month} (World Bank Pink Sheet)"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # A push by this robot normally starts the Pages build by itself;
+      # this asks for one as well, in case it does not.
+      - name: Ask GitHub Pages to publish
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build not requested by hand; the push starts it."
