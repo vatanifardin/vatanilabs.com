@@ -1,13 +1,18 @@
-# Geo-Rulers (25 November 2026): its privacy policy, its page for deleting
-# an account and its terms of use, /geo-rulers/privacy/,
-# /geo-rulers/delete-account/ and /geo-rulers/terms/.
+# Geo-Rulers (25 November 2026) and OreGram (26 November 2026): their
+# privacy policies, pages for deleting an account and terms of use,
+# /geo-rulers/privacy/, /geo-rulers/delete-account/, /geo-rulers/terms/ and
+# the same under /oregram/.
 #
 # Geo-Rulers is a sister app of PetroGram with the same code and the same
-# kinds of outside services, so its two pages are PetroGram's pages with:
+# kinds of outside services. OreGram is a twin of Geo-Rulers: the same app,
+# texts and services with another name, icon and colour (the apps that have
+# these pages are PAGES in build.py). So their pages are PetroGram's pages
+# with:
 #   - the name of the app and the date;
-#   - sections 6b to 6g read from the Geo-Rulers app folder
+#   - sections 6b to 6g read from the app's own folder
 #     (docs/ACCOUNT_SETUP.md part 3 and docs/PRIVACY_ADDITIONS.md);
-#   - the differences listed here, in all seven languages.
+#   - the differences listed here, in all seven languages, the same for
+#     both apps.
 #
 # What differs from PetroGram's policy, and why:
 #   - what the app is about (geology and mining, not oil and gas): sections 1, 9;
@@ -19,13 +24,11 @@
 # is sent, so those texts are no longer changed here.
 #
 # build.py runs this file after delete_texts.py. Every pair below is
-# (PetroGram's text with the name already changed, Geo-Rulers' text); the
-# build stops if a text is not found exactly once, so a change in PetroGram's
-# policy cannot silently break this one.
+# (PetroGram's text with the name already changed, the mining app's text);
+# the build stops if a text is not found exactly once, so a change in
+# PetroGram's policy cannot silently break this one.
 
-GEO_NAME = 'Geo-Rulers'    # the name people see (with a hyphen)
-GEO_APP = 'geo-rulers'     # the app's folder on the site
-GEO_DAY = 25               # November 2026: the date of both pages
+GEO_DAY = 25               # November 2026: the date of both pages (the same for OreGram)
 
 # How each language writes a date of November 2026.
 GEO_DATE = {
@@ -35,12 +38,28 @@ GEO_DATE = {
 }
 
 
-def geo_adapt(sec, pairs, l, day):
-    """PetroGram's section in language l, turned into Geo-Rulers': the name,
-    the date (day is the day of November on PetroGram's page) and the pairs."""
+def name_grammar(text, l, name):
+    """What changes around a name that starts with a vowel (OreGram):
+    French writes "d’OreGram", not "de OreGram"; English "an", not "a"."""
+    if name[0] not in 'AEIOU':
+        return text
+    if l == 'fr':
+        text = text.replace(f'de {name}', f'd’{name}')
+    if l == 'en':
+        text = text.replace(f' a {name}', f' an {name}').replace(f'A {name}', f'An {name}')
+    return text
+
+
+def geo_adapt(sec, pairs, l, day, name):
+    """PetroGram's section in language l, turned into the mining app's: its
+    name, the date (day is the day of November on PetroGram's page) and the
+    pairs (written with the name Geo-Rulers, which becomes the app's name).
+    Azerbaijani endings stay as they are: PetroGram-ı, -dan suit Geo-Rulers
+    and OreGram too."""
     assert 'PetroGram' in sec, l
-    sec = sec.replace('PetroGram', GEO_NAME)
-    for x, y in [(GEO_DATE[l].format(day), GEO_DATE[l].format(GEO_DAY))] + list(pairs):
+    sec = name_grammar(sec.replace('PetroGram', name), l, name)
+    pairs = [(x.replace('Geo-Rulers', name), y.replace('Geo-Rulers', name)) for x, y in pairs]
+    for x, y in [(GEO_DATE[l].format(day), GEO_DATE[l].format(GEO_DAY))] + pairs:
         assert sec.count(x) == 1, ('georulers_texts.py', l, x[:60], sec.count(x))
         sec = sec.replace(x, y)
     return sec
@@ -121,7 +140,8 @@ assert all(len(v) == len(GEO_PRIV['en']) for v in GEO_PRIV.values()), 'georulers
 # what the Geo-Rulers app says differently, in its lib/strings_services.dart
 # and lib/zh/zh_services.dart: section 1 names mining standards (ISO, JORC,
 # NI 43-101), section 3 (market data) names its sources, and the date is
-# 25 November 2026 (GEO_TERMS_DAY). Every pair is (PetroGram's text,
+# 25 November 2026 (GEO_TERMS_DAY). OreGram's app says the same (its terms
+# are Geo-Rulers' with the name changed). Every pair is (PetroGram's text,
 # Geo-Rulers' text); the build stops if a text is not found exactly once.
 GEO_TERMS = {
 'en': [('Prices and rig counts come from public sources (U.S. EIA, Baker Hughes)',

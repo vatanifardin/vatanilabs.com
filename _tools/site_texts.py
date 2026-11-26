@@ -301,11 +301,13 @@ TX = {
 
 # ------------------------------------------------------ Geo-Rulers page
 # No screenshots and no store buttons yet: the app is still being made.
+# OreGram's page uses the same rows, with OreGram in place of Geo-Rulers.
 'gr_title': ('Geo-Rulers · Vatani Tech', 'Geo-Rulers · Vatani Tech', 'Geo-Rulers · Vatani Tech'),
 'gr_desc': ('Geo-Rulers: the offline pocket reference for geology and mining, in seven languages. In development.',
             'Geo-Rulers: geologiya və dağ-mədən işi üzrə oflayn cib bələdçisi, yeddi dildə. Hazırlanır.',
             'Geo-Rulers: карманный офлайн-справочник по геологии и горному делу на семи языках. В разработке.'),
-'gr_pill': ('App 02 · Geology &amp; mining', 'Tətbiq 02 · Geologiya və dağ-mədən', 'Приложение 02 · Геология и горное дело'),
+# {} is the app's number: 02 for Geo-Rulers, 03 for OreGram (its place on the home page).
+'gr_pill': ('App {} · Geology &amp; mining', 'Tətbiq {} · Geologiya və dağ-mədən', 'Приложение {} · Геология и горное дело'),
 # The three slogans: English, then the rhyming translations (see "Geo-Rulers" above).
 'gr_slogans': (['Ore what?', 'Mine your business.', 'Dig it.'],
                ['Yerin altı — bilik qatı.', 'Mədən sizin işiniz, biz sizin köməkçiniz.', 'Dərin qazın, çox qazanın.'],

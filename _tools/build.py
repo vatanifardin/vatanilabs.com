@@ -11,8 +11,8 @@ Other inputs in this folder: flat_map.json (from make_land.py), terms.json
 (the app's terms of use in 7 languages), privacy_old.html + privacy_texts.py
 (the privacy policy and its 21 November 2026 changes), delete_texts.py (the
 page for deleting an account, in 7 languages), georulers_texts.py (what the
-Geo-Rulers privacy policy, delete page and terms say differently from
-PetroGram's).
+privacy policy, delete page and terms of the two mining apps, Geo-Rulers and
+OreGram, say differently from PetroGram's).
 The folder name starts with "_", so GitHub Pages does not publish it.
 """
 import html, json, os, re
@@ -37,8 +37,6 @@ def app_folder(folder, env):
 
 APP = app_folder('petrogram', 'PETROGRAM_APP')
 assert APP, 'PetroGram app folder not found'
-GEO = app_folder('geo-rulers', 'GEO_RULERS_APP')
-assert GEO, 'Geo-Rulers app folder not found'
 
 
 def rd(p):
@@ -125,11 +123,11 @@ def lang_links(path):
 def page(key, body, path='/', scripts=(), found=True, name=None, app=None):
     """One whole page. key picks its title and description in site_texts.py;
     path is its address in English ("/petrogram/"), the same in every language.
-    name: another app, whose name replaces PetroGram in the title and
-    description; app: that app's folder on the site, for the footer."""
+    name: another app, whose name replaces PetroGram (and Geo-Rulers) in the
+    title and description; app: that app's folder on the site, for the footer."""
     title, desc = html.escape(t(key + '_title')), html.escape(t(key + '_desc'))
     if name:
-        title, desc = title.replace('PetroGram', name), desc.replace('PetroGram', name)
+        title, desc = (x.replace('PetroGram', name).replace('Geo-Rulers', name) for x in (title, desc))
     tags = ''.join(f'<script src="{s}" defer></script>\n' for s in scripts)
     if found:   # tell search engines where the page is and where its other languages are
         seo = (f'<link rel="canonical" href="{SITE}{u(path)}">\n'
@@ -308,12 +306,31 @@ def band(words):
 # site_texts.py; the texts of an app are its rows "<key>_sub", "<key>_lead",
 # "<key>_h1" ... "<key>_p3"). The icon is assets/img/<address name>-icon.png.
 # An app in PAGES has its own page at /<address name>/, and its panel links to it.
+# OreGram is a twin of Geo-Rulers (26 November 2026): the same app with
+# another name, icon and colour, so it uses the same rows ("gr_...").
 SOON = [
     ('geo-rulers', 'Geo-Rulers', 'gr', '194,97,28', ('conv_cap', 'flash_cap', 'map_cap')),
+    ('oregram', 'OreGram', 'gr', '184,134,11', ('conv_cap', 'flash_cap', 'map_cap')),
     ('domino-freedom', 'Domino Freedom', 'df', '22,160,102', ('off_cap', 'cap_together', 'cap_light')),
     ('domino-global', 'Domino Global', 'dg', '139,53,201', ('more_cap', 'cap_together', 'cap_family')),
 ]
-PAGES = {'geo-rulers'}
+# The apps with their own pages (all mining apps, with the texts of
+# Geo-Rulers): the app's folder on the computer, the environment variable
+# that can name another folder for one run (see app_folder), and the name as
+# the big heading of its page.
+PAGES = {
+    'geo-rulers': ('geo-rulers', 'GEO_RULERS_APP', 'Geo-<em class="s">Rulers</em>'),
+    'oregram': ('oregram', 'OREGRAM_APP', 'Ore<em class="s">Gram</em>'),
+}
+
+
+def tn(key, name):
+    """A text of a mining app: the rows "gr_..." are written for Geo-Rulers,
+    and another app's name takes its place (also in lists)."""
+    v = t(key)
+    if isinstance(v, str):
+        return v.replace('Geo-Rulers', name)
+    return [x.replace('Geo-Rulers', name) for x in v]
 
 
 def soon_tab(n, app):
@@ -325,7 +342,7 @@ def soon_tab(n, app):
 def soon_panel(app):
     slug, name, k, glow, caps = app
     cards = ''.join(
-        f'        <div class="card glow"><span class="label">{t(c)}</span><h3>{t(f"{k}_h{i}")}</h3><p>{t(f"{k}_p{i}")}</p></div>\n'
+        f'        <div class="card glow"><span class="label">{t(c)}</span><h3>{tn(f"{k}_h{i}", name)}</h3><p>{tn(f"{k}_p{i}", name)}</p></div>\n'
         for i, c in enumerate(caps, 1))
     subject = quote(t('next_subject') + ': ' + name)
     own = (f'<a class="btn solid" href="{u(f"/{slug}/")}">{t("discover_of").format(name)} <span class="arr">→</span></a>'
@@ -333,10 +350,10 @@ def soon_panel(app):
     return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}" hidden>
       <div class="app-line">
         <img src="/assets/img/{slug}-icon.png" alt="{html.escape(t('icon_alt_of').format(name))}" style="--glow:rgba({glow},.9)">
-        <div><h3 lang="en">{name}</h3><div class="sub">{t(k + '_sub')}</div></div>
+        <div><h3 lang="en">{name}</h3><div class="sub">{tn(k + '_sub', name)}</div></div>
         <div class="chips"><span class="chip on">{t('dev')}</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
       </div>
-      <p class="app-lead">{t(k + '_lead')}</p>
+      <p class="app-lead">{tn(k + '_lead', name)}</p>
       <div class="grid3">
 {cards}      </div>
       <div class="actions" style="margin-top:26px">{own}<a class="btn" href="mailto:support@vatanilabs.com?subject={subject}">{t('next_cta')} <span class="arr">→</span></a></div>
@@ -525,54 +542,54 @@ def petro():
 </main>'''
 
 
-# ------------------------------------------------------------ Geo-Rulers
+# ------------------------------------------- Geo-Rulers and OreGram pages
 # The page of an app that is still being made: like PetroGram's, but with
 # no store buttons and no screenshots (there are none yet). The hero shows
 # the turning Earth (the app's maps of mines and deposits); the icon stands
 # where the screens would be. The slogans are English on the English page and rhyming translations on the others (owner, 26 Nov 2026).
-def geo():
-    slug, name, k, glow = SOON[0][:4]
-    assert slug == GEO_APP and name == GEO_NAME, 'Geo-Rulers must be the first app of SOON'
+# slug: the app (one of PAGES); its number ("App 02") is its place on the home page.
+def geo(slug):
+    n, (_, name, k, glow) = next((n, a[:4]) for n, a in enumerate(SOON, 2) if a[0] == slug)
     icon = f'/assets/img/{slug}-icon.png'
     alt = e('icon_alt_of').format(name)
-    ore, _, dig = t('gr_slogans')   # the second one heads the features (gr_feat_h2)
+    ore, _, dig = tn('gr_slogans', name)   # the second one heads the features (gr_feat_h2)
     mail = f'mailto:support@vatanilabs.com?subject={quote(t("next_subject") + ": " + name)}'
     caps = ['conv_cap', 'flash_cap', 'quiz_cap', 'gr_cap_read', 'map_cap', 'gr_cap_companies', 'market_cap', 'lang_cap', 'off_cap']
     heads = [f'gr_c{i}_h' for i in range(1, 8)] + ['lang_h', 'off_h']
     texts = [f'gr_c{i}_p' for i in range(1, 8)] + ['lang_p', 'gr_c9_p']
     cards = '\n'.join(
-        f'      <div class="card glow rv" style="--d:{(i % 3) * .08:.2f}s"><span class="label">{t(c)}</span><h3>{t(h)}</h3><p>{t(p)}</p></div>'
+        f'      <div class="card glow rv" style="--d:{(i % 3) * .08:.2f}s"><span class="label">{t(c)}</span><h3>{tn(h, name)}</h3><p>{tn(p, name)}</p></div>'
         for i, (c, h, p) in enumerate(zip(caps, heads, texts)))
     return f'''<main>
 <section class="app-hero">
   <div class="sculpt"><canvas id="sculpture" data-shapes="globe" aria-hidden="true"></canvas></div>
   <div class="wrap">
     <div class="hero-copy">
-      <span class="pill rv"><i></i>{t('gr_pill')}</span>
+      <span class="pill rv"><i></i>{tn('gr_pill', name).format(f'{n:02d}')}</span>
       <div class="top rv" style="--d:.08s">
         <img class="app-icon" src="{icon}" alt="{alt}" style="--glow:rgba({glow},.95)">
-        <h1>Geo-<em class="s">Rulers</em></h1>
+        <h1>{PAGES[slug][2]}</h1>
       </div>
       <p class="slogan rv" style="--d:.12s"><em class="s">{ore}</em></p>
-      <p class="lead rv" style="--d:.16s">{t('gr_page_lead')}</p>
+      <p class="lead rv" style="--d:.16s">{tn('gr_page_lead', name)}</p>
       <div class="actions rv" style="--d:.24s">
         <span class="btn" aria-disabled="true">{t('dev')}</span>
         <a class="btn solid" href="{mail}">{t('next_cta')} <span class="arr">→</span></a>
       </div>
-      <p class="store-note rv" style="--d:.3s">{t('gr_note')}</p>
+      <p class="store-note rv" style="--d:.3s">{tn('gr_note', name)}</p>
     </div>
   </div>
 </section>
-{band(t('gr_band'))}
+{band(tn('gr_band', name))}
 
 <section class="block">
   <div class="wrap">
     <div class="block-head">
       <div class="rv">
         <p class="label"><span class="n">{t('feat_n')}</span> {t('feat_label')}</p>
-        <h2>{t('gr_feat_h2')}</h2>
+        <h2>{tn('gr_feat_h2', name)}</h2>
       </div>
-      <p class="rv" style="--d:.1s">{t('gr_feat_p')}</p>
+      <p class="rv" style="--d:.1s">{tn('gr_feat_p', name)}</p>
     </div>
     <div class="grid3">
 {cards}
@@ -586,7 +603,7 @@ def geo():
       <div class="orbit"><img src="{icon}" alt="{alt}" style="--glow:rgba({glow},.9)"></div>
       <p class="label">{t('dev')}</p>
       <h3>{dig}</h3>
-      <p>{t('gr_soon_p')}</p>
+      <p>{tn('gr_soon_p', name)}</p>
       <div class="actions" style="justify-content:center;margin-top:28px"><a class="btn" href="{mail}">{t('next_cta')} <span class="arr">→</span></a></div>
     </div>
   </div>
@@ -643,6 +660,8 @@ def terms(name='PetroGram', changes=None):
     secs = {}
     for l, m in json.loads(rd(T / 'terms.json')).items():
         m = {k: v.replace('PetroGram', name) for k, v in m.items()}
+        if name != 'PetroGram':
+            m = {k: name_grammar(v, l, name) for k, v in m.items()}
         for x, y in (changes or {}).get(l, []):
             hit = [k for k, v in m.items() if x in v]
             assert len(hit) == 1 and m[hit[0]].count(x) == 1, ('terms', name, l, x[:60])
@@ -724,16 +743,22 @@ privacy_secs = policy(APP)
 
 exec(rd(T / 'delete_texts.py'))   # defines delete_secs() and its rows of TX
 
-# Geo-Rulers: the same policy with the sections 6b to 6g of its own app
-# folder, then the differences listed in georulers_texts.py.
-exec(rd(T / 'georulers_texts.py'))  # defines GEO_NAME, GEO_APP, geo_adapt(), GEO_TERMS
-geo_privacy_secs = {l: geo_adapt(sec, GEO_PRIV[l], l, 25) for l, sec in policy(GEO).items()}
-geo_terms_secs = terms(GEO_NAME, GEO_TERMS)
+# Geo-Rulers and OreGram (PAGES): the same policy with the sections 6b to 6g
+# of each app's own folder, then the differences listed in georulers_texts.py
+# (the same for both apps); and the terms of use with those differences.
+exec(rd(T / 'georulers_texts.py'))  # defines name_grammar(), geo_adapt(), GEO_PRIV, GEO_DELETE, GEO_TERMS
+NAME = {a[0]: a[1] for a in SOON}
+geo_privacy_secs, geo_terms_secs = {}, {}
+for _slug, (_folder, _env, _h1) in PAGES.items():
+    _dir = app_folder(_folder, _env)
+    assert _dir, f'{NAME[_slug]} app folder not found'
+    geo_privacy_secs[_slug] = {l: geo_adapt(sec, GEO_PRIV[l], l, 25, NAME[_slug]) for l, sec in policy(_dir).items()}
+    geo_terms_secs[_slug] = terms(NAME[_slug], GEO_TERMS)
 
 
-def geo_delete_secs():
-    return {l: geo_adapt(sec, GEO_DELETE.get(l, []), l, 22)
-            for l, sec in delete_secs(GEO_APP).items()}
+def geo_delete_secs(slug):
+    return {l: geo_adapt(sec, GEO_DELETE.get(l, []), l, 22, NAME[slug])
+            for l, sec in delete_secs(slug).items()}
 
 
 def notfound():
@@ -754,20 +779,23 @@ for L in LANGS:
     wr(out / 'petrogram/privacy/index.html', page('privacy', doc('privacy', privacy_secs), '/petrogram/privacy/', JS))
     wr(out / 'petrogram/delete-account/index.html',
        page('delete', doc('delete-account', delete_secs()), '/petrogram/delete-account/', JS))
-    # Geo-Rulers: its page, and its privacy policy, delete page and terms of use.
-    wr(out / GEO_APP / 'index.html',
-       page('gr', geo(), f'/{GEO_APP}/', ['/assets/land.js', '/assets/hero.js'] + JS, name=GEO_NAME, app=GEO_APP))
-    wr(out / GEO_APP / 'privacy/index.html',
-       page('privacy', doc('privacy', geo_privacy_secs, GEO_APP, GEO_NAME), f'/{GEO_APP}/privacy/', JS, name=GEO_NAME, app=GEO_APP))
-    wr(out / GEO_APP / 'delete-account/index.html',
-       page('delete', doc('delete-account', geo_delete_secs(), GEO_APP, GEO_NAME), f'/{GEO_APP}/delete-account/', JS, name=GEO_NAME, app=GEO_APP))
-    wr(out / GEO_APP / 'terms/index.html',
-       page('terms', doc('terms', geo_terms_secs, GEO_APP, GEO_NAME), f'/{GEO_APP}/terms/', JS, name=GEO_NAME, app=GEO_APP))
+    # Geo-Rulers and OreGram: each one's page, and its privacy policy, delete
+    # page and terms of use.
+    for slug in PAGES:
+        name = NAME[slug]
+        wr(out / slug / 'index.html',
+           page('gr', geo(slug), f'/{slug}/', ['/assets/land.js', '/assets/hero.js'] + JS, name=name, app=slug))
+        wr(out / slug / 'privacy/index.html',
+           page('privacy', doc('privacy', geo_privacy_secs[slug], slug, name), f'/{slug}/privacy/', JS, name=name, app=slug))
+        wr(out / slug / 'delete-account/index.html',
+           page('delete', doc('delete-account', geo_delete_secs(slug), slug, name), f'/{slug}/delete-account/', JS, name=name, app=slug))
+        wr(out / slug / 'terms/index.html',
+           page('terms', doc('terms', geo_terms_secs[slug], slug, name), f'/{slug}/terms/', JS, name=name, app=slug))
     wr(out / '404.html', page('nf', notfound(), '/404.html', JS, found=False))
 
 # The list of pages for search engines, each with its other languages.
-PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/',
-         f'/{GEO_APP}/', f'/{GEO_APP}/privacy/', f'/{GEO_APP}/terms/', f'/{GEO_APP}/delete-account/']
+PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/']
+PATHS += [f'/{s}/{x}' for s in PAGES for x in ('', 'privacy/', 'terms/', 'delete-account/')]
 rows = ''.join(
     f'  <url><loc>{SITE}{PRE[l]}{p}</loc>'
     + ''.join(f'<xhtml:link rel="alternate" hreflang="{x}" href="{SITE}{PRE[x]}{p}"/>' for x in LANGS)
