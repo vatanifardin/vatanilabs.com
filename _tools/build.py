@@ -529,7 +529,7 @@ def petro():
 # The page of an app that is still being made: like PetroGram's, but with
 # no store buttons and no screenshots (there are none yet). The hero shows
 # the turning Earth (the app's maps of mines and deposits); the icon stands
-# where the screens would be. The slogans stay in English (lang="en").
+# where the screens would be. The slogans are English on the English page and rhyming translations on the others (owner, 26 Nov 2026).
 def geo():
     slug, name, k, glow = SOON[0][:4]
     assert slug == GEO_APP and name == GEO_NAME, 'Geo-Rulers must be the first app of SOON'
@@ -553,7 +553,7 @@ def geo():
         <img class="app-icon" src="{icon}" alt="{alt}" style="--glow:rgba({glow},.95)">
         <h1>Geo-<em class="s">Rulers</em></h1>
       </div>
-      <p class="slogan rv" style="--d:.12s" lang="en"><em class="s">{ore}</em></p>
+      <p class="slogan rv" style="--d:.12s"><em class="s">{ore}</em></p>
       <p class="lead rv" style="--d:.16s">{t('gr_page_lead')}</p>
       <div class="actions rv" style="--d:.24s">
         <span class="btn" aria-disabled="true">{t('dev')}</span>
@@ -585,7 +585,7 @@ def geo():
     <div class="soon rv">
       <div class="orbit"><img src="{icon}" alt="{alt}" style="--glow:rgba({glow},.9)"></div>
       <p class="label">{t('dev')}</p>
-      <h3 lang="en">{dig}</h3>
+      <h3>{dig}</h3>
       <p>{t('gr_soon_p')}</p>
       <div class="actions" style="justify-content:center;margin-top:28px"><a class="btn" href="{mail}">{t('next_cta')} <span class="arr">→</span></a></div>
     </div>
