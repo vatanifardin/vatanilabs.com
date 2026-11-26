@@ -306,14 +306,26 @@ def band(words):
 # site_texts.py; the texts of an app are its rows "<key>_sub", "<key>_lead",
 # "<key>_h1" ... "<key>_p3"). The icon is assets/img/<address name>-icon.png.
 # An app in PAGES has its own page at /<address name>/, and its panel links to it.
-# OreGram is a twin of Geo-Rulers (26 November 2026): the same app with
-# another name, icon and colour, so it uses the same rows ("gr_...").
+# OreGram is the small pocket reference for geology and mining and uses
+# Geo-Rulers' old rows ("gr_..."); Geo-Rulers is now its bigger sibling
+# (rows "gx_..."), as Petro-Rulers is PetroGram's (rows "pr_..."). Owner,
+# 26 November 2026: "-Gram" apps are small references, "-Rulers" apps add
+# rulers and camera recognition.
 SOON = [
-    ('geo-rulers', 'Geo-Rulers', 'gr', '194,97,28', ('conv_cap', 'flash_cap', 'map_cap')),
+    ('petro-rulers', 'Petro-Rulers', 'pr', '255,196,0', ('cap_family', 'cap_measure', 'cap_camera')),
+    ('geo-rulers', 'Geo-Rulers', 'gx', '194,97,28', ('cap_family', 'cap_measure', 'cap_camera')),
     ('oregram', 'OreGram', 'gr', '184,134,11', ('conv_cap', 'flash_cap', 'map_cap')),
     ('domino-freedom', 'Domino Freedom', 'df', '22,160,102', ('off_cap', 'cap_together', 'cap_light')),
     ('domino-global', 'Domino Global', 'dg', '139,53,201', ('more_cap', 'cap_together', 'cap_family')),
 ]
+SOON_BY = {a[0]: a for a in SOON}
+# The order of the tabs on the home page (owner, 26 November 2026). An app's
+# number ("App 02") is its place in this list. The first tab is open at the start.
+ORDER = ['petro-rulers', 'petrogram', 'geo-rulers', 'oregram', 'domino-global', 'domino-freedom']
+
+
+def num(slug):
+    return f'{ORDER.index(slug) + 1:02d}'
 # The apps with their own pages (all mining apps, with the texts of
 # Geo-Rulers): the app's folder on the computer, the environment variable
 # that can name another folder for one run (see app_folder), and the name as
@@ -333,10 +345,11 @@ def tn(key, name):
     return [x.replace('Geo-Rulers', name) for x in v]
 
 
-def soon_tab(n, app):
+def soon_tab(app):
     slug, name = app[0], app[1]
-    return (f'      <button class="tab" role="tab" id="tab-{slug}" aria-controls="panel-{slug}" aria-selected="false" tabindex="-1">'
-            f'<span class="n">{n:02d}</span>{name}</button>\n')
+    on = slug == ORDER[0]
+    return (f'      <button class="tab" role="tab" id="tab-{slug}" aria-controls="panel-{slug}" aria-selected="{str(on).lower()}"'
+            f'{"" if on else TABOFF}><span class="n">{num(slug)}</span>{name}</button>\n')
 
 
 def soon_panel(app):
@@ -347,7 +360,7 @@ def soon_panel(app):
     subject = quote(t('next_subject') + ': ' + name)
     own = (f'<a class="btn solid" href="{u(f"/{slug}/")}">{t("discover_of").format(name)} <span class="arr">→</span></a>'
            if slug in PAGES else '')
-    return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}" hidden>
+    return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}"{"" if slug == ORDER[0] else " hidden"}>
       <div class="app-line">
         <img src="/assets/img/{slug}-icon.png" alt="{html.escape(t('icon_alt_of').format(name))}" style="--glow:rgba({glow},.9)">
         <div><h3 lang="en">{name}</h3><div class="sub">{tn(k + '_sub', name)}</div></div>
@@ -363,6 +376,15 @@ def soon_panel(app):
 
 
 # ------------------------------------------------------------------ home
+TABOFF = ' tabindex="-1"'   # a tab that is not open
+
+
+def pg_tab():
+    on = ORDER[0] == 'petrogram'
+    return (f'      <button class="tab" role="tab" id="tab-petrogram" aria-controls="panel-petrogram" aria-selected="{str(on).lower()}"'
+            f'{"" if on else TABOFF}><span class="n">{num("petrogram")}</span>PetroGram</button>\n')
+
+
 def home():
     # Captions under the hero picture: number, text and, for the studio's
     # name, its language (so that capital letters follow English rules).
@@ -405,10 +427,9 @@ def home():
     </div>
 
     <div class="tabs rv" role="tablist" aria-label="{e('nav_apps')}">
-      <button class="tab" role="tab" id="tab-petrogram" aria-controls="panel-petrogram" aria-selected="true"><span class="n">01</span>PetroGram</button>
-{''.join(soon_tab(n, a) for n, a in enumerate(SOON, 2))}    </div>
+{''.join(pg_tab() if s == 'petrogram' else soon_tab(SOON_BY[s]) for s in ORDER)}    </div>
 
-    <div class="panel" role="tabpanel" id="panel-petrogram" aria-labelledby="tab-petrogram">
+    <div class="panel" role="tabpanel" id="panel-petrogram" aria-labelledby="tab-petrogram"{"" if ORDER[0] == 'petrogram' else " hidden"}>
       <div class="app-line rv">
         <img src="/assets/img/petrogram-icon.png" alt="{e('icon_alt')}">
         <div><h3>PetroGram</h3><div class="sub">{t('pg_sub')}</div></div>
@@ -424,12 +445,12 @@ def home():
       <div class="actions rv" style="margin-top:26px"><a class="btn solid" href="{u('/petrogram/')}">{t('discover')} <span class="arr">→</span></a></div>
     </div>
 
-{''.join(soon_panel(a) for a in SOON)}
+{''.join(soon_panel(SOON_BY[s]) for s in ORDER if s != 'petrogram')}
     <div class="showcase-foot">
       <span>{t('made')}</span>
       <div class="pager">
         <button type="button" id="prev" aria-label="{e('prev_app')}">←</button>
-        <span id="count">01 / {len(SOON) + 1:02d}</span>
+        <span id="count">01 / {len(ORDER):02d}</span>
         <button type="button" id="next" aria-label="{e('next_app')}">→</button>
       </div>
     </div>
@@ -476,7 +497,7 @@ def petro():
   <div class="sculpt"><canvas id="sculpture" data-shapes="drop" aria-hidden="true"></canvas></div>
   <div class="wrap">
     <div class="hero-copy">
-      <span class="pill rv"><i></i>{t('pg_pill')}</span>
+      <span class="pill rv"><i></i>{t('pg_pill').format(num('petrogram'))}</span>
       <div class="top rv" style="--d:.08s">
         <img class="app-icon" src="/assets/img/petrogram-icon.png" alt="{e('icon_alt')}">
         <h1>Petro<em class="s">Gram</em></h1>
@@ -549,7 +570,8 @@ def petro():
 # where the screens would be. The slogans are English on the English page and rhyming translations on the others (owner, 26 Nov 2026).
 # slug: the app (one of PAGES); its number ("App 02") is its place on the home page.
 def geo(slug):
-    n, (_, name, k, glow) = next((n, a[:4]) for n, a in enumerate(SOON, 2) if a[0] == slug)
+    _, name, k, glow = SOON_BY[slug][:4]
+    n = num(slug)
     icon = f'/assets/img/{slug}-icon.png'
     alt = e('icon_alt_of').format(name)
     ore, _, dig = tn('gr_slogans', name)   # the second one heads the features (gr_feat_h2)
@@ -565,13 +587,13 @@ def geo(slug):
   <div class="sculpt"><canvas id="sculpture" data-shapes="globe" aria-hidden="true"></canvas></div>
   <div class="wrap">
     <div class="hero-copy">
-      <span class="pill rv"><i></i>{tn('gr_pill', name).format(f'{n:02d}')}</span>
+      <span class="pill rv"><i></i>{tn('gr_pill', name).format(n)}</span>
       <div class="top rv" style="--d:.08s">
         <img class="app-icon" src="{icon}" alt="{alt}" style="--glow:rgba({glow},.95)">
         <h1>{PAGES[slug][2]}</h1>
       </div>
       <p class="slogan rv" style="--d:.12s"><em class="s">{ore}</em></p>
-      <p class="lead rv" style="--d:.16s">{tn('gr_page_lead', name)}</p>
+      <p class="lead rv" style="--d:.16s">{tn('gx_page_lead' if k == 'gx' else 'gr_page_lead', name)}</p>
       <div class="actions rv" style="--d:.24s">
         <span class="btn" aria-disabled="true">{t('dev')}</span>
         <a class="btn solid" href="{mail}">{t('next_cta')} <span class="arr">→</span></a>
@@ -784,7 +806,7 @@ for L in LANGS:
     for slug in PAGES:
         name = NAME[slug]
         wr(out / slug / 'index.html',
-           page('gr', geo(slug), f'/{slug}/', ['/assets/land.js', '/assets/hero.js'] + JS, name=name, app=slug))
+           page('gx' if SOON_BY[slug][2] == 'gx' else 'gr', geo(slug), f'/{slug}/', ['/assets/land.js', '/assets/hero.js'] + JS, name=name, app=slug))
         wr(out / slug / 'privacy/index.html',
            page('privacy', doc('privacy', geo_privacy_secs[slug], slug, name), f'/{slug}/privacy/', JS, name=name, app=slug))
         wr(out / slug / 'delete-account/index.html',

@@ -76,14 +76,15 @@
     </div>
 
     <div class="tabs rv" role="tablist" aria-label="Приложения">
-      <button class="tab" role="tab" id="tab-petrogram" aria-controls="panel-petrogram" aria-selected="true"><span class="n">01</span>PetroGram</button>
-      <button class="tab" role="tab" id="tab-geo-rulers" aria-controls="panel-geo-rulers" aria-selected="false" tabindex="-1"><span class="n">02</span>Geo-Rulers</button>
-      <button class="tab" role="tab" id="tab-oregram" aria-controls="panel-oregram" aria-selected="false" tabindex="-1"><span class="n">03</span>OreGram</button>
-      <button class="tab" role="tab" id="tab-domino-freedom" aria-controls="panel-domino-freedom" aria-selected="false" tabindex="-1"><span class="n">04</span>Domino Freedom</button>
+      <button class="tab" role="tab" id="tab-petro-rulers" aria-controls="panel-petro-rulers" aria-selected="true"><span class="n">01</span>Petro-Rulers</button>
+      <button class="tab" role="tab" id="tab-petrogram" aria-controls="panel-petrogram" aria-selected="false" tabindex="-1"><span class="n">02</span>PetroGram</button>
+      <button class="tab" role="tab" id="tab-geo-rulers" aria-controls="panel-geo-rulers" aria-selected="false" tabindex="-1"><span class="n">03</span>Geo-Rulers</button>
+      <button class="tab" role="tab" id="tab-oregram" aria-controls="panel-oregram" aria-selected="false" tabindex="-1"><span class="n">04</span>OreGram</button>
       <button class="tab" role="tab" id="tab-domino-global" aria-controls="panel-domino-global" aria-selected="false" tabindex="-1"><span class="n">05</span>Domino Global</button>
+      <button class="tab" role="tab" id="tab-domino-freedom" aria-controls="panel-domino-freedom" aria-selected="false" tabindex="-1"><span class="n">06</span>Domino Freedom</button>
     </div>
 
-    <div class="panel" role="tabpanel" id="panel-petrogram" aria-labelledby="tab-petrogram">
+    <div class="panel" role="tabpanel" id="panel-petrogram" aria-labelledby="tab-petrogram" hidden>
       <div class="app-line rv">
         <img src="/assets/img/petrogram-icon.png" alt="Значок приложения PetroGram">
         <div><h3>PetroGram</h3><div class="sub">Карманный справочник по нефти и газу.</div></div>
@@ -114,17 +115,32 @@
       <div class="actions rv" style="margin-top:26px"><a class="btn solid" href="/ru/petrogram/">Подробнее о PetroGram <span class="arr">→</span></a></div>
     </div>
 
+    <div class="panel" role="tabpanel" id="panel-petro-rulers" aria-labelledby="tab-petro-rulers">
+      <div class="app-line">
+        <img src="/assets/img/petro-rulers-icon.png" alt="Значок приложения Petro-Rulers" style="--glow:rgba(255,196,0,.9)">
+        <div><h3 lang="en">Petro-Rulers</h3><div class="sub">Нефть и газ с линейкой в руках.</div></div>
+        <div class="chips"><span class="chip on">В разработке</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
+      </div>
+      <p class="app-lead">Старший брат PetroGram: всё, что есть в PetroGram, плюс линейки и распознавание камерой. Подробности скоро.</p>
+      <div class="grid3">
+        <div class="card glow"><span class="label">Семья</span><h3>Всё из PetroGram</h3><p>Калькуляторы, глоссарий, тесты, карты и цены, и всё это без связи.</p></div>
+        <div class="card glow"><span class="label">Измеряйте</span><h3>Линейки</h3><p>Измерительные инструменты прямо в телефоне, всегда в кармане.</p></div>
+        <div class="card glow"><span class="label">Камера</span><h3>Распознавание камерой</h3><p>Наведите камеру, и приложение поможет понять, что перед вами.</p></div>
+      </div>
+      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5%20%D0%BE%20%D0%BD%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%D1%85%3A%20Petro-Rulers">Держите меня в курсе <span class="arr">→</span></a></div>
+    </div>
+
     <div class="panel" role="tabpanel" id="panel-geo-rulers" aria-labelledby="tab-geo-rulers" hidden>
       <div class="app-line">
         <img src="/assets/img/geo-rulers-icon.png" alt="Значок приложения Geo-Rulers" style="--glow:rgba(194,97,28,.9)">
-        <div><h3 lang="en">Geo-Rulers</h3><div class="sub">Руда? Сюда! Карманный справочник по геологии и горному делу.</div></div>
+        <div><h3 lang="en">Geo-Rulers</h3><div class="sub">Руда? Сюда! Геология и горное дело с линейкой в руках.</div></div>
         <div class="chips"><span class="chip on">В разработке</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
       </div>
-      <p class="app-lead">То, что PetroGram делает для нефти и газа, Geo-Rulers делает для геологии и горного дела: калькуляторы, глоссарий из 600 терминов, тесты, карты рудников и месторождений и ежемесячные цены на металлы, на семи языках и без связи.</p>
+      <p class="app-lead">Старший брат OreGram: всё, что есть в OreGram (калькуляторы, глоссарий из 600 терминов, тесты, карты рудников и месторождений и ежемесячные цены на металлы), плюс линейки и распознавание камерой, на семи языках.</p>
       <div class="grid3">
-        <div class="card glow"><span class="label">Считайте</span><h3>Конвертер и калькуляторы</h3><p>Единицы измерения с содержанием металла, тройской унцией и каратом, калькуляторы тоннажа, содержания, коэффициента вскрыши и извлечения.</p></div>
-        <div class="card glow"><span class="label">Учите</span><h3>Глоссарий и карточки</h3><p>600 терминов геологии и горного дела: понятные объяснения, рисунки, легко запомнить.</p></div>
-        <div class="card glow"><span class="label">Исследуйте</span><h3>Офлайн-карты</h3><p>Рудники и месторождения полезных ископаемых всего мира на карте, которая открывается и под землёй, и вдали от городов.</p></div>
+        <div class="card glow"><span class="label">Семья</span><h3>Всё из OreGram</h3><p>Калькуляторы, 600 терминов, тесты, карты рудников и месторождений и цены на металлы, и всё это без связи.</p></div>
+        <div class="card glow"><span class="label">Измеряйте</span><h3>Линейки</h3><p>Измерительные инструменты прямо в телефоне: от полевых работ до кернохранилища.</p></div>
+        <div class="card glow"><span class="label">Камера</span><h3>Распознавание камерой</h3><p>Наведите камеру на породу, и приложение поможет её определить.</p></div>
       </div>
       <div class="actions" style="margin-top:26px"><a class="btn solid" href="/ru/geo-rulers/">Подробнее о Geo-Rulers <span class="arr">→</span></a><a class="btn" href="mailto:support@vatanilabs.com?subject=%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5%20%D0%BE%20%D0%BD%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%D1%85%3A%20Geo-Rulers">Держите меня в курсе <span class="arr">→</span></a></div>
     </div>
@@ -144,21 +160,6 @@
       <div class="actions" style="margin-top:26px"><a class="btn solid" href="/ru/oregram/">Подробнее о OreGram <span class="arr">→</span></a><a class="btn" href="mailto:support@vatanilabs.com?subject=%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5%20%D0%BE%20%D0%BD%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%D1%85%3A%20OreGram">Держите меня в курсе <span class="arr">→</span></a></div>
     </div>
 
-    <div class="panel" role="tabpanel" id="panel-domino-freedom" aria-labelledby="tab-domino-freedom" hidden>
-      <div class="app-line">
-        <img src="/assets/img/domino-freedom-icon.png" alt="Значок приложения Domino Freedom" style="--glow:rgba(22,160,102,.9)">
-        <div><h3 lang="en">Domino Freedom</h3><div class="sub">Домино, где бы вы ни были.</div></div>
-        <div class="chips"><span class="chip on">В разработке</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
-      </div>
-      <p class="app-lead">Лёгкая и быстрая игра в домино. Играйте без связи или пригласите друзей сыграть онлайн.</p>
-      <div class="grid3">
-        <div class="card glow"><span class="label">Где угодно</span><h3>Работает офлайн</h3><p>Связь не нужна: откройте приложение и играйте.</p></div>
-        <div class="card glow"><span class="label">Вместе</span><h3>Играйте с друзьями</h3><p>Пригласите друзей в онлайн-игру, где бы они ни были.</p></div>
-        <div class="card glow"><span class="label">Легко</span><h3>Компактная и быстрая</h3><p>Простая игра: быстро запускается и ничем не отвлекает.</p></div>
-      </div>
-      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5%20%D0%BE%20%D0%BD%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%D1%85%3A%20Domino%20Freedom">Держите меня в курсе <span class="arr">→</span></a></div>
-    </div>
-
     <div class="panel" role="tabpanel" id="panel-domino-global" aria-labelledby="tab-domino-global" hidden>
       <div class="app-line">
         <img src="/assets/img/domino-global-icon.png" alt="Значок приложения Domino Global" style="--glow:rgba(139,53,201,.9)">
@@ -174,12 +175,27 @@
       <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5%20%D0%BE%20%D0%BD%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%D1%85%3A%20Domino%20Global">Держите меня в курсе <span class="arr">→</span></a></div>
     </div>
 
+    <div class="panel" role="tabpanel" id="panel-domino-freedom" aria-labelledby="tab-domino-freedom" hidden>
+      <div class="app-line">
+        <img src="/assets/img/domino-freedom-icon.png" alt="Значок приложения Domino Freedom" style="--glow:rgba(22,160,102,.9)">
+        <div><h3 lang="en">Domino Freedom</h3><div class="sub">Домино, где бы вы ни были.</div></div>
+        <div class="chips"><span class="chip on">В разработке</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
+      </div>
+      <p class="app-lead">Лёгкая и быстрая игра в домино. Играйте без связи или пригласите друзей сыграть онлайн.</p>
+      <div class="grid3">
+        <div class="card glow"><span class="label">Где угодно</span><h3>Работает офлайн</h3><p>Связь не нужна: откройте приложение и играйте.</p></div>
+        <div class="card glow"><span class="label">Вместе</span><h3>Играйте с друзьями</h3><p>Пригласите друзей в онлайн-игру, где бы они ни были.</p></div>
+        <div class="card glow"><span class="label">Легко</span><h3>Компактная и быстрая</h3><p>Простая игра: быстро запускается и ничем не отвлекает.</p></div>
+      </div>
+      <div class="actions" style="margin-top:26px"><a class="btn" href="mailto:support@vatanilabs.com?subject=%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B8%D1%82%D0%B5%20%D0%BC%D0%BD%D0%B5%20%D0%BE%20%D0%BD%D0%BE%D0%B2%D1%8B%D1%85%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%D1%85%3A%20Domino%20Freedom">Держите меня в курсе <span class="arr">→</span></a></div>
+    </div>
+
 
     <div class="showcase-foot">
       <span>Сделано с заботой в Баку.</span>
       <div class="pager">
         <button type="button" id="prev" aria-label="Предыдущее приложение">←</button>
-        <span id="count">01 / 05</span>
+        <span id="count">01 / 06</span>
         <button type="button" id="next" aria-label="Следующее приложение">→</button>
       </div>
     </div>

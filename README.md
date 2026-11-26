@@ -11,14 +11,22 @@ other languages.
 - `index.html`: home. The hero is a cloud of light points that forms the
   logo, a turning Earth (real coastlines from PetroGram's own map) and an
   oil drop (`assets/hero.js`). Then the app showcase, principles, contact.
-  The showcase has one tab per app: PetroGram, then the apps still being
-  made (Geo-Rulers, OreGram, Domino Freedom, Domino Global), which are the
-  `SOON` list in `_tools/build.py`. Icons and logo come from the PetroGram
-  repository's `branding/` folder; the Geo-Rulers icon
-  (`assets/img/geo-rulers-icon.png`, 256 × 256) from the Geo-Rulers
-  repository's `branding/apps/geo-rulers/icon-1024.png`, and the OreGram
-  icon (`assets/img/oregram-icon.png`, 256 × 256) from the OreGram
-  repository's `branding/apps/oregram/icon-1024.png`.
+  The showcase has one tab per app, in the order the owner chose on
+  26 November 2026 (`ORDER` in `_tools/build.py`): Petro-Rulers,
+  PetroGram, Geo-Rulers, OreGram, Domino Global, Domino Freedom. The first
+  tab is open at the start; an app's number ("App 02") is its place in that
+  list. The "-Rulers" apps are the bigger siblings of the "-Gram" apps
+  (everything of the small one, plus rulers and camera recognition).
+  The apps still being made are the `SOON` list in `_tools/build.py`.
+  Icons and logo come from the PetroGram repository's `branding/` folder
+  (PetroGram's icon since 26 November 2026: a hexagon with an oil drop and
+  a gas flame); the Petro-Rulers icon (`assets/img/petro-rulers-icon.png`,
+  256 × 256) from the Petro-Rulers repository's `branding/icon-1024.png`;
+  the Geo-Rulers icon (`assets/img/geo-rulers-icon.png`, 256 × 256) from
+  the Geo-Rulers repository's `branding/apps/geo-rulers/icon-1024.png`,
+  and the OreGram icon (`assets/img/oregram-icon.png`, 256 × 256) from the
+  OreGram repository's `branding/apps/oregram/icon-1024.png`. Petro-Rulers
+  has a tab but no page of its own yet.
 - `petrogram/`: the PetroGram page, its privacy policy and terms of use
   (7 languages on one page; the app links to these).
 - `geo-rulers/`: the Geo-Rulers page (the app is still being made: no
@@ -28,7 +36,9 @@ other languages.
   one page; the app links to these).
 - `oregram/`: the same four pages for OreGram (26 November 2026), a twin
   of Geo-Rulers: the same app and texts with another name, icon (ore on
-  gold) and colour (gold, `#B8860B`). The build makes them from the same
+  gold) and colour (gold, `#B8860B`). Since 26 November 2026 Geo-Rulers'
+  page and tab say it is OreGram's bigger sibling (rows `gx_...` in
+  `_tools/site_texts.py`); the rest of the two pages is shared. The build makes them from the same
   code and the same rows of text as Geo-Rulers' pages (the `PAGES` list in
   `_tools/build.py`), with OreGram in place of Geo-Rulers.
 - `az/`, `ru/`: the same pages in Azerbaijani and Russian. Their privacy

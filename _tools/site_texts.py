@@ -104,7 +104,47 @@ TX = {
 'cap_together': ('Together', 'Birlikdə', 'Вместе'),
 'cap_light': ('Light', 'Yüngül', 'Легко'),
 'cap_family': ('Family', 'Ailə', 'Семья'),
-# Geo-Rulers (its own page is further down, "Geo-Rulers page"). The owner's
+# The two big "-Rulers" apps (owner, 26 November 2026): everything of their
+# small "-Gram" sibling, plus rulers and camera recognition.
+'cap_measure': ('Measure', 'Ölçün', 'Измеряйте'),
+'cap_camera': ('Camera', 'Kamera', 'Камера'),
+# Petro-Rulers (no page of its own yet)
+'pr_sub': ('Oil &amp; gas, measured.', 'Neft və qaz, ölçü ilə.', 'Нефть и газ с линейкой в руках.'),
+'pr_lead': ('The bigger sibling of PetroGram: everything PetroGram has, plus rulers and camera recognition. More details soon.',
+            'PetroGram-ın böyük qardaşı: PetroGram-da olan hər şey, üstəlik xətkeşlər və kamera ilə tanıma. Ətraflı məlumat tezliklə.',
+            'Старший брат PetroGram: всё, что есть в PetroGram, плюс линейки и распознавание камерой. Подробности скоро.'),
+'pr_h1': ('Everything in PetroGram', 'PetroGram-da olan hər şey', 'Всё из PetroGram'),
+'pr_p1': ('The calculators, the glossary, the quizzes, the maps and the prices, working without a signal.',
+          'Kalkulyatorlar, lüğət, testlər, xəritələr və qiymətlər: şəbəkə olmadan da işləyir.',
+          'Калькуляторы, глоссарий, тесты, карты и цены, и всё это без связи.'),
+'pr_h2': ('Rulers', 'Xətkeşlər', 'Линейки'),
+'pr_p2': ('Measuring tools on the phone itself, always in your pocket.',
+          'Ölçü alətləri birbaşa telefonda, həmişə cibinizdə.',
+          'Измерительные инструменты прямо в телефоне, всегда в кармане.'),
+'pr_h3': ('Camera recognition', 'Kamera ilə tanıma', 'Распознавание камерой'),
+'pr_p3': ('Point the camera and the app helps you recognise what you see.',
+          'Kameranı yönəldin, tətbiq gördüyünüzü tanımağa kömək edəcək.',
+          'Наведите камеру, и приложение поможет понять, что перед вами.'),
+# Geo-Rulers (its own page is further down, "Geo-Rulers page")
+'gx_sub': ('Ore what? Geology and mining, measured.',
+           'Yerin altı — bilik qatı. Geologiya və dağ-mədən işi, ölçü ilə.',
+           'Руда? Сюда! Геология и горное дело с линейкой в руках.'),
+'gx_lead': ('The bigger sibling of OreGram: everything OreGram has (calculators, a glossary of 600 terms, quizzes, maps of mines and deposits and monthly metal prices), plus rulers and camera recognition, in seven languages.',
+            'OreGram-ın böyük qardaşı: OreGram-da olan hər şey (kalkulyatorlar, 600 terminli lüğət, testlər, mədən və yataq xəritələri və metalların aylıq qiymətləri), üstəlik xətkeşlər və kamera ilə tanıma: yeddi dildə.',
+            'Старший брат OreGram: всё, что есть в OreGram (калькуляторы, глоссарий из 600 терминов, тесты, карты рудников и месторождений и ежемесячные цены на металлы), плюс линейки и распознавание камерой, на семи языках.'),
+'gx_h1': ('Everything in OreGram', 'OreGram-da olan hər şey', 'Всё из OreGram'),
+'gx_p1': ('Calculators, 600 terms, quizzes, maps of mines and deposits and metal prices, working without a signal.',
+          'Kalkulyatorlar, 600 termin, testlər, mədən və yataq xəritələri və metal qiymətləri: şəbəkə olmadan da işləyir.',
+          'Калькуляторы, 600 терминов, тесты, карты рудников и месторождений и цены на металлы, и всё это без связи.'),
+'gx_h2': ('Rulers', 'Xətkeşlər', 'Линейки'),
+'gx_p2': ('Measuring tools on the phone itself, from the field to the core shed.',
+          'Ölçü alətləri birbaşa telefonda: çöl işlərindən kern anbarına qədər.',
+          'Измерительные инструменты прямо в телефоне: от полевых работ до кернохранилища.'),
+'gx_h3': ('Camera recognition', 'Kamera ilə tanıma', 'Распознавание камерой'),
+'gx_p3': ('Point the camera at a rock and the app helps you recognise it.',
+          'Kameranı süxura yönəldin, tətbiq onu tanımağa kömək edəcək.',
+          'Наведите камеру на породу, и приложение поможет её определить.'),
+# OreGram (Geo-Rulers' old rows: OreGram's name replaces Geo-Rulers). The owner's
 # slogans "Ore what?", "Mine your business." and "Dig it." are puns; on
 # 26 November 2026 the owner chose rhyming translations for the other
 # languages (the same as in docs/STORE_LISTING.md of the app).
@@ -250,7 +290,8 @@ TX = {
 'pg_desc': ('PetroGram: the offline pocket reference for oil & gas, in seven languages.',
             'PetroGram: neft-qaz üzrə oflayn cib bələdçisi, yeddi dildə.',
             'PetroGram: карманный офлайн-справочник по нефти и газу на семи языках.'),
-'pg_pill': ('App 01 · Oil &amp; gas', 'Tətbiq 01 · Neft və qaz', 'Приложение 01 · Нефть и газ'),
+# {} is the app's number (its place on the home page).
+'pg_pill': ('App {} · Oil &amp; gas', 'Tətbiq {} · Neft və qaz', 'Приложение {} · Нефть и газ'),
 'pg_lead': ('The offline pocket reference for oil &amp; gas professionals and students. Calculate, learn, explore and prepare, in seven languages.',
             'Neft-qaz mütəxəssisləri və tələbələri üçün oflayn cib bələdçisi. Hesablayın, öyrənin, kəşf edin və hazırlaşın: yeddi dildə.',
             'Карманный офлайн-справочник для специалистов и студентов нефтегазовой отрасли. Считайте, учитесь, исследуйте и готовьтесь: на семи языках.'),
@@ -306,7 +347,7 @@ TX = {
 'gr_desc': ('Geo-Rulers: the offline pocket reference for geology and mining, in seven languages. In development.',
             'Geo-Rulers: geologiya və dağ-mədən işi üzrə oflayn cib bələdçisi, yeddi dildə. Hazırlanır.',
             'Geo-Rulers: карманный офлайн-справочник по геологии и горному делу на семи языках. В разработке.'),
-# {} is the app's number: 02 for Geo-Rulers, 03 for OreGram (its place on the home page).
+# {} is the app's number (its place on the home page, see ORDER in build.py).
 'gr_pill': ('App {} · Geology &amp; mining', 'Tətbiq {} · Geologiya və dağ-mədən', 'Приложение {} · Геология и горное дело'),
 # The three slogans: English, then the rhyming translations (see "Geo-Rulers" above).
 'gr_slogans': (['Ore what?', 'Mine your business.', 'Dig it.'],
@@ -315,6 +356,15 @@ TX = {
 'gr_page_lead': ('The offline pocket reference for geology and mining professionals and students. Calculate, learn, explore and prepare, in seven languages.',
                  'Geologiya və dağ-mədən işi üzrə mütəxəssislər və tələbələr üçün oflayn cib bələdçisi. Hesablayın, öyrənin, kəşf edin və hazırlaşın: yeddi dildə.',
                  'Карманный офлайн-справочник для специалистов и студентов в области геологии и горного дела. Считайте, учитесь, исследуйте и готовьтесь: на семи языках.'),
+# Geo-Rulers' own page says it is OreGram's bigger sibling (the rest of its page
+# uses the rows "gr_..." like OreGram's).
+'gx_title': ('Geo-Rulers · Vatani Tech', 'Geo-Rulers · Vatani Tech', 'Geo-Rulers · Vatani Tech'),
+'gx_desc': ('Geo-Rulers: everything OreGram has for geology and mining, plus rulers and camera recognition, in seven languages. In development.',
+            'Geo-Rulers: geologiya və dağ-mədən işi üçün OreGram-da olan hər şey, üstəlik xətkeşlər və kamera ilə tanıma, yeddi dildə. Hazırlanır.',
+            'Geo-Rulers: всё, что есть в OreGram для геологии и горного дела, плюс линейки и распознавание камерой, на семи языках. В разработке.'),
+'gx_page_lead': ('Geology and mining, measured: everything OreGram has, plus rulers and camera recognition. For professionals and students, in seven languages.',
+                 'Geologiya və dağ-mədən işi, ölçü ilə: OreGram-da olan hər şey, üstəlik xətkeşlər və kamera ilə tanıma. Mütəxəssislər və tələbələr üçün, yeddi dildə.',
+                 'Геология и горное дело с линейкой в руках: всё, что есть в OreGram, плюс линейки и распознавание камерой. Для специалистов и студентов, на семи языках.'),
 'gr_note': ('Not in the stores yet · Android and iPhone · works offline',
             'Hələ mağazalarda yoxdur · Android və iPhone · oflayn işləyir',
             'Пока нет в магазинах · Android и iPhone · работает офлайн'),
