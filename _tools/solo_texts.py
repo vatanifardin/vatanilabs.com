@@ -7,7 +7,8 @@
 #     PetroGram; photos stay on the phone. Its terms are the app's own words
 #     (lib/strings_services.dart of the Petro-Rulers repository): change
 #     them together.
-#   - MarineGram: no internet use and no data at all (so far).
+#   - MarineGram: no internet use and no data at all (so far); the AR button
+#     of the 3D view opens the phone's own AR viewer, which uses the camera.
 #   - Hafiz: no ads, no account, no data; only recitations are downloaded
 #     (AlQuran Cloud). Its policy must say what the app's own "privacy" text
 #     says (lib/strings.dart of the Hafiz repository).
@@ -191,14 +192,14 @@ Petro-Rulers измеряет с помощью экрана и датчиков
 'marinegram': {
   'privacy': {
     'en': r'''# MarineGram Privacy Policy
-@ Effective date: 27 November 2026
+@ Effective date: 28 November 2026
 @ Developer: Vatani Tech (Fardin Vatani), Baku, Azerbaijan
 ## 1. Summary
 MarineGram is an offline pocket reference for marine work, for Android and iPhone. It is still being made. The app collects no personal data: it has no account, no ads, no usage statistics and no crash reports, and it does not use the internet.
 ## 2. Information stored on your device
 The app saves only its own settings in your phone's local storage. They stay on your device and are removed when you clear the app's data or uninstall the app. If backup is turned on for your phone, Android or iOS may include the app's settings in your own Google or iCloud backup; we cannot see or access that backup.
 ## 3. Internet use
-The app works fully offline and sends nothing. Its map and texts are stored inside the app. If you open a link from the app, such as this policy, your phone's browser or email app opens; those apps have their own privacy practices.
+The app works fully offline and sends nothing. Its map, texts, drawings and 3D models are stored inside the app. The AR button of the 3D view, on phones that support it, opens the phone's own AR viewer (Apple's or Google's), which uses the camera to show the ship in your room; the app itself does not save or send any picture. If you open a link from the app, such as this policy, your phone's browser or email app opens; those apps have their own privacy practices.
 ## 4. Third-party services
 No third party receives data from the app.
 ## 5. Children
@@ -208,14 +209,14 @@ The app is in development. If a later version adds features that use the interne
 ## 7. Contact
 Vatani Tech (Fardin Vatani), Baku, Azerbaijan. Email: {MAIL}''',
     'az': r'''# MarineGram Məxfilik Siyasəti
-@ Qüvvəyə minmə tarixi: 27 noyabr 2026
+@ Qüvvəyə minmə tarixi: 28 noyabr 2026
 @ Tərtibatçı: Vatani Tech (Fardin Vatani), Bakı, Azərbaycan
 ## 1. Xülasə
 MarineGram dənizçilik işi üçün Android və iPhone-da işləyən oflayn cib bələdçisidir. Tətbiq hələ hazırlanır. Tətbiq heç bir şəxsi məlumat toplamır: onda hesab, reklam, istifadə statistikası və xəta hesabatları yoxdur və o, internetdən istifadə etmir.
 ## 2. Cihazınızda saxlanılan məlumat
 Tətbiq telefonunuzun yerli yaddaşında yalnız öz ayarlarını saxlayır. Onlar cihazınızda qalır və tətbiqin məlumatlarını təmizlədikdə və ya tətbiqi sildikdə silinir. Telefonunuzda ehtiyat nüsxə yandırılıbsa, Android və ya iOS tətbiqin ayarlarını sizin öz Google və ya iCloud ehtiyat nüsxənizə daxil edə bilər; biz o nüsxəni görə və ona daxil ola bilmirik.
 ## 3. İnternetdən istifadə
-Tətbiq tam oflayn işləyir və heç nə göndərmir. Xəritəsi və mətnləri tətbiqin içində saxlanılır. Tətbiqdən bir keçid açsanız (məsələn, bu siyasəti), telefonunuzun brauzeri və ya e-poçt tətbiqi açılır; onların öz məxfilik qaydaları var.
+Tətbiq tam oflayn işləyir və heç nə göndərmir. Xəritəsi, mətnləri, rəsmləri və 3D modelləri tətbiqin içində saxlanılır. 3D görünüşün AR düyməsi (onu dəstəkləyən telefonlarda) telefonun öz AR baxış proqramını (Apple və ya Google) açır; o, gəmini otağınızda göstərmək üçün kameradan istifadə edir. Tətbiqin özü heç bir şəkli saxlamır və göndərmir. Tətbiqdən bir keçid açsanız (məsələn, bu siyasəti), telefonunuzun brauzeri və ya e-poçt tətbiqi açılır; onların öz məxfilik qaydaları var.
 ## 4. Üçüncü tərəf xidmətləri
 Heç bir üçüncü tərəf tətbiqdən məlumat almır.
 ## 5. Uşaqlar
@@ -225,14 +226,14 @@ Tətbiq hazırlanma mərhələsindədir. Sonrakı versiyaya internetdən istifad
 ## 7. Əlaqə
 Vatani Tech (Fardin Vatani), Bakı, Azərbaycan. E-poçt: {MAIL}''',
     'ru': r'''# Политика конфиденциальности MarineGram
-@ Дата вступления в силу: 27 ноября 2026 г.
+@ Дата вступления в силу: 28 ноября 2026 г.
 @ Разработчик: Vatani Tech (Fardin Vatani), Баку, Азербайджан
 ## 1. Кратко
 MarineGram — карманный офлайн-справочник по морскому делу для Android и iPhone. Приложение ещё создаётся. Оно не собирает персональные данные: в нём нет аккаунта, рекламы, статистики использования и отчётов о сбоях, и оно не использует интернет.
 ## 2. Данные, которые хранятся на вашем устройстве
 Приложение сохраняет в локальной памяти телефона только собственные настройки. Они остаются на вашем устройстве и удаляются, когда вы очищаете данные приложения или удаляете приложение. Если на телефоне включено резервное копирование, Android или iOS могут включить настройки приложения в вашу собственную резервную копию Google или iCloud; у нас нет доступа к этой копии.
 ## 3. Использование интернета
-Приложение полностью работает офлайн и ничего не отправляет. Карта и тексты хранятся внутри приложения. Если вы открываете из приложения ссылку, например эту политику, открывается браузер или почтовое приложение телефона; у них свои правила конфиденциальности.
+Приложение полностью работает офлайн и ничего не отправляет. Карта, тексты, рисунки и 3D-модели хранятся внутри приложения. Кнопка AR в 3D-просмотре (на телефонах, которые это поддерживают) открывает собственное средство просмотра AR телефона (Apple или Google), которое использует камеру, чтобы показать судно в вашей комнате; само приложение не сохраняет и не отправляет никаких изображений. Если вы открываете из приложения ссылку, например эту политику, открывается браузер или почтовое приложение телефона; у них свои правила конфиденциальности.
 ## 4. Сторонние сервисы
 Ни одна третья сторона не получает данные из приложения.
 ## 5. Дети
@@ -246,36 +247,36 @@ Vatani Tech (Fardin Vatani), Баку, Азербайджан. Электрон�
     'en': r'''# MarineGram – Terms of use
 By using MarineGram you agree to these terms. They are short and written in plain language.
 ## 1. For learning only
-MarineGram is a reference and learning tool. Its map, glossary and descriptions are given in good faith but may contain mistakes. Never use them for navigation, and never instead of official charts and publications, international rules (SOLAS, COLREG, MARPOL, STCW), your company's procedures or the orders of the master and officers. You use the information at your own risk.
+MarineGram is a reference and learning tool. Its map, glossary, descriptions of ships and ship systems, figures and 3D models are given in good faith but may contain mistakes. Never use them for navigation, and never instead of official charts and publications, international rules (SOLAS, COLREG, MARPOL, STCW), the maker's manuals, your ship's safety management system, your company's procedures or the orders of the master and officers. You use the information at your own risk.
 ## 2. No warranty
 The app is provided “as is”, without any warranty. To the extent the law allows, the developer is not liable for any loss or damage resulting from its use.
 ## 3. Content
-Texts, drawings and data in the app belong to the developer or their owners. The map is made with Natural Earth data, which is in the public domain. You may share screenshots for personal, non-commercial use.
+Texts, drawings and data in the app belong to the developer or their owners. The map is made with Natural Earth data, which is in the public domain. Some 3D models were made by other authors and are used under the Creative Commons Attribution 4.0 licence; each is credited in the app, under the model. You may share screenshots for personal, non-commercial use.
 ## 4. Changes and contact
 These terms may change with new versions of the app. Questions: write to {MAIL}. Privacy: see the privacy policy.
-@ Last updated: 27 November 2026''',
+@ Last updated: 28 November 2026''',
     'az': r'''# MarineGram – İstifadə şərtləri
 MarineGram-dan istifadə etməklə bu şərtlərlə razılaşırsınız. Onlar qısadır və sadə dillə yazılıb.
 ## 1. Yalnız öyrənmək üçün
-MarineGram məlumat və öyrənmə vasitəsidir. Xəritəsi, lüğəti və təsvirləri vicdanla hazırlanıb, lakin səhvlər ola bilər. Onlardan heç vaxt naviqasiya üçün, eləcə də rəsmi xəritələrin və nəşrlərin, beynəlxalq qaydaların (SOLAS, COLREG, MARPOL, STCW), şirkətinizin qaydalarının və ya kapitanın və zabitlərin əmrlərinin əvəzinə istifadə etməyin. Məlumatdan öz riskinizlə istifadə edirsiniz.
+MarineGram məlumat və öyrənmə vasitəsidir. Xəritəsi, lüğəti, gəmilərin və gəmi sistemlərinin təsvirləri, rəqəmləri və 3D modelləri vicdanla hazırlanıb, lakin səhvlər ola bilər. Onlardan heç vaxt naviqasiya üçün, eləcə də rəsmi xəritələrin və nəşrlərin, beynəlxalq qaydaların (SOLAS, COLREG, MARPOL, STCW), istehsalçının təlimatlarının, gəminizin təhlükəsizliyin idarə edilməsi sisteminin, şirkətinizin qaydalarının və ya kapitanın və zabitlərin əmrlərinin əvəzinə istifadə etməyin. Məlumatdan öz riskinizlə istifadə edirsiniz.
 ## 2. Zəmanət yoxdur
 Tətbiq heç bir zəmanət olmadan “olduğu kimi” təqdim olunur. Qanunun icazə verdiyi həddə tərtibatçı onun istifadəsindən yaranan heç bir itki və ya ziyana görə məsuliyyət daşımır.
 ## 3. Məzmun
-Tətbiqdəki mətnlər, rəsmlər və məlumatlar tərtibatçıya və ya onların sahiblərinə məxsusdur. Xəritə ictimai mülkiyyətdə olan Natural Earth məlumatları ilə hazırlanıb. Ekran görüntülərini şəxsi, qeyri-kommersiya məqsədilə paylaşa bilərsiniz.
+Tətbiqdəki mətnlər, rəsmlər və məlumatlar tərtibatçıya və ya onların sahiblərinə məxsusdur. Xəritə ictimai mülkiyyətdə olan Natural Earth məlumatları ilə hazırlanıb. Bəzi 3D modelləri başqa müəlliflər hazırlayıb və onlar Creative Commons Attribution 4.0 lisenziyası ilə istifadə olunur; hər birinin müəllifi tətbiqdə, modelin altında göstərilir. Ekran görüntülərini şəxsi, qeyri-kommersiya məqsədilə paylaşa bilərsiniz.
 ## 4. Dəyişikliklər və əlaqə
 Bu şərtlər tətbiqin yeni versiyaları ilə dəyişə bilər. Suallar üçün {MAIL} ünvanına yazın. Məxfilik: “Məxfilik siyasəti”nə baxın.
-@ Son yenilənmə: 27 noyabr 2026''',
+@ Son yenilənmə: 28 noyabr 2026''',
     'ru': r'''# MarineGram – Условия использования
 Используя MarineGram, вы соглашаетесь с этими условиями. Они короткие и написаны простым языком.
 ## 1. Только для обучения
-MarineGram — справочный и учебный инструмент. Его карта, глоссарий и описания подготовлены добросовестно, но могут содержать ошибки. Никогда не используйте их для навигации, а также вместо официальных карт и изданий, международных правил (SOLAS, COLREG, MARPOL, STCW), процедур вашей компании или распоряжений капитана и офицеров. Вы используете информацию на свой риск.
+MarineGram — справочный и учебный инструмент. Его карта, глоссарий, описания судов и судовых систем, цифры и 3D-модели подготовлены добросовестно, но могут содержать ошибки. Никогда не используйте их для навигации, а также вместо официальных карт и изданий, международных правил (SOLAS, COLREG, MARPOL, STCW), руководств изготовителя, системы управления безопасностью вашего судна, процедур вашей компании или распоряжений капитана и офицеров. Вы используете информацию на свой риск.
 ## 2. Без гарантий
 Приложение предоставляется «как есть», без каких-либо гарантий. В пределах, допускаемых законом, разработчик не несёт ответственности за любые убытки или ущерб от его использования.
 ## 3. Содержимое
-Тексты, рисунки и данные в приложении принадлежат разработчику или их владельцам. Карта создана на основе данных Natural Earth, находящихся в общественном достоянии. Вы можете делиться скриншотами для личного некоммерческого использования.
+Тексты, рисунки и данные в приложении принадлежат разработчику или их владельцам. Карта создана на основе данных Natural Earth, находящихся в общественном достоянии. Некоторые 3D-модели созданы другими авторами и используются по лицензии Creative Commons Attribution 4.0; автор каждой указан в приложении под моделью. Вы можете делиться скриншотами для личного некоммерческого использования.
 ## 4. Изменения и связь
 Эти условия могут меняться с новыми версиями приложения. Вопросы: пишите на {MAIL}. Конфиденциальность: см. «Политику конфиденциальности».
-@ Последнее обновление: 27 ноября 2026 г.''',
+@ Последнее обновление: 28 ноября 2026 г.''',
   },
 },
 'hafiz': {

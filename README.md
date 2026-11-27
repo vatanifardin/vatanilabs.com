@@ -63,8 +63,8 @@ other languages.
   are the app's own words, Hafiz's policy follows the app's own privacy
   text). They have no account, so no page for deleting one. When an app
   changes what it stores or sends, change its text and date there. The
-  apps' other languages are not written yet. MarineGram's page describes the planned glossary, ship pages and
-  3D models (only its map exists so far). Hafiz's page shows the first
+  apps' other languages are not written yet. MarineGram's page gives the app's own numbers as of 28 November 2026
+  (1,130 terms, 36 ship types, 36 ship systems, a 3D model of every ship type): change them when the app changes. Hafiz's page shows the first
   verse of the Quran exactly as in the Tanzil text the app uses (`BASMALA`
   in `_tools/build.py`: never change it) with a link to tanzil.net.
 - `oregram/`: the same four pages for OreGram (26 November 2026), a twin
