@@ -168,17 +168,86 @@
     return sh;
   }
 
-  const makers = { mark: makeMark, globe: makeGlobe, drop: makeDrop, crystal: makeCrystal, tools: makeTools };
+  // An anchor over rings of water (MarineGram).
+  function makeAnchor() {
+    const sh = blank();
+    for (let i = 0; i < L; i++) {
+      const u = rnd(), zz = (rnd() - 0.5) * 0.12, w = (rnd() - 0.5) * 0.09;
+      let x, y, c = 0.3, a = 0.9, s = 1;
+      if (u < 0.1) {                         // the ring at the top
+        const th = rnd() * 6.283, r = 0.17 + w * 0.6; x = r * Math.cos(th); y = 1.05 + r * Math.sin(th); c = 0.85;
+      } else if (u < 0.34) {                 // the shank
+        x = w; y = -1.05 + rnd() * 1.93;
+      } else if (u < 0.46) {                 // the stock (cross bar)
+        x = (rnd() * 2 - 1) * 0.5; y = 0.62 + w * 0.8;
+      } else if (u < 0.8) {                  // the two arms: an arc
+        const th = (200 + rnd() * 140) * Math.PI / 180, r = 0.8 + w; x = r * Math.cos(th); y = -0.25 + r * Math.sin(th);
+      } else {                               // the flukes: a triangle at each end
+        let p = rnd(), q = rnd(); if (p + q > 1) { p = 1 - p; q = 1 - q; }
+        const sgn = u < 0.9 ? -1 : 1;
+        x = sgn * (0.93 + p * (0.55 - 0.93) + q * (0.86 - 0.93)); y = -0.18 + p * (-0.44 + 0.18) + q * (-0.7 + 0.18);
+        c = 0.9; a = 1;
+      }
+      set(sh, i, x, y + 0.08, zz, c, a, s);
+    }
+    for (let i = L; i < N; i++) {           // rings of water under it
+      const ring = (i - L) % 4, th = rnd() * 6.283, r = 0.55 + ring * 0.34 + (rnd() - 0.5) * 0.03;
+      set(sh, i, r * Math.cos(th), -1.15, r * Math.sin(th), 1, 0.85 - ring * 0.16, 0.9);
+    }
+    return sh;
+  }
+
+  // A pointed arch with a crescent and an open book (Hafiz).
+  function makeArch() {
+    const sh = blank();
+    const arch = (hw, t) => {                // a point of a pointed arch of half-width hw, t in 0..1
+      const side = t < 0.5 ? -1 : 1, v = t < 0.5 ? t * 2 : (1 - t) * 2, th = (180 - 60 * v) * Math.PI / 180;
+      return [side * -(hw + 2 * hw * Math.cos(th)), -0.1 + 2 * hw * Math.sin(th)];
+    };
+    for (let i = 0; i < L; i++) {
+      const u = rnd(), j = (rnd() - 0.5) * 0.025;
+      let x, y, z = (rnd() - 0.5) * 0.05, c = 0.25, a = 0.9, s = 1;
+      if (u < 0.3) { const q = arch(0.8, rnd()); x = q[0] + j; y = q[1] + j; z += 0.1; }
+      else if (u < 0.5) { const q = arch(0.62, rnd()); x = q[0] + j; y = q[1] + j; z -= 0.1; a = 0.7; }
+      else if (u < 0.68) {                   // the pillars and the floor
+        const v = rnd();
+        if (v < 0.36) { x = (rnd() < 0.5 ? -0.8 : 0.8) + j; y = -1.1 + rnd(); z += 0.1; }
+        else if (v < 0.64) { x = (rnd() < 0.5 ? -0.62 : 0.62) + j; y = -1.1 + rnd(); z -= 0.1; a = 0.7; }
+        else { x = (rnd() * 2 - 1) * (rnd() < 0.5 ? 0.98 : 1.08); y = rnd() < 0.5 ? -1.1 : -1.18; }
+      } else if (u < 0.78) {                 // the crescent
+        do { const th = rnd() * 6.283, r = Math.sqrt(rnd()) * 0.17; x = r * Math.cos(th); y = 0.66 + r * Math.sin(th); }
+        while (Math.hypot(x - 0.075, y - 0.69) < 0.15);
+        c = 1; a = 1;
+      } else {                               // the open book: two pages with lines
+        const sgn = rnd() < 0.5 ? -1 : 1, v = rnd(), k = rnd();
+        const row = v < 0.5 ? (rnd() < 0.5 ? 0 : 1) : (1 + Math.floor(rnd() * 4)) / 6;   // edges, or a line of writing
+        const kk = v < 0.5 ? k : 0.14 + k * 0.72;
+        x = sgn * kk * 0.46; y = -0.5 - row * 0.3 + kk * 0.1 - 0.02;
+        if (v < 0.12) { x = sgn * 0.46; y = -0.42 - rnd() * 0.3; }
+        c = 1; a = v < 0.5 ? 1 : 0.75;
+      }
+      set(sh, i, x, y + 0.12, z, c, a, s);
+    }
+    for (let i = L; i < N; i++) {           // stars around it
+      const r = 1.5 + rnd() * 1.0, u = rnd() * 2 - 1, th = rnd() * 6.283, q = Math.sqrt(1 - u * u), hot = rnd() < 0.06;
+      set(sh, i, r * q * Math.cos(th), r * u * 0.85, r * q * Math.sin(th), hot ? 1 : 0, hot ? 0.9 : 0.26, hot ? 1.7 : 0.8);
+    }
+    return sh;
+  }
+
+  const makers = { mark: makeMark, globe: makeGlobe, drop: makeDrop, crystal: makeCrystal, tools: makeTools, anchor: makeAnchor, arch: makeArch };
   const spin = {                          // how each shape turns: [y, z, x] angles
     mark: (t) => [Math.sin(t * 0.45) * 0.42, 0, Math.sin(t * 0.31) * 0.07],
     // The Earth starts facing the Caspian and turns toward the Atlantic.
     globe: (t, local) => [-1.25 + local * 0.2, 0.3, 0.2],
     drop: (t) => [t * 0.42, 0, 0.16],
     crystal: (t) => [t * 0.36, 0, 0.2],
+    anchor: (t) => [Math.sin(t * 0.38) * 0.75, Math.sin(t * 0.5) * 0.05, 0.14],
+    arch: (t) => [Math.sin(t * 0.33) * 0.42, 0, 0.05 + Math.sin(t * 0.27) * 0.05],
     tools: (t) => [Math.sin(t * 0.4) * 0.5, Math.sin(t * 0.27) * 0.05, 0.1 + Math.sin(t * 0.31) * 0.08],
     nebula: (t) => [t * 0.1, 0, 0.2],
   };
-  const hold = { mark: 4.6, globe: 9, drop: 5.2, crystal: 8, tools: 8 };
+  const hold = { mark: 4.6, globe: 9, drop: 5.2, crystal: 8, tools: 8, anchor: 8, arch: 8 };
   // Captions: number, text and, where given, the language of the text. The
   // page hands them over in its own language (see build.py).
   let captions = {

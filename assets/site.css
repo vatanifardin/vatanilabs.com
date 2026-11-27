@@ -362,6 +362,68 @@ section.block { padding: 130px 0; position: relative; }
 .tile h4 a { color: inherit; }
 @media (max-width: 640px) { .scan { grid-template-columns: 120px 1fr; gap: 18px; } @keyframes beam { from { transform: translateY(-20px); } to { transform: translateY(94px); } } }
 
+/* Tile: a verse with its translation (Hafiz) */
+.verse { width: 100%; max-width: 460px; text-align: center; }
+.verse .ref { font: 500 11px/1 var(--mono); letter-spacing: .16em; color: var(--teal); }
+.verse .ar, .hide span { font-family: "Amiri Quran", "Amiri", "Geeza Pro", "Noto Naskh Arabic", "Traditional Arabic", serif; color: #fff; }
+.verse .ar { font-size: clamp(26px, 3.2vw, 38px); line-height: 2; direction: rtl; margin: 6px 0 4px; }
+.verse .tr { display: grid; gap: 7px; justify-items: center; margin-bottom: 18px; }
+.verse .tr i { height: 7px; width: 74%; border-radius: 4px; background: linear-gradient(90deg, rgba(200,215,255,.18), rgba(200,215,255,.5), rgba(200,215,255,.18)); transform-origin: center; animation: type 7s ease-in-out infinite; }
+.verse .tr i + i { width: 48%; animation-delay: .3s; }
+.verse .chips { justify-content: center; gap: 6px; }
+.verse .chip { padding: 8px 9px; }
+.verse .src { display: inline-block; margin-top: 14px; font-size: 11.5px; color: var(--dim); }
+
+/* Tile: words hidden for memorising (Hafiz) */
+.hidebox { display: grid; gap: 20px; justify-items: center; width: 100%; }
+.hide { direction: rtl; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.hide span { font-size: 25px; line-height: 1.9; padding: 2px 14px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(6,9,18,.55); }
+.hide span + span { border-color: rgba(var(--acc),.4); }
+.hide b { font-weight: 400; display: inline-block; animation: veil 9s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes veil { 0%, 16% { opacity: 1; filter: none; } 26%, 68% { opacity: 0; filter: blur(7px); } 80%, 100% { opacity: 1; filter: none; } }
+.hidebox .chips { justify-content: center; gap: 6px; }
+.hidebox .chip { padding: 8px 10px; }
+
+/* Tile: the days of review (Hafiz) */
+.sched { width: 100%; max-width: 470px; }
+.sched svg, .ship svg, .prop svg { width: 100%; height: auto; display: block; overflow: visible; }
+.sched .rail { stroke: rgba(140,160,220,.25); stroke-width: 2; }
+.sched .go { stroke: var(--teal); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: 1; animation: go 9s ease-in-out infinite; }
+@keyframes go { 0%, 4% { stroke-dashoffset: 1; } 62%, 90% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }
+.sched circle { fill: var(--bg-2); stroke: var(--line-2); stroke-width: 1.6; animation: lit 9s ease-in-out infinite; animation-delay: var(--d, 0s); }
+@keyframes lit { 0%, 3% { fill: var(--bg-2); stroke: var(--line-2); } 9%, 80% { fill: var(--teal); stroke: var(--teal-2); } 96%, 100% { fill: var(--bg-2); stroke: var(--line-2); } }
+.sched text { font: 500 13px/1 var(--mono); fill: var(--text); }
+.sched text.u { fill: var(--muted); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+
+/* Tile: a ship on the waves (MarineGram) */
+.ship { width: 100%; max-width: 480px; }
+.ship .boat { animation: bob 5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes bob { from { transform: translateY(-2px) rotate(-1deg); } to { transform: translateY(3px) rotate(1deg); } }
+.ship .hullp { fill: rgba(var(--acc),.16); stroke: var(--teal-2); stroke-width: 1.5; stroke-linejoin: round; }
+.ship .box { fill: rgba(200,212,255,.1); stroke: rgba(200,212,255,.55); stroke-width: 1; }
+.ship .box.a { fill: rgba(var(--acc),.3); stroke: rgba(var(--acc2),.8); }
+.ship .sea { fill: none; stroke: rgba(var(--acc2),.7); stroke-width: 1.6; stroke-linecap: round; animation: sea 4s linear infinite; }
+.ship .sea.b { stroke: rgba(var(--acc),.5); animation-duration: 6.5s; animation-direction: reverse; }
+@keyframes sea { to { transform: translateX(-80px); } }
+.ship .chips { margin-top: 12px; }
+
+/* Tile: a propeller (MarineGram) */
+.prop { width: 100%; max-width: 230px; }
+.prop .ring { fill: none; stroke: rgba(var(--acc),.4); stroke-dasharray: 3 7; }
+.prop .ring.o { stroke: rgba(150,170,230,.25); }
+.prop .blades { transform-box: view-box; transform-origin: 100px 100px; animation: turn 7s linear infinite; }
+.prop .blades path { fill: rgba(var(--acc),.16); stroke: var(--teal-2); stroke-width: 1.5; stroke-linejoin: round; }
+.prop .hub { fill: var(--bg-2); stroke: var(--teal); stroke-width: 2; }
+
+/* Tile: a ship's frame, turning (MarineGram) */
+.hull3 { width: 260px; height: 170px; perspective: 800px; }
+.hull3 div { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; animation: yaw 16s linear infinite; }
+@keyframes yaw { from { transform: rotateX(-16deg) rotateY(0); } to { transform: rotateX(-16deg) rotateY(360deg); } }
+.hull3 i { position: absolute; left: 50%; top: 42%; width: var(--w); height: var(--h); margin-left: calc(var(--w) / -2); margin-top: -20px;
+  border: 1.5px solid rgba(var(--acc2),.75); border-top-color: rgba(var(--acc),.45); border-radius: 0 0 50% 50% / 0 0 100% 100%; transform: translateZ(var(--z)); }
+.hull3 b { position: absolute; left: 50%; width: 252px; margin-left: -126px; height: 0; border-top: 1.5px solid rgba(var(--acc),.7); transform: rotateY(90deg); }
+.hull3 b.keel { top: calc(42% + 32px); } .hull3 b.deck { top: calc(42% - 20px); border-top-style: dashed; }
+
 /* "Next app" panel */
 .soon { border: 1px solid var(--line); border-radius: 26px; padding: 90px 30px; text-align: center;
   background: radial-gradient(60% 80% at 50% 0%, rgba(var(--acc),.12), transparent 70%), linear-gradient(180deg, rgba(20,28,54,.6), rgba(9,13,26,.7)); }

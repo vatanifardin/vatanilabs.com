@@ -115,7 +115,8 @@ I_FLAME = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor"
 
 # The accent colour of an app's pages (a light tone of the app's own colour
 # and a lighter one), in place of the studio's teal: see --acc in site.css.
-ACCENT = {'oregram': ('226,176,64', '255,226,150'), 'geo-rulers': ('236,138,68', '255,200,156')}
+ACCENT = {'oregram': ('226,176,64', '255,226,150'), 'geo-rulers': ('236,138,68', '255,200,156'),
+          'petro-rulers': ('255,200,40', '255,232,150'), 'marinegram': ('86,156,255', '176,214,255'), 'hafiz': ('52,190,130', '160,236,200')}
 
 
 def lang_links(path):
@@ -151,8 +152,10 @@ def page(key, body, path='/', scripts=(), found=True, name=None, app=None):
                     "if(m&&!/\\/404\\.html$/.test(location.pathname))location.replace('/'+m[1]+'/404.html')})()</script>\n")
     # The footer leads to PetroGram's pages; on the pages of another app, to
     # that app's own page, privacy policy and terms of use.
-    fname, fapp = (name, app) if app else ('PetroGram', 'petrogram')
-    foot = f'''<a href="{u(f'/{fapp}/')}">{fname}</a>
+    fname, fapp = (name or NAME[app], app) if app else ('PetroGram', 'petrogram')
+    foot = f'''<a href="{u(f'/{fapp}/')}">{fname}</a>'''
+    if fapp not in SOLO:   # an app in SOLO has no privacy policy or terms of use yet
+        foot += f'''
       <a href="{u(f'/{fapp}/privacy/')}">{t('privacy')}</a>
       <a href="{u(f'/{fapp}/terms/')}">{t('terms')}</a>'''
     # An app's pages wear the app's own accent colour.
@@ -252,7 +255,7 @@ def t_flash(cls, d=0):
            f'<div class="face front"><small>{t("flash_term")}</small><b>{cards[0][0]}</b></div>'
            f'<div class="face back"><small>{t("flash_meaning")}</small><span>{cards[0][1]}</span></div>'
            '</div></div>')
-    return tile(cls, viz, t('flash_cap'), tt('flash_h'), tt('flash_p'), d)
+    return tile(cls, viz, tt('flash_cap'), tt('flash_h'), tt('flash_p'), d)
 
 
 def t_quiz(cls, d=0, opts=('Bottom oil pressure', 'Blowout preventer', 'Barrel of petroleum')):
@@ -266,13 +269,11 @@ def t_quiz(cls, d=0, opts=('Bottom oil pressure', 'Blowout preventer', 'Barrel o
     return tile(cls, viz, t('quiz_cap'), tt('quiz_h'), tt('quiz_p'), d)
 
 
-def t_lang(cls, d=0):
-    words = 'Knowledge|Bilik|Знание|معرفة|Conocimiento|Savoir|知识'
-    chips = ''.join(f'<span class="chip{" on" if i == 0 else ""}">{c}</span>'
-                    for i, c in enumerate(['EN', 'AZ', 'RU', 'AR', 'ES', 'FR', '中文']))
-    viz = (f'<div class="langs7"><div class="langword" data-words="{words}">Knowledge</div>'
+def t_lang(cls, d=0, words='Knowledge|Bilik|Знание|معرفة|Conocimiento|Savoir|知识', codes=('EN', 'AZ', 'RU', 'AR', 'ES', 'FR', '中文')):
+    chips = ''.join(f'<span class="chip{" on" if i == 0 else ""}">{c}</span>' for i, c in enumerate(codes))
+    viz = (f'<div class="langs7"><div class="langword" data-words="{words}">{words.split("|")[0]}</div>'
            f'<div class="chips">{chips}</div></div>')
-    return tile(cls, viz, t('lang_cap'), t('lang_h'), t('lang_p'), d)
+    return tile(cls, viz, t('lang_cap'), tt('lang_h'), tt('lang_p'), d)
 
 
 def t_market(cls, d=0, chips=None):
@@ -305,7 +306,7 @@ def t_offline(cls, d=0):
 def t_more(cls, d=0):
     viz = ('<div class="chips" style="justify-content:center;max-width:520px">'
            + ''.join(f'<span class="chip">{i}</span>' for i in tt('more_items')) + '</div>')
-    return tile(cls, viz, t('more_cap'), t('more_h'), t('more_p'), d)
+    return tile(cls, viz, tt('more_cap'), tt('more_h'), tt('more_p'), d)
 
 
 # ---- Geo-Rulers' own tiles: a ruler, a protractor, the camera scanner and
@@ -314,17 +315,17 @@ ROCK = 'M108 100 L132 62 L176 40 L236 36 L282 58 L300 92 L286 104 L122 106 Z'
 FACETS = 'M132 62 L190 74 L236 36 M190 74 L176 40 M190 74 L282 58 M190 74 L210 105 M282 58 L286 104'
 
 
-def t_ruler(cls, d=0):
+def t_ruler(cls, d=0, art=None):
     # 6 units to a millimetre; the sample lies from the 1 cm mark to 4.2 cm.
     ticks = ''.join(f'<line class="tick" x1="{48 + i * 6}" x2="{48 + i * 6}" y1="118" y2="{134 if i % 10 == 0 else 128 if i % 5 == 0 else 124}"/>' for i in range(57))
     nums = ''.join(f'<text x="{48 + i * 60}" y="150" text-anchor="middle">{i}</text>' for i in range(6))
-    viz = (f'<div class="rulerviz"><svg viewBox="0 0 420 170" role="img" aria-label="{e("gx_ruler_aria")}">'
-           f'<path class="rock" d="{ROCK}"/><path class="facet" d="{FACETS}"/>'
+    viz = (f'<div class="rulerviz"><svg viewBox="0 0 420 170" role="img" aria-label="{html.escape(tt("gx_ruler_aria"))}">'
+           + (art or f'<path class="rock" d="{ROCK}"/><path class="facet" d="{FACETS}"/>') +
            f'<rect class="body" x="30" y="118" width="372" height="42" rx="7"/>{ticks}{nums}'
            '<line class="guide g1" x1="108" x2="108" y1="22" y2="118"/><line class="guide g2" x1="300" x2="300" y1="22" y2="118"/>'
            '<g class="read"><line x1="108" x2="300" y1="22" y2="22"/>'
            f'<text x="204" y="14" text-anchor="middle">{t("gx_ruler_read")}</text></g></svg></div>')
-    return tile(cls, viz, t('cap_measure'), t('gx_ruler_h'), t('gx_ruler_p'), d)
+    return tile(cls, viz, t('cap_measure'), t('gx_ruler_h'), tt('gx_ruler_p'), d)
 
 
 def t_angle(cls, d=0):
@@ -345,20 +346,92 @@ def t_angle(cls, d=0):
     return tile(cls, viz, t('cap_measure'), t('gx_angle_h'), t('gx_angle_p'), d)
 
 
-def t_scan(cls, d=0):
+def t_scan(cls, d=0, art=None):
     rows = ''.join(f'<div class="row" style="--w:{w}%;--d:{i * .18:.2f}s"><span>{n}</span><b>{w}%</b><i></i></div>'
-                   for i, (n, w) in enumerate(zip(t('gx_scan_names'), (82, 11, 5))))
+                   for i, (n, w) in enumerate(zip(tt('gx_scan_names'), (82, 11, 5))))
     viz = (f'<div class="scan" aria-label="{e("gx_scan_aria")}"><div class="finder">'
-           f'<svg viewBox="100 28 208 86" aria-hidden="true"><path class="rock" d="{ROCK}"/><path class="facet" d="{FACETS}"/></svg>'
+           '<svg viewBox="100 28 208 86" aria-hidden="true">' + (art or f'<path class="rock" d="{ROCK}"/><path class="facet" d="{FACETS}"/>') + '</svg>'
            f'<div class="beam"></div></div><div class="guess">{rows}</div></div>')
-    return tile(cls, viz, t('cap_camera'), t('gx_h2'), t('gx_p2'), d)
+    return tile(cls, viz, t('cap_camera'), tt('gx_h2'), tt('gx_p2'), d)
 
 
 def t_pair(cls, d, slug, other, title, text):
     """Two apps that belong together; the heading leads to the other one's page."""
-    img = lambda a: f'<img src="/assets/img/{a}-icon.png" alt="{html.escape(t("icon_alt_of").format(NAME[a]))}" style="--glow:rgba({SOON_BY[a][3]},.9)" loading="lazy">'
+    img = lambda a: f'<img src="/assets/img/{a}-icon.png" alt="{html.escape(t("icon_alt_of").format(NAME.get(a, "PetroGram")))}" style="--glow:rgba({SOON_BY[a][3] if a in SOON_BY else "63,81,181"},.9)" loading="lazy">'
     viz = f'<div class="pair">{img(slug)}<span class="link"></span>{img(other)}</div>'
     return tile(cls, viz, t('cap_family'), f'<a href="{u(f"/{other}/")}">{title} <span class="arr">→</span></a>', text, d)
+
+
+# ---- Petro-Rulers: a pipe with flanges on the ruler, a valve in the scanner.
+PIPE = ('<path class="rock" d="M108 40h12v70h-12z M288 40h12v70h-12z M120 56h168v38h-168z"/>'
+        '<path class="facet" d="M120 66h168 M150 56v38 M258 56v38"/>')
+VALVE = ('<path class="rock" d="M112 72h10v36h-10z M286 72h10v36h-10z M122 80h54l10-10h36l10 10h54v20h-54l-10 10h-36l-10-10h-54z M196 46h16v24h-16z"/>'
+         '<path class="facet" d="M204 46v-10 M174 34h60 M174 34a30 5 0 0 0 60 0a30 5 0 0 0-60 0"/>')
+
+
+# ---- MarineGram: a ship on the waves, a propeller, a ship's frame turning.
+def t_ship(cls, d=0):
+    boxes = ''.join(f'<rect class="box{" a" if (i + r) % 3 == 0 else ""}" x="{140 + i * 23}" y="{88 - r * 18}" width="21" height="16"/>'
+                    for r in range(3) for i in range(8 - r) if not (r == 2 and i < 2))
+    wave = lambda y: 'M-90 %d ' % y + ' '.join('q20 -9 40 0 t40 0' for _ in range(8))
+    viz = (f'<div class="ship"><svg viewBox="0 0 420 150" role="img" aria-label="{e("mg_ship_aria")}">'
+           f'<g class="boat">{boxes}<path class="hullp" d="M92 60h30v46h-30z M100 46h12v14h-12z M70 106h290l-22 26h-246z"/></g>'
+           f'<path class="sea" d="{wave(134)}"/><path class="sea b" d="{wave(144)}"/></svg>'
+           '<div class="chips">' + ''.join(f'<span class="chip{" on" if c == t("mg_ship_types")[2] else ""}">{c}</span>' for c in t('mg_ship_types'))
+           + '</div></div>')
+    return tile(cls, viz, t('gr_cap_read'), t('mg_ships_h'), t('mg_ships_p'), d)
+
+
+def t_prop(cls, d=0):
+    blade = '<path d="M100 100C78 70 84 34 100 24c20 12 22 46 0 76z"{}/>'
+    blades = ''.join(blade.format(f' transform="rotate({a} 100 100)"' if a else '') for a in (0, 90, 180, 270))
+    viz = (f'<div class="prop"><svg viewBox="0 0 200 200" role="img" aria-label="{e("mg_tech_aria")}">'
+           '<circle class="ring o" cx="100" cy="100" r="96"/><circle class="ring" cx="100" cy="100" r="82"/>'
+           f'<g class="blades">{blades}</g><circle class="hub" cx="100" cy="100" r="13"/></svg></div>')
+    return tile(cls, viz, t('lang_cap'), t('mg_tech_h'), t('mg_tech_p'), d)
+
+
+def t_hull(cls, d=0):
+    # the frames of a hull from stern to bow: place along the ship, width, depth
+    ribs = [(-120, 26, 26), (-90, 56, 42), (-60, 70, 50), (-30, 76, 52), (0, 78, 52), (30, 76, 52), (60, 68, 50), (90, 50, 44), (120, 20, 30)]
+    viz = ('<div class="hull3" aria-hidden="true"><div>'
+           + ''.join(f'<i style="--z:{z}px;--w:{w}px;--h:{h}px"></i>' for z, w, h in ribs)
+           + '<b class="keel"></b><b class="deck"></b></div></div>')
+    return tile(cls, viz, t('cap_3d'), t('mg_3d_h'), t('mg_3d_p'), d)
+
+
+# ---- Hafiz: a verse with its translation, words hidden for memorising, the
+# days of review. The verse is the first of the Quran, letter for letter as
+# in the Tanzil text the app uses (never change it).
+BASMALA = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ'
+
+
+def t_verse(cls, d=0):
+    viz = (f'<div class="verse"><div class="ref">1 : 1</div>'
+           f'<div class="ar" lang="ar" dir="rtl" role="img" aria-label="{e("hz_verse_aria")}">{BASMALA}</div>'
+           '<div class="tr" aria-hidden="true"><i></i><i></i></div><div class="chips">'
+           + ''.join(f'<span class="chip{" on" if i == 0 else ""}">{c}</span>' for i, c in enumerate(['EN', 'TR', 'FA', 'UR', 'ID', 'AZ']))
+           + f'</div><a class="src" href="https://tanzil.net" rel="noopener">{t("hz_src")}</a></div>')
+    return tile(cls, viz, t('gr_cap_read'), t('hz_h1'), t('hz_p1'), d)
+
+
+def t_hide(cls, d=0):
+    # the first word stays; the others fade one after another ("first words")
+    words = ''.join('<span><b style="{}">{}</b></span>'.format(f'--d:{(i - 1) * .5:.1f}s' if i else 'animation:none', w)
+                    for i, w in enumerate(BASMALA.split()))
+    viz = (f'<div class="hidebox"><div class="hide" lang="ar" dir="rtl" role="img" aria-label="{e("hz_hide_aria")}">{words}</div>'
+           '<div class="chips">' + ''.join(f'<span class="chip{" on" if i == 1 else ""}">{c}</span>' for i, c in enumerate(t('hz_modes'))) + '</div></div>')
+    return tile(cls, viz, t('flash_cap'), t('hz_h2'), t('hz_hide_p'), d)
+
+
+def t_sched(cls, d=0):
+    days = (1, 3, 7, 14, 30, 60, 120)
+    nodes = ''.join(f'<circle cx="{30 + i * 60}" cy="44" r="8" style="--d:{i * .75:.2f}s"/><text x="{30 + i * 60}" y="78" text-anchor="middle">{n}</text>'
+                    for i, n in enumerate(days))
+    viz = (f'<div class="sched"><svg viewBox="0 0 420 110" role="img" aria-label="{e("hz_sched_aria")}">'
+           '<line class="rail" x1="30" x2="390" y1="44" y2="44"/><line class="go" pathLength="1" x1="30" x2="390" y1="44" y2="44"/>'
+           f'{nodes}<text class="u" x="210" y="104" text-anchor="middle">{t("hz_days")}</text></svg></div>')
+    return tile(cls, viz, t('quiz_cap'), t('hz_sched_h'), t('hz_sched_p'), d)
 
 
 def phone(img, alt, i=None):
@@ -410,6 +483,15 @@ PAGES = {
 }
 
 
+# The apps with a page but no privacy policy or terms of use yet (see solo()):
+# the name as the big heading, and the shapes of the hero.
+SOLO = {
+    'petro-rulers': ('Petro-<em class="s">Rulers</em>', 'tools,drop'),
+    'marinegram': ('Marine<em class="s">Gram</em>', 'anchor,globe'),
+    'hafiz': ('<em class="s">Hafiz</em>', 'arch'),
+}
+
+
 def tn(key, name):
     """A text of a mining app: the rows "gr_..." are written for Geo-Rulers,
     and another app's name takes its place (also in lists)."""
@@ -433,7 +515,7 @@ def soon_panel(app):
         for i, c in enumerate(caps, 1))
     subject = quote(t('next_subject') + ': ' + name)
     own = (f'<a class="btn solid" href="{u(f"/{slug}/")}">{t("discover_of").format(name)} <span class="arr">→</span></a>'
-           if slug in PAGES else '')
+           if slug in PAGES or slug in SOLO else '')
     return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}"{"" if slug == ORDER[0] else " hidden"}>
       <div class="app-line">
         <img src="/assets/img/{slug}-icon.png" alt="{html.escape(t('icon_alt_of').format(name))}" style="--glow:rgba({glow},.9)">
@@ -732,6 +814,84 @@ def geo(slug):
 </main>'''
 
 
+# ------------------------------- Petro-Rulers, MarineGram and Hafiz pages
+# The page of an app that is still being made and has no privacy policy or
+# terms yet (SOLO): hero, band, living tiles and the "coming soon" box. Its
+# texts are the rows "<key>_..." of site_texts.py (key: "pr", "mg" or "hz").
+def solo(slug):
+    _, name, k, glow = SOON_BY[slug][:4]
+    icon, alt = f'/assets/img/{slug}-icon.png', e('icon_alt_of').format(name)
+    mail = f'mailto:support@vatanilabs.com?subject={quote(t("next_subject") + ": " + name)}'
+    V.clear()
+    if slug == 'petro-rulers':
+        V.update(gx_ruler_aria='pr_ruler_aria', gx_ruler_p='pr_ruler_p', gx_scan_names='pr_scan_names', gx_h2='pr_h2', gx_p2='pr_p2',
+                 flash_cards='pr_flash_cards', flash_cap='gr_cap_read', flash_h='pr_guide_h', flash_p='pr_guide_p')
+        tiles = [t_ruler('w7', 0, PIPE), t_angle('w5', .08), t_scan('w7', 0, VALVE), t_flash('w5', .08),
+                 t_lang(''), t_offline('', .08), t_pair('', .16, slug, 'petrogram', t('pr_h3'), t('pr_p3'))]
+    elif slug == 'marinegram':
+        V.update(map_aria='mg_map_aria', map_h='mg_h1', map_p='mg_p1', flash_cards='mg_flash_cards', flash_h='mg_h2', flash_p='mg_p2', off_p='mg_off_p')
+        # Great ports of the world (lon, lat).
+        ports = [(103.8, 1.3), (4.5, 51.9), (121.5, 31.2), (32.5, 30), (-79.5, 9), (-118.2, 33.7), (-46.3, -24), (31, -29.9),
+                 (55.3, 25.2), (151.2, -33.9), (-74, 40.7), (49.9, 40.4)]
+        tiles = [t_map('w8', 0, ports), t_flash('', .08), t_ship('w7'), t_prop('w5', .08), t_hull('w5'), t_offline('w7', .08)]
+    else:
+        V.update(lang_h='hz_lang_h', lang_p='hz_lang_p', off_p='hz_off_p', more_items='hz_free_items', more_cap='cap_free', more_h='hz_h3', more_p='hz_p3')
+        tiles = [t_verse('w7'), t_hide('w5', .08), t_sched('w7'),
+                 t_lang('w5', .08, 'Read|Читать|Oku|بخوان|اقرأ|پڑھیں|Baca|Oxu', ('EN', 'RU', 'TR', 'FA', 'AR', 'UR', 'ID', 'AZ')),
+                 t_offline('w5'), t_more('w7', .08)]
+    V.clear()
+    cards = '\n      '.join(tiles)
+    return f'''<main>
+<section class="app-hero">
+  <div class="sculpt"><canvas id="sculpture" data-shapes="{SOLO[slug][1]}" aria-hidden="true"></canvas></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="pill rv"><i></i>{t(k + '_pill').format(num(slug))}</span>
+      <div class="top rv" style="--d:.08s">
+        <img class="app-icon" src="{icon}" alt="{alt}" style="--glow:rgba({glow},.95)">
+        <h1 lang="en">{SOLO[slug][0]}</h1>
+      </div>
+      <p class="slogan rv" style="--d:.12s"><em class="s">{t(k + '_sub')}</em></p>
+      <p class="lead rv" style="--d:.16s">{t(k + '_lead')}</p>
+      <div class="actions rv" style="--d:.24s">
+        <span class="btn" aria-disabled="true">{t('dev')}</span>
+        <a class="btn solid" href="{mail}">{t('next_cta')} <span class="arr">→</span></a>
+      </div>
+      <p class="store-note rv" style="--d:.3s">{t('gr_note')}</p>
+    </div>
+  </div>
+</section>
+{band(t(k + '_band'))}
+
+<section class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="rv">
+        <p class="label"><span class="n">{t('feat_n')}</span> {t('feat_label')}</p>
+        <h2>{t(k + '_feat_h2')}</h2>
+      </div>
+      <p class="rv" style="--d:.1s">{t(k + '_feat_p')}</p>
+    </div>
+    <div class="bento">
+      {cards}
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:20px">
+  <div class="wrap">
+    <div class="soon rv">
+      <div class="orbit"><img src="{icon}" alt="{alt}" style="--glow:rgba({glow},.9)"></div>
+      <p class="label">{t('dev')}</p>
+      <h3>{t('soon_h')}</h3>
+      <p>{tn('gr_soon_p', name)}</p>
+      <div class="actions" style="justify-content:center;margin-top:28px"><a class="btn" href="{mail}">{t('next_cta')} <span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+</main>'''
+
+
 # ------------------------------------------------------ privacy and terms
 # The app's two long texts exist in seven languages. The English page shows
 # all seven, one after the other (the app links to it); the Azerbaijani and
@@ -902,11 +1062,16 @@ for L in LANGS:
            page('delete', doc('delete-account', geo_delete_secs(slug), slug, name), f'/{slug}/delete-account/', JS, name=name, app=slug))
         wr(out / slug / 'terms/index.html',
            page('terms', doc('terms', geo_terms_secs[slug], slug, name), f'/{slug}/terms/', JS, name=name, app=slug))
+    # Petro-Rulers, MarineGram and Hafiz: a page each, nothing else yet.
+    for slug in SOLO:
+        wr(out / slug / 'index.html',
+           page(SOON_BY[slug][2], solo(slug), f'/{slug}/', (['/assets/land.js'] if 'globe' in SOLO[slug][1] else []) + ['/assets/hero.js'] + JS, app=slug))
     wr(out / '404.html', page('nf', notfound(), '/404.html', JS, found=False))
 
 # The list of pages for search engines, each with its other languages.
 PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/']
 PATHS += [f'/{s}/{x}' for s in PAGES for x in ('', 'privacy/', 'terms/', 'delete-account/')]
+PATHS += [f'/{s}/' for s in SOLO]
 rows = ''.join(
     f'  <url><loc>{SITE}{PRE[l]}{p}</loc>'
     + ''.join(f'<xhtml:link rel="alternate" hreflang="{x}" href="{SITE}{PRE[x]}{p}"/>' for x in LANGS)

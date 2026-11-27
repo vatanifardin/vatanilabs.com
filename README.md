@@ -31,8 +31,7 @@ other languages.
   OreGram repository's `branding/apps/oregram/icon-1024.png`; the
   MarineGram and Hafiz icons (`assets/img/marinegram-icon.png`,
   `assets/img/hafiz-icon.png`, 256 × 256) from `branding/icon.png` of
-  their repositories. Petro-Rulers, MarineGram and Hafiz have a tab but
-  no page of their own yet.
+  their repositories.
 - `petrogram/`: the PetroGram page, its privacy policy and terms of use
   (7 languages on one page; the app links to these).
 - `geo-rulers/`: the Geo-Rulers page (the app is still being made: no
@@ -50,6 +49,16 @@ other languages.
   `t_pair`). Each app's pages wear its own accent colour instead of the
   studio's teal: `ACCENT` in `_tools/build.py` sets `--acc` and `--acc2`
   on the page, and `assets/site.css` takes every accent from those two.
+- `petro-rulers/`, `marinegram/`, `hafiz/`: one page each (27 November
+  2026), built by `solo()` in `_tools/build.py` from the `SOLO` list: hero
+  (shapes `tools`, `anchor`, `arch` in `assets/hero.js`), band, living
+  tiles and the "coming soon" box, in the app's accent colour. These apps
+  have no privacy policy or terms of use on the site yet, so their footer
+  links only to the app's page; add those pages before an app goes to a
+  store. MarineGram's page describes the planned glossary, ship pages and
+  3D models (only its map exists so far). Hafiz's page shows the first
+  verse of the Quran exactly as in the Tanzil text the app uses (`BASMALA`
+  in `_tools/build.py`: never change it) with a link to tanzil.net.
 - `oregram/`: the same four pages for OreGram (26 November 2026), a twin
   of Geo-Rulers: the same app and texts with another name, icon (ore on
   gold) and colour (gold, `#B8860B`). Since 27 November 2026 Geo-Rulers'
