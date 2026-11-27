@@ -191,13 +191,14 @@ TX = {
 'mg_p3': ('Ship types with their technical descriptions, engines and electrical systems, and 3D models of ships.',
           'Gəmi növləri və onların texniki təsviri, mühərriklər və elektrik sistemləri, gəmilərin 3D modelləri.',
           'Типы судов и их технические описания, двигатели и электрические системы, 3D-модели судов.'),
-# Hafiz (27 November 2026; no page of its own yet). Free, no ads. The app
+# Quran Guardians (first called Hafiz, renamed 28 November 2026; the rows keep
+# "hz_" and the folder /hafiz/). Free, no ads; optional gifts. The app
 # has eight languages; the translation of the meaning exists in six (no
 # Russian one yet), so the card names them.
 'hz_sub': ('Read and memorise the Quran.', 'Quranı oxuyun və əzbərləyin.', 'Читайте Коран и учите его наизусть.'),
-'hz_lead': ('A free app for reading the Quran and learning it by heart: no ads, no account, nothing collected, and it works fully offline. In eight languages.',
-            'Quranı oxumaq və əzbərləmək üçün pulsuz tətbiq: reklam yoxdur, hesab tələb olunmur, heç bir məlumat toplanmır və tam oflayn işləyir. Səkkiz dildə.',
-            'Бесплатное приложение для чтения Корана и заучивания его наизусть: без рекламы, без учётной записи, без сбора данных, полностью работает офлайн. На восьми языках.'),
+'hz_lead': ('A free app for reading the Quran and learning it by heart, with recitations, a short tafsir, hadiths and prayer times: no ads, no account, nothing collected. In eight languages.',
+            'Quranı oxumaq və əzbərləmək üçün pulsuz tətbiq: tilavətlər, qısa təfsir, hədislər və namaz vaxtları ilə. Reklam yoxdur, hesab tələb olunmur, heç bir məlumat toplanmır. Səkkiz dildə.',
+            'Бесплатное приложение для чтения Корана и заучивания его наизусть: с чтениями, кратким тафсиром, хадисами и временем намаза. Без рекламы, без учётной записи, без сбора данных. На восьми языках.'),
 'hz_h1': ('All 114 surahs', 'Bütün 114 surə', 'Все 114 сур'),
 'hz_p1': ('The Arabic text in the Uthmani script, with a translation of the meaning under each verse: in English, Turkish, Persian, Urdu, Indonesian or Azerbaijani.',
           'Osmani xətti ilə ərəbcə mətn, hər ayənin altında mənasının tərcüməsi: ingilis, türk, fars, urdu, İndoneziya və ya Azərbaycan dilində.',
@@ -207,9 +208,9 @@ TX = {
           'Təxminən on ayəlik qısa hissələr: sözləri gizlədin, özünüzü yoxlayın, hər hissə isə cədvəl üzrə təkrara qayıdır.',
           'Короткие части примерно по десять аятов: скрывайте слова, проверяйте себя, а каждая часть возвращается на повторение по расписанию.'),
 'hz_h3': ('Free, with no ads', 'Pulsuz və reklamsız', 'Бесплатно и без рекламы'),
-'hz_p3': ('No ads, no account and no data collected. Everything is on the phone and works offline.',
-          'Reklam yoxdur, hesab yoxdur, məlumat toplanmır. Hər şey telefondadır və oflayn işləyir.',
-          'Нет рекламы, нет учётной записи, данные не собираются. Всё хранится в телефоне и работает офлайн.'),
+'hz_p3': ('No ads, no account and no data collected. What you save stays on your phone.',
+          'Reklam yoxdur, hesab yoxdur, məlumat toplanmır. Saxladıqlarınız telefonunuzda qalır.',
+          'Нет рекламы, нет учётной записи, данные не собираются. Всё, что вы сохраняете, остаётся в телефоне.'),
 # Domino Freedom
 'df_sub': ('Dominoes, wherever you are.', 'Domino: harada olsanız da.', 'Домино, где бы вы ни были.'),
 'df_lead': ('A light, quick domino game. Play with no signal, or invite friends to a game online.',
@@ -613,15 +614,15 @@ TX = {
 'mg_off_p': ('Far offshore, in port or on a plane: everything important works offline.',
              'Açıq dənizdə, limanda və ya təyyarədə: vacib olan hər şey oflayn işləyir.',
              'В открытом море, в порту или в самолёте: всё важное работает офлайн.'),
-# Hafiz
-'hz_title': ('Hafiz · Vatani Tech', 'Hafiz · Vatani Tech', 'Hafiz · Vatani Tech'),
-'hz_desc': ('Hafiz: a free app for reading and memorising the Quran, with no ads, in eight languages. In development.',
-            'Hafiz: Quranı oxumaq və əzbərləmək üçün pulsuz, reklamsız tətbiq, səkkiz dildə. Hazırlanır.',
-            'Hafiz: бесплатное приложение без рекламы для чтения и заучивания Корана, на восьми языках. В разработке.'),
+# Quran Guardians (Hafiz)
+'hz_title': ('Quran Guardians · Vatani Tech', 'Quran Guardians · Vatani Tech', 'Quran Guardians · Vatani Tech'),
+'hz_desc': ('Quran Guardians: a free app for reading and memorising the Quran, with recitations, tafsir, hadiths and prayer times, with no ads, in eight languages. In development.',
+            'Quran Guardians: Quranı oxumaq və əzbərləmək üçün pulsuz, reklamsız tətbiq: tilavətlər, təfsir, hədislər və namaz vaxtları ilə, səkkiz dildə. Hazırlanır.',
+            'Quran Guardians: бесплатное приложение без рекламы для чтения и заучивания Корана, с чтениями, тафсиром, хадисами и временем намаза, на восьми языках. В разработке.'),
 'hz_pill': ('App {} · Quran', 'Tətbiq {} · Quran', 'Приложение {} · Коран'),
-'hz_band': (['Read', 'Memorise', 'Review', '114 surahs', 'Free', 'No ads', 'Offline', 'Eight languages'],
-            ['Oxuyun', 'Əzbərləyin', 'Təkrarlayın', '114 surə', 'Pulsuz', 'Reklamsız', 'Oflayn', 'Səkkiz dil'],
-            ['Читайте', 'Заучивайте', 'Повторяйте', '114 сур', 'Бесплатно', 'Без рекламы', 'Офлайн', 'Восемь языков']),
+'hz_band': (['Read', 'Listen', 'Memorise', 'Review', '114 surahs', 'Tafsir', 'Hadith', 'Prayer times', 'Qibla', 'Free', 'No ads', 'Eight languages'],
+            ['Oxuyun', 'Dinləyin', 'Əzbərləyin', 'Təkrarlayın', '114 surə', 'Təfsir', 'Hədis', 'Namaz vaxtları', 'Qiblə', 'Pulsuz', 'Reklamsız', 'Səkkiz dil'],
+            ['Читайте', 'Слушайте', 'Заучивайте', 'Повторяйте', '114 сур', 'Тафсир', 'Хадисы', 'Время намаза', 'Кибла', 'Бесплатно', 'Без рекламы', 'Восемь языков']),
 'hz_feat_h2': ('Read. Memorise.<br><span class="grey">Free, and</span> <em class="s">offline.</em>',
                'Oxuyun. Əzbərləyin.<br><span class="grey">Pulsuz və</span> <em class="s">oflayn.</em>',
                'Читайте. Заучивайте.<br><span class="grey">Бесплатно и</span> <em class="s">офлайн.</em>'),
@@ -645,12 +646,24 @@ TX = {
 'hz_lang_p': ('English, Russian, Turkish, Persian, Arabic, Urdu, Indonesian and Azerbaijani.',
               'İngilis, rus, türk, fars, ərəb, urdu, İndoneziya və Azərbaycan dilləri.',
               'Английский, русский, турецкий, персидский, арабский, урду, индонезийский и азербайджанский.'),
-'hz_off_p': ('At home, in the mosque or on a journey: everything works offline.',
-             'Evdə, məsciddə və ya səfərdə: hər şey oflayn işləyir.',
-             'Дома, в мечети или в пути: всё работает офлайн.'),
+'hz_off_p': ('At home, in the mosque or on a journey: the Quran, its translations and your saved recitations work offline.',
+             'Evdə, məsciddə və ya səfərdə: Quran, tərcümələri və saxladığınız tilavətlər oflayn işləyir.',
+             'Дома, в мечети или в пути: Коран, переводы и сохранённые чтения работают офлайн.'),
 'hz_free_items': (['Free', 'No ads', 'No account', 'No data collected', 'Works offline', 'Text sizes', 'Continue reading', 'Progress per surah'],
                   ['Pulsuz', 'Reklamsız', 'Hesabsız', 'Məlumat toplanmır', 'Oflayn işləyir', 'Mətn ölçüləri', 'Oxumağa davam', 'Surələr üzrə irəliləyiş'],
                   ['Бесплатно', 'Без рекламы', 'Без учётной записи', 'Данные не собираются', 'Работает офлайн', 'Размер текста', 'Продолжить чтение', 'Прогресс по сурам']),
+# The wide tile of what was added on 27 and 28 November 2026 (the short
+# tafsir exists in five of the app's languages, so the text names them).
+'hz_more_h': ('Listen, understand, pray', 'Dinləyin, anlayın, ibadət edin', 'Слушайте, понимайте, молитесь'),
+'hz_more_p': ('Recitations by nine reciters, a short tafsir (in Arabic, Turkish, Persian, Indonesian and Azerbaijani), an encyclopedia of hadiths, and a Prayer tab with prayer times and the Qibla.',
+              'Doqquz qarinin tilavəti, qısa təfsir (ərəb, türk, fars, İndoneziya və Azərbaycan dillərində), hədis ensiklopediyası və namaz vaxtları ilə Qibləni göstərən “Namaz” bölməsi.',
+              'Чтения девяти чтецов, краткий тафсир (на арабском, турецком, персидском, индонезийском и азербайджанском), энциклопедия хадисов и вкладка «Намаз» со временем намаза и киблой.'),
+'hz_more_items': (['9 reciters', 'Offline audio', 'Short tafsir', 'Hadiths', 'Search', 'Bookmarks and notes', 'Tajweed colours', 'Page view', 'Daily plan', 'Memorising games',
+                   'Prayer times', 'Qibla compass', 'Tasbih', 'Islamic calendar', '99 Names of Allah', 'Adhkar and duas', 'Zakat calculator', 'Widgets', 'Backup file'],
+                  ['9 qari', 'Oflayn səs', 'Qısa təfsir', 'Hədislər', 'Axtarış', 'Əlfəcinlər və qeydlər', 'Təcvid rəngləri', 'Səhifə görünüşü', 'Gündəlik plan', 'Əzbər oyunları',
+                   'Namaz vaxtları', 'Qiblə kompası', 'Təsbeh', 'İslam təqvimi', 'Allahın 99 adı', 'Zikrlər və dualar', 'Zəkat kalkulyatoru', 'Vidcetlər', 'Ehtiyat faylı'],
+                  ['9 чтецов', 'Аудио офлайн', 'Краткий тафсир', 'Хадисы', 'Поиск', 'Закладки и заметки', 'Цвета таджвида', 'Постраничный вид', 'Ежедневный план', 'Игры для заучивания',
+                   'Время намаза', 'Компас киблы', 'Тасбих', 'Исламский календарь', '99 имён Аллаха', 'Азкары и дуа', 'Калькулятор закята', 'Виджеты', 'Файл копии']),
 
 # ------------------------------------------- privacy, terms, "not found"
 'doc_langs': ('Languages', 'Dillər', 'Языки'),

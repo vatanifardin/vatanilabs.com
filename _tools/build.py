@@ -302,8 +302,8 @@ def t_offline(cls, d=0):
     return tile(cls, viz, t('off_cap'), t('off_h'), tt('off_p'), d)
 
 
-def t_more(cls, d=0):
-    viz = ('<div class="chips" style="justify-content:center;max-width:520px">'
+def t_more(cls, d=0, width=520):
+    viz = (f'<div class="chips" style="justify-content:center;max-width:{width}px">'
            + ''.join(f'<span class="chip">{i}</span>' for i in tt('more_items')) + '</div>')
     return tile(cls, viz, tt('more_cap'), tt('more_h'), tt('more_p'), d)
 
@@ -400,7 +400,7 @@ def t_hull(cls, d=0):
     return tile(cls, viz, t('cap_3d'), t('mg_3d_h'), t('mg_3d_p'), d)
 
 
-# ---- Hafiz: a verse with its translation, words hidden for memorising, the
+# ---- Quran Guardians (first called Hafiz; its key stays "hafiz"): a verse with its translation, words hidden for memorising, the
 # days of review. The verse is the first of the Quran, letter for letter as
 # in the Tanzil text the app uses (never change it).
 BASMALA = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ'
@@ -548,7 +548,7 @@ SOON = [
     ('geo-rulers', 'Geo-Rulers', 'gx', '194,97,28', ('cap_measure', 'cap_camera', 'cap_family')),
     ('oregram', 'OreGram', 'gr', '184,134,11', ('conv_cap', 'flash_cap', 'map_cap')),
     ('marinegram', 'MarineGram', 'mg', '30,111,217', ('map_cap', 'flash_cap', 'more_cap')),
-    ('hafiz', 'Hafiz', 'hz', '212,175,55', ('gr_cap_read', 'flash_cap', 'cap_free')),
+    ('hafiz', 'Quran Guardians', 'hz', '212,175,55', ('gr_cap_read', 'flash_cap', 'cap_free')),
     ('domino-freedom', 'Domino Freedom', 'df', '22,160,102', ('off_cap', 'cap_together', 'cap_light')),
     ('domino-global', 'Domino Global', 'dg', '139,53,201', ('more_cap', 'cap_together', 'cap_family')),
 ]
@@ -577,7 +577,7 @@ PAGES = {
 SOLO = {
     'petro-rulers': ('Petro-<em class="s">Rulers</em>', 'tools,drop'),
     'marinegram': ('Marine<em class="s">Gram</em>', 'anchor,globe'),
-    'hafiz': ('<em class="s">Hafiz</em>', 'arch'),
+    'hafiz': ('Quran <em class="s">Guardians</em>', 'arch'),
 }
 
 
@@ -913,6 +913,9 @@ def solo(slug):
     else:
         tiles = [t_verse('w7'), t_hide('w5', .08), t_sched('w7'), t_lang('w5', .08, *HAFIZ_LANGS),
                  t_offline('w5'), t_more('w7', .08)]
+        # one more wide tile: what else the app has (recitations, tafsir, hadiths, the Prayer tab)
+        V.update(more_items='hz_more_items', more_cap='more_cap', more_h='hz_more_h', more_p='hz_more_p')
+        tiles.append(t_more('w12', 0, 900))
     V.clear()
     cards = '\n      '.join(tiles)
     return f'''<main>

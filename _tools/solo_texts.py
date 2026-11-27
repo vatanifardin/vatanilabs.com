@@ -9,9 +9,13 @@
 #     them together.
 #   - MarineGram: no internet use and no data at all (so far); the AR button
 #     of the 3D view opens the phone's own AR viewer, which uses the camera.
-#   - Hafiz: no ads, no account, no data; only recitations are downloaded
-#     (AlQuran Cloud). Its policy must say what the app's own "privacy" text
-#     says (lib/strings.dart of the Hafiz repository).
+#   - Quran Guardians (first called Hafiz; the key and the folder keep that
+#     name): no ads, no account, no data. Recitations are downloaded (AlQuran
+#     Cloud); the city name for prayer times comes from the phone's own map
+#     service; optional gifts go through the stores; the microphone is used
+#     for the person's own recordings, kept on the phone. Its policy must
+#     agree with the app's own "privacy" and "privacyLocation" texts
+#     (lib/strings.dart of the hafiz repository).
 # When an app changes what it stores or sends, change its text here, change
 # the date, and rebuild. The other languages of the apps (Arabic, Spanish,
 # French, Chinese for Petro-Rulers; Turkish, Persian, Arabic, Urdu,
@@ -281,122 +285,146 @@ MarineGram — справочный и учебный инструмент. Ег
 },
 'hafiz': {
   'privacy': {
-    'en': r'''# Hafiz Privacy Policy
-@ Effective date: 27 November 2026
+    'en': r'''# Quran Guardians Privacy Policy
+@ Effective date: 28 November 2026
 @ Developer: Vatani Tech (Fardin Vatani), Baku, Azerbaijan
 ## 1. Summary
-Hafiz is a free app for reading and memorising the Quran, for Android and iPhone. Everything stays on your phone. Hafiz has no ads and no account, and it collects no data: no usage statistics and no crash reports. Only the recitations are downloaded from the internet, when you choose to listen (section 3).
+Quran Guardians (first called Hafiz) is a free app for reading and memorising the Quran, with recitations, a short tafsir, hadiths and prayer times, for Android and iPhone. What you do in the app stays on your phone. The app has no ads and no account, and it collects no data: no usage statistics and no crash reports. The internet is used for three things only: to download recitations when you choose to listen (section 3), to ask your phone's own map service for the name of your city if you use your location for prayer times (section 4), and for an optional gift through the App Store or Google Play (section 6).
 ## 2. Information stored on your device
 The app saves the following in your phone's local storage:
-- your settings: app language, translation, reciter and text sizes;
-- where you stopped reading;
-- your memorising progress and the dates of your next reviews;
-- the recitations you have played or downloaded, so they can be played without internet.
-This information stays on your device; we cannot see it. You can delete your progress with “Reset memorization progress” and the saved recitations with “Delete saved audio” in Settings. Everything is removed when you clear the app's data or uninstall the app. If backup is turned on for your phone, Android or iOS may include the app's saved data in your own Google or iCloud backup; we cannot see or access that backup.
-## 3. Internet use
-Recitations. When you play or download a recitation, the app downloads the audio from AlQuran Cloud (the Islamic Network, at cdn.islamic.network). The request says only which verse and which reciter. It contains no personal data. As with any internet connection, that server receives your device's IP address and handles it under its own rules (alquran.cloud). A recitation is downloaded once, saved on your phone and then played from there.
-Everything else works without an internet connection. If you open a link from the app, such as this policy or a source's website, your phone's browser or email app opens; those apps have their own privacy practices.
-## 4. Third-party services
-AlQuran Cloud provides the recitation audio (section 3). The app uses no advertising, statistics or crash-report service, and we do not sell or share any data.
-## 5. Children
+- your settings: app language, translation, tafsir, reciter, text sizes and colours;
+- where you stopped reading, your bookmarks, notes and highlighted verses;
+- your memorising progress, the dates of your next reviews, your reading plan and your statistics (time spent reading and memorising, days in a row);
+- what you enter on the Prayer tab: the prayers and fasts you tick, your tasbih counts and the figures you type into the zakat calculator;
+- your place for prayer times, if you use your location (section 4);
+- the recitations you have played or downloaded, and your own recordings (section 5).
+This information stays on your device; we cannot see it. In Settings you can delete your progress with “Reset memorization progress”, the saved recitations with “Delete saved audio” and your recordings with “Delete recordings”. Everything is removed when you clear the app's data or uninstall the app. “Save backup file” writes your progress, bookmarks, plan and settings into a file, and sharing a verse makes a picture; your phone's share sheet then opens and you choose where the file or the picture goes. The app itself sends them nowhere. If backup is turned on for your phone, Android or iOS may include the app's saved data in your own Google or iCloud backup; we cannot see or access that backup.
+## 3. Recitations (internet)
+When you play or download a recitation, the app downloads the audio from AlQuran Cloud (the Islamic Network, at cdn.islamic.network). The request says only which verse and which reciter. It contains no personal data. As with any internet connection, that server receives your device's IP address and handles it under its own rules (alquran.cloud). A recitation is downloaded once, saved on your phone and then played from there.
+Everything else (the text, the translations, the tafsir, the hadiths and the calculation of prayer times) works without an internet connection. If you open a link from the app, such as this policy or a source's website, your phone's browser or email app opens; those apps have their own privacy practices.
+## 4. Location (prayer times and Qibla)
+Prayer times and the direction of the Qibla are calculated on your phone. If you tap “Use my location”, the app asks for your permission and reads your approximate location once. It is kept on your phone only and is never sent to us. To show the name of your city, the app asks your phone's own map service (Apple's on iPhone, Google's on Android) once; that service receives the position and handles it under its own privacy policy. The Qibla compass uses your phone's compass sensor.
+## 5. Microphone, notifications and widgets
+The microphone is used only when you tap “Record” to record your own recitation. Recordings are saved in the app's own folder on your phone; they are never uploaded and are not part of the backup file. The daily reminder and the prayer notifications are planned by the app on your phone; no server sends them. The home-screen widgets (verse of the day, prayer times) show what the app has saved on your phone.
+## 6. Gifts (App Store and Google Play)
+The app is free and nothing in it has to be bought. If you wish, you can give a one-time gift to the makers of the app on its support page. On Android it is made through Google Play billing, on iPhone through Apple's App Store. Google or Apple processes the payment under its own terms and privacy policy. We never receive your card or payment details: Google gives us a record of each order (such as the order number, date, product, price and country), and Apple gives us only sales reports. A gift unlocks nothing in the app.
+## 7. Third-party services
+AlQuran Cloud provides the recitation audio (section 3). Your phone's map service, from Apple or Google, gives the name of your city (section 4). The App Store and Google Play handle gifts (section 6). The app uses no advertising, statistics or crash-report service, and we do not sell or share any data.
+## 8. Children
 The app does not collect personal data from anyone, including children.
-## 6. Your rights
+## 9. Your rights
 We hold no data about you: what the app saves is only on your phone, under your control. If you have a question, write to us.
-## 7. Changes
+## 10. Changes
 We may update this policy when the app changes. The date at the top shows the latest version.
-## 8. Contact
+## 11. Contact
 Vatani Tech (Fardin Vatani), Baku, Azerbaijan. Email: {MAIL}''',
-    'az': r'''# Hafiz Məxfilik Siyasəti
-@ Qüvvəyə minmə tarixi: 27 noyabr 2026
+    'az': r'''# Quran Guardians Məxfilik Siyasəti
+@ Qüvvəyə minmə tarixi: 28 noyabr 2026
 @ Tərtibatçı: Vatani Tech (Fardin Vatani), Bakı, Azərbaycan
 ## 1. Xülasə
-Hafiz Quranı oxumaq və əzbərləmək üçün Android və iPhone-da işləyən pulsuz tətbiqdir. Hər şey telefonunuzda qalır. Hafizdə reklam və hesab yoxdur, heç bir məlumat toplanmır: nə istifadə statistikası, nə də xəta hesabatları. İnternetdən yalnız tilavətlər yüklənir, siz dinləmək istədikdə (bölmə 3).
+Quran Guardians (Azərbaycan dilində “Quran Keşikçiləri”; əvvəlki adı Hafiz) Quranı oxumaq və əzbərləmək üçün Android və iPhone-da işləyən pulsuz tətbiqdir: tilavətlər, qısa təfsir, hədislər və namaz vaxtları ilə. Tətbiqdə etdikləriniz telefonunuzda qalır. Tətbiqdə reklam və hesab yoxdur, heç bir məlumat toplanmır: nə istifadə statistikası, nə də xəta hesabatları. İnternetdən yalnız üç halda istifadə olunur: dinləmək istədiyiniz tilavətləri yükləmək üçün (bölmə 3), namaz vaxtları üçün məkanınızı istifadə etdikdə şəhərinizin adını telefonun öz xəritə xidmətindən soruşmaq üçün (bölmə 4) və App Store və ya Google Play vasitəsilə istəyə bağlı hədiyyə üçün (bölmə 6).
 ## 2. Cihazınızda saxlanılan məlumat
 Tətbiq telefonunuzun yerli yaddaşında bunları saxlayır:
-- ayarlarınız: tətbiqin dili, tərcümə, qari və mətn ölçüləri;
-- oxumağı harada dayandırdığınız;
-- əzbərləmə irəliləyişiniz və növbəti təkrarların tarixləri;
-- dinlədiyiniz və ya yüklədiyiniz tilavətlər (internetsiz səsləndirilə bilsin deyə).
-Bu məlumat cihazınızda qalır; biz onu görə bilmirik. İrəliləyişinizi Ayarlarda “Əzbər irəliləyişini sıfırla”, saxlanmış tilavətləri isə “Saxlanmış səsləri sil” ilə silə bilərsiniz. Tətbiqin məlumatlarını təmizlədikdə və ya tətbiqi sildikdə hər şey silinir. Telefonunuzda ehtiyat nüsxə yandırılıbsa, Android və ya iOS tətbiqin saxladığı məlumatı sizin öz Google və ya iCloud ehtiyat nüsxənizə daxil edə bilər; biz o nüsxəni görə və ona daxil ola bilmirik.
-## 3. İnternetdən istifadə
-Tilavətlər. Tilavəti dinlədikdə və ya yüklədikdə tətbiq səsi AlQuran Cloud-dan (Islamic Network, cdn.islamic.network) yükləyir. Sorğuda yalnız hansı ayə və hansı qari olduğu göstərilir. Onda şəxsi məlumat olmur. Hər internet bağlantısında olduğu kimi, həmin server cihazınızın IP ünvanını alır və onu öz qaydalarına uyğun emal edir (alquran.cloud). Tilavət bir dəfə yüklənir, telefonunuzda saxlanılır və sonra oradan səsləndirilir.
-Qalan hər şey internetsiz işləyir. Tətbiqdən bir keçid açsanız (məsələn, bu siyasəti və ya mənbənin saytını), telefonunuzun brauzeri və ya e-poçt tətbiqi açılır; onların öz məxfilik qaydaları var.
-## 4. Üçüncü tərəf xidmətləri
-Tilavətlərin səsini AlQuran Cloud təqdim edir (bölmə 3). Tətbiq heç bir reklam, statistika və ya xəta hesabatı xidmətindən istifadə etmir; heç bir məlumatı satmırıq və paylaşmırıq.
-## 5. Uşaqlar
+- ayarlarınız: tətbiqin dili, tərcümə, təfsir, qari, mətn ölçüləri və rənglər;
+- oxumağı harada dayandırdığınız, əlfəcinləriniz, qeydləriniz və rənglə işarələdiyiniz ayələr;
+- əzbərləmə irəliləyişiniz, növbəti təkrarların tarixləri, oxu planınız və statistikanız (oxumağa və əzbərləməyə sərf etdiyiniz vaxt, ardıcıl günlər);
+- “Namaz” bölməsində daxil etdikləriniz: qeyd etdiyiniz namazlar və oruclar, təsbeh saylarınız və zəkat kalkulyatoruna yazdığınız rəqəmlər;
+- namaz vaxtları üçün yeriniz, əgər məkanınızı istifadə etsəniz (bölmə 4);
+- dinlədiyiniz və ya yüklədiyiniz tilavətlər və öz səs yazılarınız (bölmə 5).
+Bu məlumat cihazınızda qalır; biz onu görə bilmirik. Ayarlarda irəliləyişinizi “Əzbər irəliləyişini sıfırla”, saxlanmış tilavətləri “Saxlanmış səsləri sil”, səs yazılarınızı isə “Yazıları sil” ilə silə bilərsiniz. Tətbiqin məlumatlarını təmizlədikdə və ya tətbiqi sildikdə hər şey silinir. “Ehtiyat faylını saxla” irəliləyişinizi, əlfəcinlərinizi, planınızı və ayarlarınızı bir fayla yazır, ayəni paylaşdıqda isə şəkil hazırlanır; sonra telefonunuzun paylaşma pəncərəsi açılır və faylın və ya şəklin hara gedəcəyini özünüz seçirsiniz. Tətbiqin özü onları heç yerə göndərmir. Telefonunuzda ehtiyat nüsxə yandırılıbsa, Android və ya iOS tətbiqin saxladığı məlumatı sizin öz Google və ya iCloud ehtiyat nüsxənizə daxil edə bilər; biz o nüsxəni görə və ona daxil ola bilmirik.
+## 3. Tilavətlər (internet)
+Tilavəti dinlədikdə və ya yüklədikdə tətbiq səsi AlQuran Cloud-dan (Islamic Network, cdn.islamic.network) yükləyir. Sorğuda yalnız hansı ayə və hansı qari olduğu göstərilir. Onda şəxsi məlumat olmur. Hər internet bağlantısında olduğu kimi, həmin server cihazınızın IP ünvanını alır və onu öz qaydalarına uyğun emal edir (alquran.cloud). Tilavət bir dəfə yüklənir, telefonunuzda saxlanılır və sonra oradan səsləndirilir.
+Qalan hər şey (mətn, tərcümələr, təfsir, hədislər və namaz vaxtlarının hesablanması) internetsiz işləyir. Tətbiqdən bir keçid açsanız (məsələn, bu siyasəti və ya mənbənin saytını), telefonunuzun brauzeri və ya e-poçt tətbiqi açılır; onların öz məxfilik qaydaları var.
+## 4. Məkan (namaz vaxtları və Qiblə)
+Namaz vaxtları və Qiblə istiqaməti telefonunuzda hesablanır. “Məkanımı istifadə et” düyməsinə toxunsanız, tətbiq icazənizi soruşur və təxmini məkanınızı bir dəfə oxuyur. O, yalnız telefonunuzda saxlanılır və bizə heç vaxt göndərilmir. Şəhərinizin adını göstərmək üçün tətbiq telefonun öz xəritə xidmətinə (iPhone-da Apple, Android-də Google) bir dəfə sorğu göndərir; həmin xidmət mövqeyi alır və onu öz məxfilik siyasətinə uyğun emal edir. Qiblə kompası telefonunuzun kompas sensorundan istifadə edir.
+## 5. Mikrofon, bildirişlər və vidcetlər
+Mikrofondan yalnız öz tilavətinizi yazmaq üçün “Yaz” düyməsinə toxunduqda istifadə olunur. Səs yazıları telefonunuzda, tətbiqin öz qovluğunda saxlanılır; onlar heç yerə yüklənmir və ehtiyat faylına daxil edilmir. Gündəlik xatırlatmanı və namaz bildirişlərini tətbiq telefonunuzda özü planlaşdırır; onları heç bir server göndərmir. Əsas ekran vidcetləri (günün ayəsi, namaz vaxtları) tətbiqin telefonunuzda saxladıqlarını göstərir.
+## 6. Hədiyyələr (App Store və Google Play)
+Tətbiq pulsuzdur və onda heç nə almaq lazım deyil. İstəsəniz, dəstək səhifəsində tətbiqi hazırlayanlara birdəfəlik hədiyyə edə bilərsiniz. Android-də o, Google Play ödəniş sistemi, iPhone-da isə Apple-ın App Store-u vasitəsilə edilir. Ödənişi Google və ya Apple öz şərtlərinə və məxfilik siyasətinə uyğun emal edir. Kart və ya ödəniş məlumatlarınızı biz heç vaxt almırıq: Google bizə hər sifarişin qeydini verir (məsələn, sifarişin nömrəsi, tarix, məhsul, qiymət və ölkə), Apple isə yalnız satış hesabatlarını. Hədiyyə tətbiqdə heç nəyi açmır.
+## 7. Üçüncü tərəf xidmətləri
+Tilavətlərin səsini AlQuran Cloud təqdim edir (bölmə 3). Şəhərinizin adını telefonunuzun xəritə xidməti (Apple və ya Google) verir (bölmə 4). Hədiyyələri App Store və Google Play həyata keçirir (bölmə 6). Tətbiq heç bir reklam, statistika və ya xəta hesabatı xidmətindən istifadə etmir; heç bir məlumatı satmırıq və paylaşmırıq.
+## 8. Uşaqlar
 Tətbiq heç kimdən, o cümlədən uşaqlardan şəxsi məlumat toplamır.
-## 6. Hüquqlarınız
+## 9. Hüquqlarınız
 Sizin haqqınızda heç bir məlumat saxlamırıq: tətbiqin saxladıqları yalnız telefonunuzdadır və sizin nəzarətinizdədir. Sualınız olsa, bizə yazın.
-## 7. Dəyişikliklər
+## 10. Dəyişikliklər
 Tətbiq dəyişdikdə bu siyasəti yeniləyə bilərik. Yuxarıdakı tarix son versiyanı göstərir.
-## 8. Əlaqə
+## 11. Əlaqə
 Vatani Tech (Fardin Vatani), Bakı, Azərbaycan. E-poçt: {MAIL}''',
-    'ru': r'''# Политика конфиденциальности Hafiz
-@ Дата вступления в силу: 27 ноября 2026 г.
+    'ru': r'''# Политика конфиденциальности Quran Guardians
+@ Дата вступления в силу: 28 ноября 2026 г.
 @ Разработчик: Vatani Tech (Fardin Vatani), Баку, Азербайджан
 ## 1. Кратко
-Hafiz — бесплатное приложение для чтения и заучивания Корана, для Android и iPhone. Всё хранится на вашем телефоне. В Hafiz нет рекламы и аккаунта, приложение не собирает данные: нет ни статистики использования, ни отчётов о сбоях. Из интернета скачиваются только чтения, когда вы решаете их слушать (раздел 3).
+Quran Guardians (по-русски «Хранители Корана»; прежнее название — Hafiz) — бесплатное приложение для чтения и заучивания Корана, с чтениями, кратким тафсиром, хадисами и временем намаза, для Android и iPhone. Всё, что вы делаете в приложении, остаётся на вашем телефоне. В приложении нет рекламы и аккаунта, оно не собирает данные: нет ни статистики использования, ни отчётов о сбоях. Интернет используется только в трёх случаях: чтобы скачать чтения, когда вы решаете их слушать (раздел 3); чтобы узнать название вашего города у картографической службы самого телефона, если вы используете местоположение для времени намаза (раздел 4); и для необязательного подарка через App Store или Google Play (раздел 6).
 ## 2. Данные, которые хранятся на вашем устройстве
 Приложение сохраняет в локальной памяти телефона:
-- ваши настройки: язык приложения, перевод, чтеца и размеры текста;
-- место, где вы остановились при чтении;
-- ваш прогресс заучивания и даты следующих повторений;
-- чтения, которые вы прослушали или скачали, чтобы их можно было слушать без интернета.
-Эти данные остаются на вашем устройстве; мы их не видим. Прогресс можно удалить кнопкой «Сбросить прогресс заучивания», а сохранённые чтения — кнопкой «Удалить сохранённое аудио» в настройках. Всё удаляется, когда вы очищаете данные приложения или удаляете приложение. Если на телефоне включено резервное копирование, Android или iOS могут включить сохранённые данные приложения в вашу собственную резервную копию Google или iCloud; у нас нет доступа к этой копии.
-## 3. Использование интернета
-Чтения. Когда вы слушаете или скачиваете чтение, приложение загружает аудио с AlQuran Cloud (Islamic Network, cdn.islamic.network). В запросе указано только, какой аят и какой чтец. В нём нет персональных данных. Как и при любом интернет-соединении, этот сервер получает IP-адрес вашего устройства и обрабатывает его по собственным правилам (alquran.cloud). Чтение скачивается один раз, сохраняется на телефоне и затем воспроизводится оттуда.
-Всё остальное работает без интернета. Если вы открываете из приложения ссылку, например эту политику или сайт источника, открывается браузер или почтовое приложение телефона; у них свои правила конфиденциальности.
-## 4. Сторонние сервисы
-Аудио чтений предоставляет AlQuran Cloud (раздел 3). Приложение не использует сервисы рекламы, статистики или отчётов о сбоях; мы не продаём и не передаём никакие данные.
-## 5. Дети
+- ваши настройки: язык приложения, перевод, тафсир, чтеца, размеры текста и цвета;
+- место, где вы остановились при чтении, ваши закладки, заметки и выделенные цветом аяты;
+- ваш прогресс заучивания, даты следующих повторений, план чтения и статистику (время чтения и заучивания, дни подряд);
+- то, что вы вводите на вкладке «Намаз»: отмеченные намазы и посты, счёт тасбиха и цифры, введённые в калькулятор закята;
+- ваше место для расчёта времени намаза, если вы используете местоположение (раздел 4);
+- чтения, которые вы прослушали или скачали, и ваши собственные записи (раздел 5).
+Эти данные остаются на вашем устройстве; мы их не видим. В настройках прогресс можно удалить кнопкой «Сбросить прогресс заучивания», сохранённые чтения — кнопкой «Удалить сохранённое аудио», а ваши записи — кнопкой «Удалить записи». Всё удаляется, когда вы очищаете данные приложения или удаляете приложение. Кнопка «Сохранить файл копии» записывает ваш прогресс, закладки, план и настройки в файл, а когда вы делитесь аятом, создаётся картинка; затем открывается системное меню «Поделиться», и вы сами выбираете, куда отправить файл или картинку. Само приложение никуда их не отправляет. Если на телефоне включено резервное копирование, Android или iOS могут включить сохранённые данные приложения в вашу собственную резервную копию Google или iCloud; у нас нет доступа к этой копии.
+## 3. Чтения (интернет)
+Когда вы слушаете или скачиваете чтение, приложение загружает аудио с AlQuran Cloud (Islamic Network, cdn.islamic.network). В запросе указано только, какой аят и какой чтец. В нём нет персональных данных. Как и при любом интернет-соединении, этот сервер получает IP-адрес вашего устройства и обрабатывает его по собственным правилам (alquran.cloud). Чтение скачивается один раз, сохраняется на телефоне и затем воспроизводится оттуда.
+Всё остальное (текст, переводы, тафсир, хадисы и расчёт времени намаза) работает без интернета. Если вы открываете из приложения ссылку, например эту политику или сайт источника, открывается браузер или почтовое приложение телефона; у них свои правила конфиденциальности.
+## 4. Местоположение (время намаза и кибла)
+Время намаза и направление киблы рассчитываются на вашем телефоне. Если вы нажимаете «Моё местоположение», приложение спрашивает разрешение и один раз определяет ваше примерное местоположение. Оно хранится только на телефоне и никогда не отправляется нам. Чтобы показать название города, приложение один раз обращается к картографической службе самого телефона (Apple на iPhone, Google на Android); эта служба получает координаты и обрабатывает их по своей политике конфиденциальности. Компас киблы использует датчик компаса телефона.
+## 5. Микрофон, уведомления и виджеты
+Микрофон используется, только когда вы нажимаете «Записать», чтобы записать собственное чтение. Записи хранятся в папке приложения на телефоне; они никуда не загружаются и не входят в файл копии. Ежедневное напоминание и уведомления о намазе приложение планирует само на вашем телефоне; их не отправляет никакой сервер. Виджеты на главном экране (аят дня, время намаза) показывают то, что приложение сохранило на телефоне.
+## 6. Подарки (App Store и Google Play)
+Приложение бесплатное, и в нём ничего не нужно покупать. При желании на странице поддержки можно сделать разовый подарок создателям приложения. На Android он совершается через платёжную систему Google Play, на iPhone — через App Store компании Apple. Платёж обрабатывает Google или Apple на своих условиях и по своей политике конфиденциальности. Мы никогда не получаем данные вашей карты или платежа: Google передаёт нам запись о каждом заказе (например, номер заказа, дату, товар, цену и страну), а Apple — только отчёты о продажах. Подарок ничего не открывает в приложении.
+## 7. Сторонние сервисы
+Аудио чтений предоставляет AlQuran Cloud (раздел 3). Название города сообщает картографическая служба телефона, Apple или Google (раздел 4). Подарки проводят App Store и Google Play (раздел 6). Приложение не использует сервисы рекламы, статистики или отчётов о сбоях; мы не продаём и не передаём никакие данные.
+## 8. Дети
 Приложение не собирает персональные данные ни у кого, включая детей.
-## 6. Ваши права
+## 9. Ваши права
 Мы не храним никаких данных о вас: всё, что сохраняет приложение, находится только на вашем телефоне и под вашим контролем. Если у вас есть вопрос, напишите нам.
-## 7. Изменения
+## 10. Изменения
 Мы можем обновлять эту политику, когда меняется приложение. Дата вверху показывает последнюю версию.
-## 8. Контакты
+## 11. Контакты
 Vatani Tech (Fardin Vatani), Баку, Азербайджан. Электронная почта: {MAIL}''',
   },
   'terms': {
-    'en': r'''# Hafiz – Terms of use
-By using Hafiz you agree to these terms. They are short and written in plain language.
-## 1. The text, the translations and the recitations
-The Arabic text is the Uthmani text of the Tanzil Project (tanzil.net), unchanged. The translations of the meaning come from QuranEnc.com, unchanged. The recitations come from AlQuran Cloud. They belong to their owners and are used under their terms. A translation gives the meaning of the Quran in another language; it is not the Quran itself. We handle these texts with care; if you notice a mistake, please write to us.
-## 2. A help for learning
-The memorising tools and the review schedule help you learn and revise. They do not replace a teacher.
+    'en': r'''# Quran Guardians – Terms of use
+By using Quran Guardians you agree to these terms. They are short and written in plain language.
+## 1. The text, the translations and the other sources
+The Arabic text is the Uthmani text of the Tanzil Project (tanzil.net), unchanged. The translations of the meaning and the short tafsir (Al-Mukhtasar, by the Tafsir Center for Quranic Studies) come from QuranEnc.com, unchanged. The hadiths and their explanations come from HadeethEnc.com. The recitations come from AlQuran Cloud. The tajweed colours are based on the quran-tajweed data (Creative Commons Attribution 4.0). They belong to their owners and are used under their terms; the full list of sources is in the app's Settings. A translation gives the meaning of the Quran in another language; it is not the Quran itself. We handle these texts with care; if you notice a mistake, please write to us.
+## 2. A help for learning and worship
+The memorising tools and the review schedule help you learn and revise. They do not replace a teacher. Prayer times, the direction of the Qibla and the Islamic calendar are calculated on your phone and may differ a little from those of your mosque or of the authority in your country: when in doubt, follow them. The zakat calculator gives an estimate only; ask a scholar about your own case.
 ## 3. Free, with no ads
-The app is free. It has no ads and no purchases.
+The app is free and has no ads. Every feature is free and nothing has to be bought. If you wish, you can support the app with a one-time gift, handled by the App Store or Google Play under their terms. A gift unlocks nothing; it is a gift to the makers of the app, not zakat or charity.
 ## 4. No warranty
 The app is provided “as is”, without any warranty. To the extent the law allows, the developer is not liable for any loss or damage resulting from its use.
 ## 5. Changes and contact
 These terms may change with new versions of the app. Questions: write to {MAIL}. Privacy: see the privacy policy.
-@ Last updated: 27 November 2026''',
-    'az': r'''# Hafiz – İstifadə şərtləri
-Hafizdən istifadə etməklə bu şərtlərlə razılaşırsınız. Onlar qısadır və sadə dillə yazılıb.
-## 1. Mətn, tərcümələr və tilavətlər
-Ərəbcə mətn Tanzil layihəsinin (tanzil.net) Osmani mətnidir, dəyişdirilməyib. Mənaların tərcümələri QuranEnc.com saytından götürülüb, dəyişdirilməyib. Tilavətlər AlQuran Cloud-dan gəlir. Onlar öz sahiblərinə məxsusdur və onların şərtlərinə uyğun istifadə olunur. Tərcümə Quranın mənasını başqa dildə çatdırır; o, Quranın özü deyil. Bu mətnlərə diqqətlə yanaşırıq; səhv görsəniz, xahiş edirik, bizə yazın.
-## 2. Öyrənməyə kömək
-Əzbərləmə alətləri və təkrar cədvəli öyrənməyə və təkrarlamağa kömək edir. Onlar müəllimi əvəz etmir.
+@ Last updated: 28 November 2026''',
+    'az': r'''# Quran Guardians – İstifadə şərtləri
+Quran Guardians tətbiqindən istifadə etməklə bu şərtlərlə razılaşırsınız. Onlar qısadır və sadə dillə yazılıb.
+## 1. Mətn, tərcümələr və digər mənbələr
+Ərəbcə mətn Tanzil layihəsinin (tanzil.net) Osmani mətnidir, dəyişdirilməyib. Mənaların tərcümələri və qısa təfsir (Al-Mukhtasar, Tafsir Center for Quranic Studies) QuranEnc.com saytından götürülüb, dəyişdirilməyib. Hədislər və onların izahları HadeethEnc.com saytından götürülüb. Tilavətlər AlQuran Cloud-dan gəlir. Təcvid rəngləri quran-tajweed məlumatlarına əsaslanır (Creative Commons Attribution 4.0). Onlar öz sahiblərinə məxsusdur və onların şərtlərinə uyğun istifadə olunur; mənbələrin tam siyahısı tətbiqin Ayarlar bölməsindədir. Tərcümə Quranın mənasını başqa dildə çatdırır; o, Quranın özü deyil. Bu mətnlərə diqqətlə yanaşırıq; səhv görsəniz, xahiş edirik, bizə yazın.
+## 2. Öyrənməyə və ibadətə kömək
+Əzbərləmə alətləri və təkrar cədvəli öyrənməyə və təkrarlamağa kömək edir. Onlar müəllimi əvəz etmir. Namaz vaxtları, Qiblə istiqaməti və İslam təqvimi telefonunuzda hesablanır və məscidinizin və ya ölkənizdəki rəsmi qurumun göstəricilərindən bir qədər fərqlənə bilər: şübhə olduqda onlara əsaslanın. Zəkat kalkulyatoru yalnız təxmini hesab verir; öz vəziyyətiniz barədə alimdən soruşun.
 ## 3. Pulsuz və reklamsız
-Tətbiq pulsuzdur. Onda reklam və alışlar yoxdur.
+Tətbiq pulsuzdur və onda reklam yoxdur. Bütün imkanlar pulsuzdur, heç nə almaq lazım deyil. İstəsəniz, tətbiqə birdəfəlik hədiyyə ilə dəstək ola bilərsiniz; onu App Store və ya Google Play öz şərtlərinə əsasən həyata keçirir. Hədiyyə heç nəyi açmır; bu, tətbiqi hazırlayanlara hədiyyədir, zəkat və ya sədəqə deyil.
 ## 4. Zəmanət yoxdur
 Tətbiq heç bir zəmanət olmadan “olduğu kimi” təqdim olunur. Qanunun icazə verdiyi həddə tərtibatçı onun istifadəsindən yaranan heç bir itki və ya ziyana görə məsuliyyət daşımır.
 ## 5. Dəyişikliklər və əlaqə
 Bu şərtlər tətbiqin yeni versiyaları ilə dəyişə bilər. Suallar üçün {MAIL} ünvanına yazın. Məxfilik: “Məxfilik siyasəti”nə baxın.
-@ Son yenilənmə: 27 noyabr 2026''',
-    'ru': r'''# Hafiz – Условия использования
-Используя Hafiz, вы соглашаетесь с этими условиями. Они короткие и написаны простым языком.
-## 1. Текст, переводы и чтения
-Арабский текст — османский текст проекта Tanzil (tanzil.net), без изменений. Переводы смыслов взяты с сайта QuranEnc.com, без изменений. Чтения предоставляет AlQuran Cloud. Они принадлежат своим владельцам и используются на их условиях. Перевод передаёт смысл Корана на другом языке; это не сам Коран. Мы бережно относимся к этим текстам; если вы заметите ошибку, пожалуйста, напишите нам.
-## 2. Помощь в обучении
-Инструменты заучивания и расписание повторений помогают учить и повторять. Они не заменяют учителя.
+@ Son yenilənmə: 28 noyabr 2026''',
+    'ru': r'''# Quran Guardians – Условия использования
+Используя Quran Guardians, вы соглашаетесь с этими условиями. Они короткие и написаны простым языком.
+## 1. Текст, переводы и другие источники
+Арабский текст — османский текст проекта Tanzil (tanzil.net), без изменений. Переводы смыслов и краткий тафсир (Al-Mukhtasar, Tafsir Center for Quranic Studies) взяты с сайта QuranEnc.com, без изменений. Хадисы и их разъяснения взяты с сайта HadeethEnc.com. Чтения предоставляет AlQuran Cloud. Цвета таджвида основаны на данных quran-tajweed (Creative Commons Attribution 4.0). Они принадлежат своим владельцам и используются на их условиях; полный список источников есть в настройках приложения. Перевод передаёт смысл Корана на другом языке; это не сам Коран. Мы бережно относимся к этим текстам; если вы заметите ошибку, пожалуйста, напишите нам.
+## 2. Помощь в обучении и поклонении
+Инструменты заучивания и расписание повторений помогают учить и повторять. Они не заменяют учителя. Время намаза, направление киблы и исламский календарь рассчитываются на вашем телефоне и могут немного отличаться от данных вашей мечети или официального органа вашей страны: в случае сомнений следуйте им. Калькулятор закята даёт только приблизительный расчёт; о своём случае спросите учёного.
 ## 3. Бесплатно и без рекламы
-Приложение бесплатное. В нём нет рекламы и покупок.
+Приложение бесплатное, и в нём нет рекламы. Все возможности бесплатны, ничего покупать не нужно. При желании вы можете поддержать приложение разовым подарком; его проводит App Store или Google Play на своих условиях. Подарок ничего не открывает; это подарок создателям приложения, а не закят и не милостыня.
 ## 4. Без гарантий
 Приложение предоставляется «как есть», без каких-либо гарантий. В пределах, допускаемых законом, разработчик не несёт ответственности за любые убытки или ущерб от его использования.
 ## 5. Изменения и связь
 Эти условия могут меняться с новыми версиями приложения. Вопросы: пишите на {MAIL}. Конфиденциальность: см. «Политику конфиденциальности».
-@ Последнее обновление: 27 ноября 2026 г.''',
+@ Последнее обновление: 28 ноября 2026 г.''',
   },
 },
 }
