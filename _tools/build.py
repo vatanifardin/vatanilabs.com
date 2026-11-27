@@ -307,21 +307,25 @@ def band(words):
 # "<key>_h1" ... "<key>_p3"). The icon is assets/img/<address name>-icon.png.
 # An app in PAGES has its own page at /<address name>/, and its panel links to it.
 # OreGram is the small pocket reference for geology and mining and uses
-# Geo-Rulers' old rows ("gr_..."); Geo-Rulers is now its bigger sibling
-# (rows "gx_..."), as Petro-Rulers is PetroGram's (rows "pr_..."). Owner,
-# 26 November 2026: "-Gram" apps are small references, "-Rulers" apps add
-# rulers and camera recognition.
+# Geo-Rulers' old rows ("gr_..."). The "-Rulers" apps (Geo-Rulers, rows
+# "gx_...", and Petro-Rulers, rows "pr_...") are measuring and camera tools
+# only: the reference content is in their "-Gram" partner (owner, 26 and
+# 27 November 2026). MarineGram (rows "mg_...") and Hafiz (rows "hz_...")
+# joined on 27 November 2026.
 SOON = [
-    ('petro-rulers', 'Petro-Rulers', 'pr', '255,196,0', ('cap_family', 'cap_measure', 'cap_camera')),
-    ('geo-rulers', 'Geo-Rulers', 'gx', '194,97,28', ('cap_family', 'cap_measure', 'cap_camera')),
+    ('petro-rulers', 'Petro-Rulers', 'pr', '255,196,0', ('cap_measure', 'cap_camera', 'cap_family')),
+    ('geo-rulers', 'Geo-Rulers', 'gx', '194,97,28', ('cap_measure', 'cap_camera', 'cap_family')),
     ('oregram', 'OreGram', 'gr', '184,134,11', ('conv_cap', 'flash_cap', 'map_cap')),
+    ('marinegram', 'MarineGram', 'mg', '30,111,217', ('map_cap', 'flash_cap', 'more_cap')),
+    ('hafiz', 'Hafiz', 'hz', '212,175,55', ('gr_cap_read', 'flash_cap', 'cap_free')),
     ('domino-freedom', 'Domino Freedom', 'df', '22,160,102', ('off_cap', 'cap_together', 'cap_light')),
     ('domino-global', 'Domino Global', 'dg', '139,53,201', ('more_cap', 'cap_together', 'cap_family')),
 ]
 SOON_BY = {a[0]: a for a in SOON}
-# The order of the tabs on the home page (owner, 26 November 2026). An app's
+# The order of the tabs on the home page (owner, 26 November 2026; MarineGram
+# and Hafiz added at the end on 27 November 2026). An app's
 # number ("App 02") is its place in this list. The first tab is open at the start.
-ORDER = ['petro-rulers', 'petrogram', 'geo-rulers', 'oregram', 'domino-global', 'domino-freedom']
+ORDER = ['petro-rulers', 'petrogram', 'geo-rulers', 'oregram', 'domino-global', 'domino-freedom', 'marinegram', 'hafiz']
 
 
 def num(slug):
@@ -576,9 +580,14 @@ def geo(slug):
     alt = e('icon_alt_of').format(name)
     ore, _, dig = tn('gr_slogans', name)   # the second one heads the features (gr_feat_h2)
     mail = f'mailto:support@vatanilabs.com?subject={quote(t("next_subject") + ": " + name)}'
-    caps = ['conv_cap', 'flash_cap', 'quiz_cap', 'gr_cap_read', 'map_cap', 'gr_cap_companies', 'market_cap', 'lang_cap', 'off_cap']
-    heads = [f'gr_c{i}_h' for i in range(1, 8)] + ['lang_h', 'off_h']
-    texts = [f'gr_c{i}_p' for i in range(1, 8)] + ['lang_p', 'gr_c9_p']
+    if k == 'gx':   # the tool app: six cards of its own
+        caps = ['cap_measure', 'cap_camera', 'gr_cap_read', 'lang_cap', 'off_cap', 'cap_family']
+        heads = ['gx_h1', 'gx_h2', 'gx_guide_h', 'lang_h', 'off_h', 'gx_h3']
+        texts = ['gx_p1', 'gx_p2', 'gx_guide_p', 'lang_p', 'gr_c9_p', 'gx_p3']
+    else:
+        caps = ['conv_cap', 'flash_cap', 'quiz_cap', 'gr_cap_read', 'map_cap', 'gr_cap_companies', 'market_cap', 'lang_cap', 'off_cap']
+        heads = [f'gr_c{i}_h' for i in range(1, 8)] + ['lang_h', 'off_h']
+        texts = [f'gr_c{i}_p' for i in range(1, 8)] + ['lang_p', 'gr_c9_p']
     cards = '\n'.join(
         f'      <div class="card glow rv" style="--d:{(i % 3) * .08:.2f}s"><span class="label">{t(c)}</span><h3>{tn(h, name)}</h3><p>{tn(p, name)}</p></div>'
         for i, (c, h, p) in enumerate(zip(caps, heads, texts)))
@@ -602,7 +611,7 @@ def geo(slug):
     </div>
   </div>
 </section>
-{band(tn('gr_band', name))}
+{band(tn('gx_band' if k == 'gx' else 'gr_band', name))}
 
 <section class="block">
   <div class="wrap">
@@ -611,7 +620,7 @@ def geo(slug):
         <p class="label"><span class="n">{t('feat_n')}</span> {t('feat_label')}</p>
         <h2>{tn('gr_feat_h2', name)}</h2>
       </div>
-      <p class="rv" style="--d:.1s">{tn('gr_feat_p', name)}</p>
+      <p class="rv" style="--d:.1s">{tn('gx_feat_p' if k == 'gx' else 'gr_feat_p', name)}</p>
     </div>
     <div class="grid3">
 {cards}

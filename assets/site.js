@@ -61,6 +61,10 @@
         document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
       });
       if (count) count.textContent = two(cur + 1) + ' / ' + two(tabs.length);
+      // With many apps the row of tabs is wider than the page: bring the
+      // open tab into sight (the row moves sideways, the page stays put).
+      const row = tabs[cur].parentElement, a = tabs[cur].getBoundingClientRect(), b = row.getBoundingClientRect();
+      if (a.left < b.left || a.right > b.right) row.scrollBy({ left: a.left < b.left ? a.left - b.left - 20 : a.right - b.right + 20, behavior: 'smooth' });
     };
     tabs.forEach((t, i) => {
       t.addEventListener('click', () => show(i));
