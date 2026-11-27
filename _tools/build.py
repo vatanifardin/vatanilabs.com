@@ -113,6 +113,11 @@ I_GLOBE = ico('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3
 I_FLAME = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5c1 3.2 4.5 4.8 4.5 9.2a4.5 4.5 0 0 1-9 0c0-1.7.8-2.9 1.7-3.8.3 1.3 1 2 1.7 2C11 7.800 10.400 5.200 12 2.500z"/></svg>'
 
 
+# The accent colour of an app's pages (a light tone of the app's own colour
+# and a lighter one), in place of the studio's teal: see --acc in site.css.
+ACCENT = {'oregram': ('226,176,64', '255,226,150'), 'geo-rulers': ('236,138,68', '255,200,156')}
+
+
 def lang_links(path):
     """The same page in each language (the one being read is marked)."""
     return ''.join(
@@ -150,6 +155,8 @@ def page(key, body, path='/', scripts=(), found=True, name=None, app=None):
     foot = f'''<a href="{u(f'/{fapp}/')}">{fname}</a>
       <a href="{u(f'/{fapp}/privacy/')}">{t('privacy')}</a>
       <a href="{u(f'/{fapp}/terms/')}">{t('terms')}</a>'''
+    # An app's pages wear the app's own accent colour.
+    tint = ' style="--acc:{};--acc2:{}"'.format(*ACCENT[app]) if app in ACCENT else ''
     return f'''<!doctype html>
 <html lang="{L}">
 <head>
@@ -169,7 +176,7 @@ def page(key, body, path='/', scripts=(), found=True, name=None, app=None):
 <link rel="stylesheet" href="/assets/site.css">
 <script>document.documentElement.classList.add('js');setTimeout(function(){{if(!window.VL_READY)document.documentElement.classList.remove('js')}},4000)</script>
 </head>
-<body data-copied="{e('copied')}" data-write="{e('write_to')}">
+<body data-copied="{e('copied')}" data-write="{e('write_to')}"{tint}>
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="{u('/')}" aria-label="{e('home_aria')}">{MARK}<b>Vatani</b><span>Tech</span></a>
@@ -203,51 +210,60 @@ def page(key, body, path='/', scripts=(), found=True, name=None, app=None):
 
 
 # ------------------------------------------------- the living feature tiles
+# On another app's page the same tiles show that app's texts: V names, for a
+# row of site_texts.py, the row to use instead (set in geo(), empty otherwise).
+V = {}
+
+
+def tt(key):
+    return t(V.get(key, key))
+
+
 def tile(cls, viz, cap, title, text, d=0):
     return (f'<article class="tile glow rv {cls}" style="--d:{d:.2f}s">\n<div class="viz">{viz}</div>\n'
             f'<div class="cap">{cap}</div><h4>{title}</h4><p>{text}</p>\n</article>')
 
 
-def t_map(cls, d=0):
+def t_map(cls, d=0, pins=None):
     dots = ''.join(f'M{(lon + 180) * 2:g} {(84 - lat) * 2:g}h0' for lon, lat in json.loads(rd(T / 'flat_map.json')))
     # Well-known oil and gas regions (lon, lat).
-    pins = [(-102.5, 32), (-90, 27.5), (-113, 55.5), (-42, -24.5), (2.5, 58.5), (6, 4.8),
+    pins = pins or [(-102.5, 32), (-90, 27.5), (-113, 55.5), (-42, -24.5), (2.5, 58.5), (6, 4.8),
             (50.5, 40.3), (50.5, 27), (73, 61.5), (118.5, 38.5), (116, -20.5)]
     marks = ''.join(
         f'<g transform="translate({(lon + 180) * 2:g} {(84 - lat) * 2:g})"><circle class="ring" r="3" style="--d:{(i * 0.37) % 2.8:.2f}s"/><circle class="core" r="2.6"/></g>'
         for i, (lon, lat) in enumerate(pins))
-    viz = (f'<div class="vmap"><svg viewBox="0 0 720 284" role="img" aria-label="{e("map_aria")}">'
+    viz = (f'<div class="vmap"><svg viewBox="0 0 720 284" role="img" aria-label="{html.escape(tt("map_aria"))}">'
            f'<path class="dots" d="{dots}"/>{marks}</svg></div>')
-    return tile(cls, viz, t('map_cap'), t('map_h'), t('map_p'), d)
+    return tile(cls, viz, t('map_cap'), tt('map_h'), tt('map_p'), d)
 
 
 def t_conv(cls, d=0):
-    pairs = t('conv_pairs')     # site.js rolls through them; the first one is shown at the start
+    pairs = tt('conv_pairs')     # site.js rolls through them; the first one is shown at the start
     viz = (f'<div class="conv" data-conv data-pairs="{data(pairs)}" aria-label="{e("conv_aria")}">'
            f'<div class="row"><span class="num" data-a>{pairs[0][0]}</span><span class="unit" data-ua>{pairs[0][1]}</span></div>'
            f'<div class="swap">{I_SWAP}</div>'
            f'<div class="row out"><span class="num" data-b>{pairs[0][2]}</span><span class="unit" data-ub>{pairs[0][3]}</span></div></div>')
-    return tile(cls, viz, t('conv_cap'), t('conv_h'), t('conv_p'), d)
+    return tile(cls, viz, t('conv_cap'), tt('conv_h'), tt('conv_p'), d)
 
 
 def t_flash(cls, d=0):
-    cards = t('flash_cards')    # site.js flips through them
+    cards = tt('flash_cards')    # site.js flips through them
     viz = (f'<div class="flash" data-cards="{data(cards)}" aria-label="{e("flash_aria")}"><div class="flash-in">'
            f'<div class="face front"><small>{t("flash_term")}</small><b>{cards[0][0]}</b></div>'
            f'<div class="face back"><small>{t("flash_meaning")}</small><span>{cards[0][1]}</span></div>'
            '</div></div>')
-    return tile(cls, viz, t('flash_cap'), t('flash_h'), t('flash_p'), d)
+    return tile(cls, viz, t('flash_cap'), tt('flash_h'), tt('flash_p'), d)
 
 
-def t_quiz(cls, d=0):
+def t_quiz(cls, d=0, opts=('Bottom oil pressure', 'Blowout preventer', 'Barrel of petroleum')):
     viz = (f'<div class="quiz" aria-label="{e("quiz_aria")}">'
-           f'<div class="q"><span>{t("quiz_q")}</span>'
+           f'<div class="q"><span>{tt("quiz_q")}</span>'
            '<span class="ringbox"><svg viewBox="0 0 44 44"><circle class="tr" cx="22" cy="22" r="18"/><circle class="pr" cx="22" cy="22" r="18"/></svg>8/10</span></div>'
-           '<div class="opt"><i></i>Bottom oil pressure</div>'
-           '<div class="opt ok"><i>✓</i>Blowout preventer</div>'
-           '<div class="opt"><i></i>Barrel of petroleum</div>'
+           f'<div class="opt"><i></i>{opts[0]}</div>'
+           f'<div class="opt ok"><i>✓</i>{opts[1]}</div>'
+           f'<div class="opt"><i></i>{opts[2]}</div>'
            f'<span class="streak">{I_FLAME} {t("quiz_streak")}</span></div>')
-    return tile(cls, viz, t('quiz_cap'), t('quiz_h'), t('quiz_p'), d)
+    return tile(cls, viz, t('quiz_cap'), tt('quiz_h'), tt('quiz_p'), d)
 
 
 def t_lang(cls, d=0):
@@ -259,36 +275,90 @@ def t_lang(cls, d=0):
     return tile(cls, viz, t('lang_cap'), t('lang_h'), t('lang_p'), d)
 
 
-def t_market(cls, d=0):
+def t_market(cls, d=0, chips=None):
     l1 = 'M0 122 C 30 112, 50 92, 80 98 S 130 62, 160 72 S 210 112, 240 94 S 300 32, 330 46 S 385 24, 410 30'
     l2 = 'M0 142 C 40 134, 70 122, 100 128 S 160 102, 200 110 S 260 132, 300 114 S 380 72, 410 80'
     viz = (f'<div class="chart"><svg viewBox="0 0 420 170" role="img" aria-label="{e("market_aria")}">'
-           '<defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2cc4b8" stop-opacity=".32"/><stop offset="1" stop-color="#2cc4b8" stop-opacity="0"/></linearGradient></defs>'
+           '<defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--teal)" stop-opacity=".32"/><stop offset="1" style="stop-color:var(--teal)" stop-opacity="0"/></linearGradient></defs>'
            '<line class="grid" x1="0" x2="420" y1="40" y2="40"/><line class="grid" x1="0" x2="420" y1="85" y2="85"/><line class="grid" x1="0" x2="420" y1="130" y2="130"/>'
            f'<path class="area" fill="url(#ar)" d="{l1} L410 170 L0 170 Z"/>'
            f'<path class="l2" pathLength="1" d="{l2}"/><path class="l1" pathLength="1" d="{l1}"/>'
-           '<g class="end" transform="translate(410 30)"><circle class="ring" r="4"/><circle r="4" fill="#7ff0e4"/></g>'
-           '</svg><div class="chips"><span class="chip on">Brent</span><span class="chip">WTI</span><span class="chip">Henry Hub</span>'
-           f'<span class="chip">{t("market_rigs")}</span></div></div>')
-    return tile(cls, viz, t('market_cap'), t('market_h'), t('market_p'), d)
+           '<g class="end" transform="translate(410 30)"><circle class="ring" r="4"/><circle r="4" style="fill:var(--teal-2)"/></g>'
+           '</svg><div class="chips">'
+           + ''.join(f'<span class="chip{" on" if i == 0 else ""}">{c}</span>' for i, c in enumerate(chips or ['Brent', 'WTI', 'Henry Hub', t('market_rigs')]))
+           + '</div></div>')
+    return tile(cls, viz, t('market_cap'), tt('market_h'), tt('market_p'), d)
 
 
 def t_talk(cls, d=0):
     viz = (f'<div class="talk" aria-label="{e("talk_aria")}">'
-           f'<div class="ask">{t("talk_q")}</div>'
+           f'<div class="ask">{tt("talk_q")}</div>'
            f'<div class="ans"><small>{t("talk_model")}</small><div class="ln"></div><div class="ln"></div><div class="ln"></div></div></div>')
-    return tile(cls, viz, t('talk_cap'), t('talk_h'), t('talk_p'), d)
+    return tile(cls, viz, t('talk_cap'), tt('talk_h'), tt('talk_p'), d)
 
 
 def t_offline(cls, d=0):
     viz = f'<div class="offline"><span></span><span></span><span></span><div class="core">{I_OFFLINE}</div></div>'
-    return tile(cls, viz, t('off_cap'), t('off_h'), t('off_p'), d)
+    return tile(cls, viz, t('off_cap'), t('off_h'), tt('off_p'), d)
 
 
 def t_more(cls, d=0):
     viz = ('<div class="chips" style="justify-content:center;max-width:520px">'
-           + ''.join(f'<span class="chip">{i}</span>' for i in t('more_items')) + '</div>')
+           + ''.join(f'<span class="chip">{i}</span>' for i in tt('more_items')) + '</div>')
     return tile(cls, viz, t('more_cap'), t('more_h'), t('more_p'), d)
+
+
+# ---- Geo-Rulers' own tiles: a ruler, a protractor, the camera scanner and
+# the app it belongs with.
+ROCK = 'M108 100 L132 62 L176 40 L236 36 L282 58 L300 92 L286 104 L122 106 Z'
+FACETS = 'M132 62 L190 74 L236 36 M190 74 L176 40 M190 74 L282 58 M190 74 L210 105 M282 58 L286 104'
+
+
+def t_ruler(cls, d=0):
+    # 6 units to a millimetre; the sample lies from the 1 cm mark to 4.2 cm.
+    ticks = ''.join(f'<line class="tick" x1="{48 + i * 6}" x2="{48 + i * 6}" y1="118" y2="{134 if i % 10 == 0 else 128 if i % 5 == 0 else 124}"/>' for i in range(57))
+    nums = ''.join(f'<text x="{48 + i * 60}" y="150" text-anchor="middle">{i}</text>' for i in range(6))
+    viz = (f'<div class="rulerviz"><svg viewBox="0 0 420 170" role="img" aria-label="{e("gx_ruler_aria")}">'
+           f'<path class="rock" d="{ROCK}"/><path class="facet" d="{FACETS}"/>'
+           f'<rect class="body" x="30" y="118" width="372" height="42" rx="7"/>{ticks}{nums}'
+           '<line class="guide g1" x1="108" x2="108" y1="22" y2="118"/><line class="guide g2" x1="300" x2="300" y1="22" y2="118"/>'
+           '<g class="read"><line x1="108" x2="300" y1="22" y2="22"/>'
+           f'<text x="204" y="14" text-anchor="middle">{t("gx_ruler_read")}</text></g></svg></div>')
+    return tile(cls, viz, t('cap_measure'), t('gx_ruler_h'), t('gx_ruler_p'), d)
+
+
+def t_angle(cls, d=0):
+    import math
+    ticks = ''
+    for k in range(19):
+        a, r = math.radians(k * 10), (98 if k % 3 == 0 else 108)
+        ticks += (f'<line class="tick" x1="{150 + 120 * math.cos(a):.1f}" y1="{160 - 120 * math.sin(a):.1f}" '
+                  f'x2="{150 + r * math.cos(a):.1f}" y2="{160 - r * math.sin(a):.1f}"/>')
+    nums = ''.join(f'<text x="{150 + 84 * math.cos(math.radians(k)):.1f}" y="{164 - 84 * math.sin(math.radians(k)):.1f}" text-anchor="middle">{k}</text>'
+                   for k in (30, 60, 90, 120, 150))
+    viz = (f'<div class="angle"><svg viewBox="0 0 300 180" role="img" aria-label="{e("gx_angle_aria")}">'
+           f'<path class="arc" d="M30 160 A120 120 0 0 1 270 160 Z"/>{ticks}{nums}'
+           '<line class="base" x1="14" x2="286" y1="160" y2="160"/>'
+           '<g class="needle"><line x1="150" y1="160" x2="262" y2="160"/><circle cx="262" cy="160" r="4"/></g>'
+           '<circle class="hub" cx="150" cy="160" r="6"/>'
+           '<text class="deg" x="150" y="128" text-anchor="middle">35°</text></svg></div>')
+    return tile(cls, viz, t('cap_measure'), t('gx_angle_h'), t('gx_angle_p'), d)
+
+
+def t_scan(cls, d=0):
+    rows = ''.join(f'<div class="row" style="--w:{w}%;--d:{i * .18:.2f}s"><span>{n}</span><b>{w}%</b><i></i></div>'
+                   for i, (n, w) in enumerate(zip(t('gx_scan_names'), (82, 11, 5))))
+    viz = (f'<div class="scan" aria-label="{e("gx_scan_aria")}"><div class="finder">'
+           f'<svg viewBox="100 28 208 86" aria-hidden="true"><path class="rock" d="{ROCK}"/><path class="facet" d="{FACETS}"/></svg>'
+           f'<div class="beam"></div></div><div class="guess">{rows}</div></div>')
+    return tile(cls, viz, t('cap_camera'), t('gx_h2'), t('gx_p2'), d)
+
+
+def t_pair(cls, d, slug, other, title, text):
+    """Two apps that belong together; the heading leads to the other one's page."""
+    img = lambda a: f'<img src="/assets/img/{a}-icon.png" alt="{html.escape(t("icon_alt_of").format(NAME[a]))}" style="--glow:rgba({SOON_BY[a][3]},.9)" loading="lazy">'
+    viz = f'<div class="pair">{img(slug)}<span class="link"></span>{img(other)}</div>'
+    return tile(cls, viz, t('cap_family'), f'<a href="{u(f"/{other}/")}">{title} <span class="arr">→</span></a>', text, d)
 
 
 def phone(img, alt, i=None):
@@ -570,7 +640,8 @@ def petro():
 # ------------------------------------------- Geo-Rulers and OreGram pages
 # The page of an app that is still being made: like PetroGram's, but with
 # no store buttons and no screenshots (there are none yet). The hero shows
-# the turning Earth (the app's maps of mines and deposits); the icon stands
+# a cluster of crystals (and, for OreGram, the turning Earth of its maps;
+# for Geo-Rulers a protractor on a ruler); the icon stands
 # where the screens would be. The slogans are English on the English page and rhyming translations on the others (owner, 26 Nov 2026).
 # slug: the app (one of PAGES); its number ("App 02") is its place on the home page.
 def geo(slug):
@@ -580,20 +651,29 @@ def geo(slug):
     alt = e('icon_alt_of').format(name)
     ore, _, dig = tn('gr_slogans', name)   # the second one heads the features (gr_feat_h2)
     mail = f'mailto:support@vatanilabs.com?subject={quote(t("next_subject") + ": " + name)}'
-    if k == 'gx':   # the tool app: six cards of its own
-        caps = ['cap_measure', 'cap_camera', 'gr_cap_read', 'lang_cap', 'off_cap', 'cap_family']
-        heads = ['gx_h1', 'gx_h2', 'gx_guide_h', 'lang_h', 'off_h', 'gx_h3']
-        texts = ['gx_p1', 'gx_p2', 'gx_guide_p', 'lang_p', 'gr_c9_p', 'gx_p3']
+    # The features as living tiles, like PetroGram's page. The tool app has
+    # its own drawings; OreGram shows PetroGram's with mining examples.
+    V.clear()
+    if k == 'gx':
+        V.update(flash_cards='gx_flash_cards', flash_h='gx_guide_h', flash_p='gx_guide_p', off_p='gr_c9_p')
+        shapes = 'tools,crystal'
+        tiles = [t_ruler('w7'), t_angle('w5', .08), t_scan('w7'), t_flash('w5', .08).replace(t('flash_cap'), t('gr_cap_read'), 1),
+                 t_lang(''), t_offline('', .08), t_pair('', .16, slug, 'oregram', t('gx_h3'), t('gx_p3'))]
     else:
-        caps = ['conv_cap', 'flash_cap', 'quiz_cap', 'gr_cap_read', 'map_cap', 'gr_cap_companies', 'market_cap', 'lang_cap', 'off_cap']
-        heads = [f'gr_c{i}_h' for i in range(1, 8)] + ['lang_h', 'off_h']
-        texts = [f'gr_c{i}_p' for i in range(1, 8)] + ['lang_p', 'gr_c9_p']
-    cards = '\n'.join(
-        f'      <div class="card glow rv" style="--d:{(i % 3) * .08:.2f}s"><span class="label">{t(c)}</span><h3>{tn(h, name)}</h3><p>{tn(p, name)}</p></div>'
-        for i, (c, h, p) in enumerate(zip(caps, heads, texts)))
+        V.update(map_aria='gr_map_aria', map_h='gr_c5_h', map_p='gr_c5_p', conv_pairs='gr_conv_pairs', conv_h='gr_c1_h', conv_p='gr_c1_p',
+                 flash_cards='gr_flash_cards', flash_h='gr_c2_h', flash_p='gr_c2_p', quiz_q='gr_quiz_q', quiz_h='gr_quiz_h', quiz_p='gr_quiz_p',
+                 off_p='gr_c9_p', market_h='gr_c7_h', market_p='gr_c7_p', talk_q='gr_talk_q', more_items='gr_more_items')
+        shapes = 'crystal,globe'
+        # Well-known mining regions (lon, lat).
+        pins = [(118, -22), (121.5, -30.7), (-69, -24), (-76, -11), (-50, -6), (27.5, -26), (27, -12), (-2, 6),
+                (-116, 40.7), (-81, 46.5), (88, 69.3), (67, 48), (110, 41), (137, -4)]
+        tiles = [t_map('w8', 0, pins), t_conv('', .08), t_flash(''), t_quiz('', .08, ('Nominal stripping ratio', 'Net smelter return', 'New surface reserve')),
+                 t_offline('', .16), t_market('w7', 0, t('gr_market_chips')), t_talk('w5', .08), t_lang('w5'), t_more('w7', .08)]
+    V.clear()
+    cards = '\n      '.join(tiles)
     return f'''<main>
 <section class="app-hero">
-  <div class="sculpt"><canvas id="sculpture" data-shapes="globe" aria-hidden="true"></canvas></div>
+  <div class="sculpt"><canvas id="sculpture" data-shapes="{shapes}" aria-hidden="true"></canvas></div>
   <div class="wrap">
     <div class="hero-copy">
       <span class="pill rv"><i></i>{tn('gr_pill', name).format(n)}</span>
@@ -622,8 +702,8 @@ def geo(slug):
       </div>
       <p class="rv" style="--d:.1s">{tn('gx_feat_p' if k == 'gx' else 'gr_feat_p', name)}</p>
     </div>
-    <div class="grid3">
-{cards}
+    <div class="bento">
+      {cards}
     </div>
   </div>
 </section>

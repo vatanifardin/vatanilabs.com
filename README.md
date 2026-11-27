@@ -40,6 +40,16 @@ other languages.
   business." and "Dig it." stay in English in every language), its privacy
   policy, terms of use and page for deleting an account (7 languages on
   one page; the app links to these).
+- The pages of Geo-Rulers and OreGram are built like PetroGram's (since
+  27 November 2026): a hero of light points (`data-shapes` in `geo()`:
+  crystals and the Earth for OreGram, a protractor on a ruler and crystals
+  for Geo-Rulers; shapes `crystal` and `tools` in `assets/hero.js`) and a
+  grid of living tiles. OreGram shows PetroGram's tiles with mining
+  examples (rows `gr_...`; the table `V` in `_tools/build.py` swaps the
+  texts); Geo-Rulers has tiles of its own (`t_ruler`, `t_angle`, `t_scan`,
+  `t_pair`). Each app's pages wear its own accent colour instead of the
+  studio's teal: `ACCENT` in `_tools/build.py` sets `--acc` and `--acc2`
+  on the page, and `assets/site.css` takes every accent from those two.
 - `oregram/`: the same four pages for OreGram (26 November 2026), a twin
   of Geo-Rulers: the same app and texts with another name, icon (ore on
   gold) and colour (gold, `#B8860B`). Since 27 November 2026 Geo-Rulers'

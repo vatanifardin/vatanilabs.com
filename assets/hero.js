@@ -1,6 +1,7 @@
 // The hero "sculpture": a few thousand points of light that gather into
 // the Vatani Tech mark, a slowly turning Earth (real coastlines, from
-// PetroGram's own map) and an oil drop. Plain canvas, no libraries.
+// PetroGram's own map), an oil drop and, on the pages of other apps, a
+// cluster of crystals or a protractor on a ruler. Plain canvas, no libraries.
 // It pauses off screen and stays still for people who prefer less motion.
 (function () {
   const cv = document.getElementById('sculpture');
@@ -104,15 +105,80 @@
     return sh;
   }
 
-  const makers = { mark: makeMark, globe: makeGlobe, drop: makeDrop };
+  // A cluster of crystals (OreGram): six-sided columns with pointed tips.
+  function makeCrystal() {
+    const sh = blank();
+    // each: foot (x, z), radius, height of the column, height of the tip, lean (z, x)
+    const cols = [[0, 0, 0.36, 1.25, 0.5, 0, 0], [-0.5, 0.12, 0.25, 0.7, 0.36, 0.5, 0.12], [0.46, -0.1, 0.27, 0.82, 0.38, -0.42, -0.16],
+      [0.12, 0.42, 0.2, 0.46, 0.3, -0.12, 0.55], [-0.2, -0.42, 0.18, 0.4, 0.28, 0.2, -0.5]];
+    const share = [0.42, 0.18, 0.2, 0.1, 0.1];
+    let i = 0;
+    cols.forEach((c, k) => {
+      const n = k === cols.length - 1 ? L - i : Math.round(L * share[k]);
+      const cz = Math.cos(c[5]), sz = Math.sin(c[5]), cx2 = Math.cos(c[6]), sx = Math.sin(c[6]);
+      for (let j = 0; j < n && i < L; j++, i++) {
+        const side = Math.floor(rnd() * 6), a0 = side * 1.0472, a1 = a0 + 1.0472;
+        const edge = rnd() < 0.5;                 // half of the points sit on the edges, so the facets read
+        let f = edge ? (rnd() < 0.5 ? 0 : 1) : rnd(), x, y, z, tip = rnd() < 0.3;
+        const bx = Math.cos(a0) + (Math.cos(a1) - Math.cos(a0)) * f, bz = Math.sin(a0) + (Math.sin(a1) - Math.sin(a0)) * f;
+        if (tip) { const v = edge && rnd() < 0.3 ? 0 : rnd(); x = bx * c[2] * (1 - v); z = bz * c[2] * (1 - v); y = c[3] + c[4] * v; }
+        else { x = bx * c[2]; z = bz * c[2]; y = (edge && rnd() < 0.25 ? 1 : rnd()) * c[3]; }
+        const x1 = x * cz - y * sz, y1 = x * sz + y * cz;        // lean the column
+        const y2 = y1 * cx2 - z * sx, z2 = y1 * sx + z * cx2;
+        const hot = rnd() < 0.03;
+        set(sh, i, x1 + c[0], y2 - 0.85, z2 + c[1], hot ? 1 : (edge ? 0.75 : 0.3 + 0.4 * (y / (c[3] + c[4]))), hot ? 1 : (edge ? 0.95 : 0.6), hot ? 2 : 1);
+      }
+    });
+    for (; i < N; i++) {                   // the ground the crystals grow from
+      const th = rnd() * 6.283, r = Math.sqrt(rnd()) * 1.25;
+      set(sh, i, r * Math.cos(th), -0.87 + (rnd() - 0.5) * 0.05, r * Math.sin(th), rnd() < 0.5 ? 1 : 0.2, 0.75 - r * 0.4, 0.85);
+    }
+    return sh;
+  }
+
+  // A protractor on a ruler, with a needle (Geo-Rulers).
+  function makeTools() {
+    const sh = blank();
+    const deg = Math.PI / 180, NA = 52 * deg, oy = -0.5;
+    for (let i = 0; i < L; i++) {
+      const u = rnd(), zz = (rnd() - 0.5) * 0.08;
+      let x, y, c = 0.25, a = 0.85, s = 1;
+      if (u < 0.24) {                       // the outer arc
+        const th = rnd() * Math.PI, r = 1.18 + (rnd() - 0.5) * 0.035; x = r * Math.cos(th); y = r * Math.sin(th);
+      } else if (u < 0.34) {                // the inner arc
+        const th = rnd() * Math.PI, r = 0.42 + (rnd() - 0.5) * 0.02; x = r * Math.cos(th); y = r * Math.sin(th); a = 0.6;
+      } else if (u < 0.56) {                // degree marks, longer every 30 degrees
+        const k = Math.floor(rnd() * 19), th = k * 10 * deg, r = 1.16 - rnd() * (k % 3 === 0 ? 0.26 : 0.12);
+        x = r * Math.cos(th); y = r * Math.sin(th); c = 0.6;
+      } else if (u < 0.86) {                // the ruler under it: outline and marks
+        const v = rnd();
+        if (v < 0.45) { x = (rnd() * 2 - 1) * 1.32; y = rnd() < 0.5 ? -0.03 : -0.34; }
+        else if (v < 0.52) { x = rnd() < 0.5 ? -1.32 : 1.32; y = -0.03 - rnd() * 0.31; }
+        else { const k = Math.floor(rnd() * 25); x = -1.2 + k * 0.1; y = -0.03 - rnd() * (k % 5 === 0 ? 0.2 : 0.1); c = 0.6; }
+      } else {                              // the needle, in the accent colour
+        const r = rnd() * 1.1; x = r * Math.cos(NA) + (rnd() - 0.5) * 0.02; y = r * Math.sin(NA) + (rnd() - 0.5) * 0.02;
+        c = 1; a = 1; s = r > 1.04 ? 2.1 : 1.1;
+      }
+      set(sh, i, x, y + oy, zz, c, a, s);
+    }
+    for (let i = L; i < N; i++) {          // dust drifting around
+      const r = 1.6 + rnd() * 0.9, u = rnd() * 2 - 1, th = rnd() * 6.283, q = Math.sqrt(1 - u * u);
+      set(sh, i, r * q * Math.cos(th), r * u * 0.8, r * q * Math.sin(th), rnd() < 0.3 ? 1 : 0, 0.26, 0.8);
+    }
+    return sh;
+  }
+
+  const makers = { mark: makeMark, globe: makeGlobe, drop: makeDrop, crystal: makeCrystal, tools: makeTools };
   const spin = {                          // how each shape turns: [y, z, x] angles
     mark: (t) => [Math.sin(t * 0.45) * 0.42, 0, Math.sin(t * 0.31) * 0.07],
     // The Earth starts facing the Caspian and turns toward the Atlantic.
     globe: (t, local) => [-1.25 + local * 0.2, 0.3, 0.2],
     drop: (t) => [t * 0.42, 0, 0.16],
+    crystal: (t) => [t * 0.36, 0, 0.2],
+    tools: (t) => [Math.sin(t * 0.4) * 0.5, Math.sin(t * 0.27) * 0.05, 0.1 + Math.sin(t * 0.31) * 0.08],
     nebula: (t) => [t * 0.1, 0, 0.2],
   };
-  const hold = { mark: 4.6, globe: 9, drop: 5.2 };
+  const hold = { mark: 4.6, globe: 9, drop: 5.2, crystal: 8, tools: 8 };
   // Captions: number, text and, where given, the language of the text. The
   // page hands them over in its own language (see build.py).
   let captions = {
@@ -132,10 +198,13 @@
   }
 
   // Colour table: 6 tints x 12 brightness steps (no text is built per point).
+  // The page's accent colour (teal; an app's page may set its own in --acc).
+  const ACC = (getComputedStyle(document.body).getPropertyValue('--acc') || '').split(',').map(Number);
+  const tint = ACC.length === 3 && ACC.every((n) => n >= 0) && ACC.join() !== '44,196,184' ? ACC : [44, 212, 200];
   const TINTS = 6, STEPS = 12, table = [];
   for (let c = 0; c < TINTS; c++) {
     const k = c / (TINTS - 1);
-    const r = Math.round(226 + (44 - 226) * k), g = Math.round(233 + (212 - 233) * k), b = Math.round(255 + (200 - 255) * k);
+    const r = Math.round(226 + (tint[0] - 226) * k), g = Math.round(233 + (tint[1] - 233) * k), b = Math.round(255 + (tint[2] - 255) * k);
     table.push(Array.from({ length: STEPS + 1 }, (_, a) => `rgba(${r},${g},${b},${(a / STEPS).toFixed(3)})`));
   }
 
