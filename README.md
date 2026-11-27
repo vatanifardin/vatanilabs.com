@@ -52,10 +52,14 @@ other languages.
 - `petro-rulers/`, `marinegram/`, `hafiz/`: one page each (27 November
   2026), built by `solo()` in `_tools/build.py` from the `SOLO` list: hero
   (shapes `tools`, `anchor`, `arch` in `assets/hero.js`), band, living
-  tiles and the "coming soon" box, in the app's accent colour. These apps
-  have no privacy policy or terms of use on the site yet, so their footer
-  links only to the app's page; add those pages before an app goes to a
-  store. MarineGram's page describes the planned glossary, ship pages and
+  tiles and the "coming soon" box, in the app's accent colour. Each has its
+  own privacy policy and terms of use (`/<app>/privacy/`, `/<app>/terms/`),
+  written for that app in the site's three languages in
+  `_tools/solo_texts.py` (read the notes at its top: Petro-Rulers' terms
+  are the app's own words, Hafiz's policy follows the app's own privacy
+  text). They have no account, so no page for deleting one. When an app
+  changes what it stores or sends, change its text and date there. The
+  apps' other languages are not written yet. MarineGram's page describes the planned glossary, ship pages and
   3D models (only its map exists so far). Hafiz's page shows the first
   verse of the Quran exactly as in the Tanzil text the app uses (`BASMALA`
   in `_tools/build.py`: never change it) with a link to tanzil.net.

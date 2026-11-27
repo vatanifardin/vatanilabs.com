@@ -153,9 +153,7 @@ def page(key, body, path='/', scripts=(), found=True, name=None, app=None):
     # The footer leads to PetroGram's pages; on the pages of another app, to
     # that app's own page, privacy policy and terms of use.
     fname, fapp = (name or NAME[app], app) if app else ('PetroGram', 'petrogram')
-    foot = f'''<a href="{u(f'/{fapp}/')}">{fname}</a>'''
-    if fapp not in SOLO:   # an app in SOLO has no privacy policy or terms of use yet
-        foot += f'''
+    foot = f'''<a href="{u(f'/{fapp}/')}">{fname}</a>
       <a href="{u(f'/{fapp}/privacy/')}">{t('privacy')}</a>
       <a href="{u(f'/{fapp}/terms/')}">{t('terms')}</a>'''
     # An app's pages wear the app's own accent colour.
@@ -483,7 +481,8 @@ PAGES = {
 }
 
 
-# The apps with a page but no privacy policy or terms of use yet (see solo()):
+# The apps with a page, a privacy policy and terms of use of their own (see
+# solo() and solo_doc(); no page for deleting an account: they have none):
 # the name as the big heading, and the shapes of the hero.
 SOLO = {
     'petro-rulers': ('Petro-<em class="s">Rulers</em>', 'tools,drop'),
@@ -815,8 +814,8 @@ def geo(slug):
 
 
 # ------------------------------- Petro-Rulers, MarineGram and Hafiz pages
-# The page of an app that is still being made and has no privacy policy or
-# terms yet (SOLO): hero, band, living tiles and the "coming soon" box. Its
+# The page of an app that is still being made (SOLO): hero, band, living
+# tiles, the "coming soon" box and the links to its privacy policy and terms. Its
 # texts are the rows "<key>_..." of site_texts.py (key: "pr", "mg" or "hz").
 def solo(slug):
     _, name, k, glow = SOON_BY[slug][:4]
@@ -889,6 +888,56 @@ def solo(slug):
     </div>
   </div>
 </section>
+
+<section class="block" style="padding-top:20px">
+  <div class="wrap">
+    <div class="grid3">
+      <div class="card glow rv"><span class="label">{t('sup_label')}</span><h3>{t('sup_h')}</h3><p>{t('sup3_p')}</p></div>
+      <div class="card glow rv" style="--d:.08s"><span class="label">{t('prv_label')}</span><h3>{t('privacy')}</h3><p>{t('prv3_p')} <a href="{u(f'/{slug}/privacy/')}">{t('read_it')}</a></p></div>
+      <div class="card glow rv" style="--d:.16s"><span class="label">{t('trm_label')}</span><h3>{t('terms')}</h3><p>{t('trm_p')} <a href="{u(f'/{slug}/terms/')}">{t('read_them')}</a></p></div>
+    </div>
+  </div>
+</section>
+</main>'''
+
+
+# The privacy policy or the terms of use of an app in SOLO (kind: "privacy"
+# or "terms"), from solo_texts.py: three languages on the English page, one
+# on the others, like PetroGram's.
+exec(rd(T / 'solo_texts.py'))               # defines SOLO_DOCS
+
+
+def solo_doc(slug, kind):
+    def section(l):
+        parts, items = [], []
+        def flush():
+            if items:
+                parts.append('<ul>\n' + '\n'.join(f'<li>{x}</li>' for x in items) + '\n</ul>')
+                items.clear()
+        for line in SOLO_DOCS[slug][kind][l].split('\n'):
+            x = html.escape(line[2:] if line[:2] in ('# ', '@ ', '- ') else line[3:] if line.startswith('## ') else line, quote=False)
+            x = x.replace('{MAIL}', MAILTO)
+            if line.startswith('- '):
+                items.append(x)
+                continue
+            flush()
+            parts.append(f'<h1>{x}</h1>' if line.startswith('# ') else f'<h2>{x}</h2>' if line.startswith('## ')
+                         else f'<p class="meta">{x}</p>' if line.startswith('@ ') else f'<p>{x}</p>')
+        flush()
+        return f'<section id="{l}" lang="{l}">\n' + '\n'.join(parts) + '\n</section>'
+
+    def link(l):
+        if L == 'en':
+            return f'<a href="#{l}">'
+        if l == L:
+            return f'<a href="#{l}" aria-current="true">'
+        return f'<a href="{PRE[l]}/{slug}/{kind}/">'
+    nav = (f'<nav class="langs" aria-label="{e("doc_langs")}">'
+           + ''.join(link(l) + DOC_LANGS[l] + '</a>' for l in LANGS) + '</nav>')
+    return f'''<main class="doc">
+<p class="label"><span class="n">{NAME[slug]} /</span> {t(kind)}</p>
+{nav}
+{chr(10).join(section(l) for l in (LANGS if L == 'en' else [L]))}
 </main>'''
 
 
@@ -1062,8 +1111,10 @@ for L in LANGS:
            page('delete', doc('delete-account', geo_delete_secs(slug), slug, name), f'/{slug}/delete-account/', JS, name=name, app=slug))
         wr(out / slug / 'terms/index.html',
            page('terms', doc('terms', geo_terms_secs[slug], slug, name), f'/{slug}/terms/', JS, name=name, app=slug))
-    # Petro-Rulers, MarineGram and Hafiz: a page each, nothing else yet.
+    # Petro-Rulers, MarineGram and Hafiz: each one's page, privacy policy and terms of use.
     for slug in SOLO:
+        wr(out / slug / 'privacy/index.html', page('sprivacy', solo_doc(slug, 'privacy'), f'/{slug}/privacy/', JS, name=NAME[slug], app=slug))
+        wr(out / slug / 'terms/index.html', page('terms', solo_doc(slug, 'terms'), f'/{slug}/terms/', JS, name=NAME[slug], app=slug))
         wr(out / slug / 'index.html',
            page(SOON_BY[slug][2], solo(slug), f'/{slug}/', (['/assets/land.js'] if 'globe' in SOLO[slug][1] else []) + ['/assets/hero.js'] + JS, app=slug))
     wr(out / '404.html', page('nf', notfound(), '/404.html', JS, found=False))
@@ -1071,7 +1122,7 @@ for L in LANGS:
 # The list of pages for search engines, each with its other languages.
 PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/']
 PATHS += [f'/{s}/{x}' for s in PAGES for x in ('', 'privacy/', 'terms/', 'delete-account/')]
-PATHS += [f'/{s}/' for s in SOLO]
+PATHS += [f'/{s}/{x}' for s in SOLO for x in ('', 'privacy/', 'terms/')]
 rows = ''.join(
     f'  <url><loc>{SITE}{PRE[l]}{p}</loc>'
     + ''.join(f'<xhtml:link rel="alternate" hreflang="{x}" href="{SITE}{PRE[x]}{p}"/>' for x in LANGS)

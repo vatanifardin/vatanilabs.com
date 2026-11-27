@@ -526,6 +526,12 @@ TX = {
 # Built by solo() in build.py: hero, moving band, living tiles and the box
 # that says the app is still being made. No privacy or terms pages yet.
 'soon_h': ('Coming soon.', 'Tezliklə.', 'Скоро.'),
+# Their privacy policies and terms (texts in solo_texts.py). PetroGram's name
+# in the titles is replaced by the app's.
+'sprivacy_title': ('PetroGram privacy policy · Vatani Tech', 'PetroGram məxfilik siyasəti · Vatani Tech', 'Политика конфиденциальности PetroGram · Vatani Tech'),
+'sprivacy_desc': ('Privacy policy of the PetroGram app.', 'PetroGram tətbiqinin məxfilik siyasəti.', 'Политика конфиденциальности приложения PetroGram.'),
+'prv3_p': ('What the app stores and sends.', 'Tətbiqin nə saxladığı və nə göndərdiyi.', 'Что приложение хранит и отправляет.'),
+'sup3_p': ('Write to ' + MAILTO + '.', MAILTO + ' ünvanına yazın.', 'Напишите на ' + MAILTO + '.'),
 'cap_3d': ('3D', '3D', '3D'),
 # Petro-Rulers
 'pr_title': ('Petro-Rulers · Vatani Tech', 'Petro-Rulers · Vatani Tech', 'Petro-Rulers · Vatani Tech'),
