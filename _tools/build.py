@@ -116,7 +116,8 @@ I_FLAME = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor"
 # The accent colour of an app's pages (a light tone of the app's own colour
 # and a lighter one), in place of the studio's teal: see --acc in site.css.
 ACCENT = {'oregram': ('226,176,64', '255,226,150'), 'geo-rulers': ('236,138,68', '255,200,156'),
-          'petro-rulers': ('255,200,40', '255,232,150'), 'marinegram': ('86,156,255', '176,214,255'), 'hafiz': ('52,190,130', '160,236,200')}
+          'petro-rulers': ('255,200,40', '255,232,150'), 'marinegram': ('86,156,255', '176,214,255'), 'hafiz': ('52,190,130', '160,236,200'),
+          'domino-freedom': ('60,200,140', '170,240,205'), 'domino-global': ('178,120,255', '220,196,255')}
 
 
 def lang_links(path):
@@ -235,7 +236,7 @@ def t_map(cls, d=0, pins=None):
         for i, (lon, lat) in enumerate(pins))
     viz = (f'<div class="vmap"><svg viewBox="0 0 720 284" role="img" aria-label="{html.escape(tt("map_aria"))}">'
            f'<path class="dots" d="{dots}"/>{marks}</svg></div>')
-    return tile(cls, viz, t('map_cap'), tt('map_h'), tt('map_p'), d)
+    return tile(cls, viz, tt('map_cap'), tt('map_h'), tt('map_p'), d)
 
 
 def t_conv(cls, d=0):
@@ -353,11 +354,12 @@ def t_scan(cls, d=0, art=None):
     return tile(cls, viz, t('cap_camera'), tt('gx_h2'), tt('gx_p2'), d)
 
 
-def t_pair(cls, d, slug, other, title, text):
-    """Two apps that belong together; the heading leads to the other one's page."""
+def t_pair(cls, d, slug, other, title, text, link=True):
+    """Two apps that belong together; the heading leads to the other one's page (when it has one)."""
     img = lambda a: f'<img src="/assets/img/{a}-icon.png" alt="{html.escape(t("icon_alt_of").format(NAME.get(a, "PetroGram")))}" style="--glow:rgba({SOON_BY[a][3] if a in SOON_BY else "63,81,181"},.9)" loading="lazy">'
     viz = f'<div class="pair">{img(slug)}<span class="link"></span>{img(other)}</div>'
-    return tile(cls, viz, t('cap_family'), f'<a href="{u(f"/{other}/")}">{title} <span class="arr">→</span></a>', text, d)
+    head = f'<a href="{u(f"/{other}/")}">{title} <span class="arr">→</span></a>' if link else title
+    return tile(cls, viz, t('cap_family'), head, text, d)
 
 
 # ---- Petro-Rulers: a pipe with flanges on the ruler, a valve in the scanner.
@@ -430,6 +432,94 @@ def t_sched(cls, d=0):
            '<line class="rail" x1="30" x2="390" y1="44" y2="44"/><line class="go" pathLength="1" x1="30" x2="390" y1="44" y2="44"/>'
            f'{nodes}<text class="u" x="210" y="104" text-anchor="middle">{t("hz_days")}</text></svg></div>')
     return tile(cls, viz, t('quiz_cap'), t('hz_sched_h'), t('hz_sched_p'), d)
+
+
+# ---- The domino games: a chain of dominoes being laid, players round a table.
+PIPS = {1: ((15, 15),), 2: ((8, 8), (22, 22)), 3: ((8, 8), (15, 15), (22, 22)), 4: ((8, 8), (22, 8), (8, 22), (22, 22)),
+        5: ((8, 8), (22, 8), (15, 15), (8, 22), (22, 22)), 6: ((8, 8), (22, 8), (8, 15), (22, 15), (8, 22), (22, 22))}
+
+
+def domino(x, y, a, b, upright=False, i=0):
+    """One domino at (x, y) with a and b pips; a double stands upright."""
+    w, h = (30, 60) if upright else (60, 30)
+    bx, by = (0, 30) if upright else (30, 0)
+    pips = ''.join(f'<circle cx="{px}" cy="{py}" r="2.6"/>' for px, py in PIPS[a])
+    pips += ''.join(f'<circle cx="{px + bx}" cy="{py + by}" r="2.6"/>' for px, py in PIPS[b])
+    mid = '<line x1="5" x2="25" y1="30" y2="30"/>' if upright else '<line x1="30" x2="30" y1="5" y2="25"/>'
+    return (f'<g transform="translate({x} {y})"><g class="pc" style="--d:{i * .7:.2f}s">'
+            f'<rect width="{w}" height="{h}" rx="6"/>{mid}{pips}</g></g>')
+
+
+def t_domino(cls, d, cap, title, text):
+    chain = [(20, 60, 6, 4, False), (84, 45, 4, 4, True), (118, 60, 4, 1, False), (182, 60, 1, 3, False),
+             (246, 45, 3, 3, True)]
+    pieces = ''.join(domino(x, y, a, b_, up, i) for i, (x, y, a, b_, up) in enumerate(chain))
+    viz = f'<div class="domino"><svg viewBox="0 30 296 90" role="img" aria-label="{e("dm_chain_aria")}">{pieces}</svg></div>'
+    return tile(cls, viz, cap, title, text, d)
+
+
+def t_table(cls, d, cap, title, text):
+    seats = ''.join(
+        f'<g class="seat" transform="translate({x} {y})" style="--d:{i * 1.5:.1f}s"><circle class="ring" r="21"/><circle class="bg" r="16"/>'
+        '<circle class="me" cy="-4" r="5"/><path class="me" d="M-9 10a9 8 0 0 1 18 0z"/></g>'
+        for i, (x, y) in enumerate(((150, 26), (256, 95), (150, 164), (44, 95))))
+    viz = (f'<div class="dtable"><svg viewBox="0 0 300 190" role="img" aria-label="{e("dm_table_aria")}">'
+           '<rect class="top" x="84" y="56" width="132" height="78" rx="20"/>'
+           '<path class="bone" d="M112 88h24v14h-24z M138 88h24v14h-24z M164 81h14v28h-14z M124 88v14 M150 88v14 M164 95h14"/>'
+           f'{seats}</svg></div>')
+    return tile(cls, viz, cap, title, text, d)
+
+
+# ---- Each app's own examples for the shared tiles (see V above), and the
+# places on its map. The app's page and its tab on the home page both use them.
+VSET = {
+    'geo-rulers': dict(flash_cards='gx_flash_cards', flash_cap='gr_cap_read', flash_h='gx_guide_h', flash_p='gx_guide_p', off_p='gr_c9_p'),
+    'oregram': dict(map_aria='gr_map_aria', map_h='gr_c5_h', map_p='gr_c5_p', conv_pairs='gr_conv_pairs', conv_h='gr_c1_h', conv_p='gr_c1_p',
+                    flash_cards='gr_flash_cards', flash_h='gr_c2_h', flash_p='gr_c2_p', quiz_q='gr_quiz_q', quiz_h='gr_quiz_h', quiz_p='gr_quiz_p',
+                    off_p='gr_c9_p', market_h='gr_c7_h', market_p='gr_c7_p', talk_q='gr_talk_q', more_items='gr_more_items'),
+    'petro-rulers': dict(gx_ruler_aria='pr_ruler_aria', gx_ruler_p='pr_ruler_p', gx_scan_names='pr_scan_names', gx_h2='pr_h2', gx_p2='pr_p2',
+                         flash_cards='pr_flash_cards', flash_cap='gr_cap_read', flash_h='pr_guide_h', flash_p='pr_guide_p'),
+    'marinegram': dict(map_aria='mg_map_aria', map_h='mg_h1', map_p='mg_p1', flash_cards='mg_flash_cards', flash_h='mg_h2', flash_p='mg_p2', off_p='mg_off_p'),
+    'hafiz': dict(lang_h='hz_lang_h', lang_p='hz_lang_p', off_p='hz_off_p', more_items='hz_free_items', more_cap='cap_free', more_h='hz_h3', more_p='hz_p3'),
+    'domino-freedom': dict(off_p='df_p1'),
+    'domino-global': dict(map_aria='dm_map_aria', map_cap='cap_together', map_h='dg_h2', map_p='dg_p2'),
+}
+# Well-known mining regions, great ports, and big cities (lon, lat).
+MINES = [(118, -22), (121.5, -30.7), (-69, -24), (-76, -11), (-50, -6), (27.5, -26), (27, -12), (-2, 6),
+         (-116, 40.7), (-81, 46.5), (88, 69.3), (67, 48), (110, 41), (137, -4)]
+PORTS = [(103.8, 1.3), (4.5, 51.9), (121.5, 31.2), (32.5, 30), (-79.5, 9), (-118.2, 33.7), (-46.3, -24), (31, -29.9),
+         (55.3, 25.2), (151.2, -33.9), (-74, 40.7), (49.9, 40.4)]
+CITIES = [(-74, 40.7), (-99.1, 19.4), (-46.6, -23.5), (-0.1, 51.5), (29, 41), (49.9, 40.4), (31.2, 30), (3.4, 6.5),
+          (55.3, 25.2), (77.2, 28.6), (116.4, 39.9), (139.7, 35.7), (106.8, -6.2), (151.2, -33.9), (37.6, 55.8)]
+ORE_QUIZ = ('Nominal stripping ratio', 'Net smelter return', 'New surface reserve')
+HAFIZ_LANGS = ('Read|Читать|Oku|بخوان|اقرأ|پڑھیں|Baca|Oxu', ('EN', 'RU', 'TR', 'FA', 'AR', 'UR', 'ID', 'AZ'))
+
+
+def vset(slug):
+    V.clear()
+    V.update(VSET.get(slug, {}))
+
+
+def panel_tiles(slug, k):
+    """The living tiles of an app's tab on the home page (three to five)."""
+    vset(slug)
+    if slug in ('geo-rulers', 'petro-rulers'):
+        pr = slug == 'petro-rulers'
+        tiles = [t_ruler('w7', 0, PIPE if pr else None), t_scan('w5', .08, VALVE if pr else None), t_angle(''), t_flash('', .08),
+                 t_pair('', .16, slug, 'petrogram' if pr else 'oregram', t(k + '_h3'), t(k + '_p3'))]
+    elif slug == 'oregram':
+        tiles = [t_map('w7', 0, MINES), t_conv('w5', .08), t_flash(''), t_quiz('', .08, ORE_QUIZ), t_lang('', .16)]
+    elif slug == 'marinegram':
+        tiles = [t_map('w7', 0, PORTS), t_ship('w5', .08), t_flash(''), t_prop('', .08), t_hull('', .16)]
+    elif slug == 'hafiz':
+        tiles = [t_verse('w7'), t_hide('w5', .08), t_sched('w8'), t_lang('', .08, *HAFIZ_LANGS)]
+    elif slug == 'domino-freedom':
+        tiles = [t_offline(''), t_table('', .08, t('cap_together'), t('df_h2'), t('df_p2')), t_domino('', .16, t('cap_light'), t('df_h3'), t('df_p3'))]
+    else:
+        tiles = [t_domino('', 0, t('more_cap'), t('dg_h1'), t('dg_p1')), t_map('', .08, CITIES),
+                 t_pair('', .16, slug, 'domino-freedom', t('dg_h3'), t('dg_p3'), link=False)]
+    V.clear()
+    return tiles
 
 
 def phone(img, alt, i=None):
@@ -509,21 +599,21 @@ def soon_tab(app):
 
 def soon_panel(app):
     slug, name, k, glow, caps = app
-    cards = ''.join(
-        f'        <div class="card glow"><span class="label">{t(c)}</span><h3>{tn(f"{k}_h{i}", name)}</h3><p>{tn(f"{k}_p{i}", name)}</p></div>\n'
-        for i, c in enumerate(caps, 1))
+    cards = '\n        '.join(panel_tiles(slug, k))
+    acc = ACCENT[slug]
     subject = quote(t('next_subject') + ': ' + name)
     own = (f'<a class="btn solid" href="{u(f"/{slug}/")}">{t("discover_of").format(name)} <span class="arr">→</span></a>'
            if slug in PAGES or slug in SOLO else '')
-    return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}"{"" if slug == ORDER[0] else " hidden"}>
+    return f'''    <div class="panel" role="tabpanel" id="panel-{slug}" aria-labelledby="tab-{slug}" style="--acc:{acc[0]};--acc2:{acc[1]}"{"" if slug == ORDER[0] else " hidden"}>
       <div class="app-line">
         <img src="/assets/img/{slug}-icon.png" alt="{html.escape(t('icon_alt_of').format(name))}" style="--glow:rgba({glow},.9)">
         <div><h3 lang="en">{name}</h3><div class="sub">{tn(k + '_sub', name)}</div></div>
         <div class="chips"><span class="chip on">{t('dev')}</span><span class="chip" lang="en">Android</span><span class="chip" lang="en">iPhone</span></div>
       </div>
       <p class="app-lead">{tn(k + '_lead', name)}</p>
-      <div class="grid3">
-{cards}      </div>
+      <div class="bento">
+        {cards}
+      </div>
       <div class="actions" style="margin-top:26px">{own}<a class="btn" href="mailto:support@vatanilabs.com?subject={subject}">{t('next_cta')} <span class="arr">→</span></a></div>
     </div>
 
@@ -734,21 +824,14 @@ def geo(slug):
     mail = f'mailto:support@vatanilabs.com?subject={quote(t("next_subject") + ": " + name)}'
     # The features as living tiles, like PetroGram's page. The tool app has
     # its own drawings; OreGram shows PetroGram's with mining examples.
-    V.clear()
+    vset(slug)
     if k == 'gx':
-        V.update(flash_cards='gx_flash_cards', flash_h='gx_guide_h', flash_p='gx_guide_p', off_p='gr_c9_p')
         shapes = 'tools,crystal'
-        tiles = [t_ruler('w7'), t_angle('w5', .08), t_scan('w7'), t_flash('w5', .08).replace(t('flash_cap'), t('gr_cap_read'), 1),
+        tiles = [t_ruler('w7'), t_angle('w5', .08), t_scan('w7'), t_flash('w5', .08),
                  t_lang(''), t_offline('', .08), t_pair('', .16, slug, 'oregram', t('gx_h3'), t('gx_p3'))]
     else:
-        V.update(map_aria='gr_map_aria', map_h='gr_c5_h', map_p='gr_c5_p', conv_pairs='gr_conv_pairs', conv_h='gr_c1_h', conv_p='gr_c1_p',
-                 flash_cards='gr_flash_cards', flash_h='gr_c2_h', flash_p='gr_c2_p', quiz_q='gr_quiz_q', quiz_h='gr_quiz_h', quiz_p='gr_quiz_p',
-                 off_p='gr_c9_p', market_h='gr_c7_h', market_p='gr_c7_p', talk_q='gr_talk_q', more_items='gr_more_items')
         shapes = 'crystal,globe'
-        # Well-known mining regions (lon, lat).
-        pins = [(118, -22), (121.5, -30.7), (-69, -24), (-76, -11), (-50, -6), (27.5, -26), (27, -12), (-2, 6),
-                (-116, 40.7), (-81, 46.5), (88, 69.3), (67, 48), (110, 41), (137, -4)]
-        tiles = [t_map('w8', 0, pins), t_conv('', .08), t_flash(''), t_quiz('', .08, ('Nominal stripping ratio', 'Net smelter return', 'New surface reserve')),
+        tiles = [t_map('w8', 0, MINES), t_conv('', .08), t_flash(''), t_quiz('', .08, ORE_QUIZ),
                  t_offline('', .16), t_market('w7', 0, t('gr_market_chips')), t_talk('w5', .08), t_lang('w5'), t_more('w7', .08)]
     V.clear()
     cards = '\n      '.join(tiles)
@@ -821,22 +904,14 @@ def solo(slug):
     _, name, k, glow = SOON_BY[slug][:4]
     icon, alt = f'/assets/img/{slug}-icon.png', e('icon_alt_of').format(name)
     mail = f'mailto:support@vatanilabs.com?subject={quote(t("next_subject") + ": " + name)}'
-    V.clear()
+    vset(slug)
     if slug == 'petro-rulers':
-        V.update(gx_ruler_aria='pr_ruler_aria', gx_ruler_p='pr_ruler_p', gx_scan_names='pr_scan_names', gx_h2='pr_h2', gx_p2='pr_p2',
-                 flash_cards='pr_flash_cards', flash_cap='gr_cap_read', flash_h='pr_guide_h', flash_p='pr_guide_p')
         tiles = [t_ruler('w7', 0, PIPE), t_angle('w5', .08), t_scan('w7', 0, VALVE), t_flash('w5', .08),
                  t_lang(''), t_offline('', .08), t_pair('', .16, slug, 'petrogram', t('pr_h3'), t('pr_p3'))]
     elif slug == 'marinegram':
-        V.update(map_aria='mg_map_aria', map_h='mg_h1', map_p='mg_p1', flash_cards='mg_flash_cards', flash_h='mg_h2', flash_p='mg_p2', off_p='mg_off_p')
-        # Great ports of the world (lon, lat).
-        ports = [(103.8, 1.3), (4.5, 51.9), (121.5, 31.2), (32.5, 30), (-79.5, 9), (-118.2, 33.7), (-46.3, -24), (31, -29.9),
-                 (55.3, 25.2), (151.2, -33.9), (-74, 40.7), (49.9, 40.4)]
-        tiles = [t_map('w8', 0, ports), t_flash('', .08), t_ship('w7'), t_prop('w5', .08), t_hull('w5'), t_offline('w7', .08)]
+        tiles = [t_map('w8', 0, PORTS), t_flash('', .08), t_ship('w7'), t_prop('w5', .08), t_hull('w5'), t_offline('w7', .08)]
     else:
-        V.update(lang_h='hz_lang_h', lang_p='hz_lang_p', off_p='hz_off_p', more_items='hz_free_items', more_cap='cap_free', more_h='hz_h3', more_p='hz_p3')
-        tiles = [t_verse('w7'), t_hide('w5', .08), t_sched('w7'),
-                 t_lang('w5', .08, 'Read|Читать|Oku|بخوان|اقرأ|پڑھیں|Baca|Oxu', ('EN', 'RU', 'TR', 'FA', 'AR', 'UR', 'ID', 'AZ')),
+        tiles = [t_verse('w7'), t_hide('w5', .08), t_sched('w7'), t_lang('w5', .08, *HAFIZ_LANGS),
                  t_offline('w5'), t_more('w7', .08)]
     V.clear()
     cards = '\n      '.join(tiles)

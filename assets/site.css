@@ -181,7 +181,7 @@ section.block { padding: 130px 0; position: relative; }
 .tab:hover { color: var(--muted); }
 .tab[aria-selected="true"] { color: var(--text); border-bottom-color: var(--teal); }
 .panel[hidden] { display: none; }
-.panel { animation: rise .7s cubic-bezier(.2,.7,.2,1); }
+.panel { animation: rise .7s cubic-bezier(.2,.7,.2,1); --teal: rgb(var(--acc)); --teal-2: rgb(var(--acc2)); }   /* each app's tab in its own colour */
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
 .app-line { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
 .app-line img { width: 68px; height: 68px; border-radius: 17px; box-shadow: 0 16px 50px -12px var(--glow, rgba(63,81,181,.9)); }
@@ -556,3 +556,19 @@ section.block { padding: 130px 0; position: relative; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .chart .l1, .chart .l2 { stroke-dashoffset: 0; } .chart .area, .chart .end { opacity: 1; }
 }
+
+/* The domino games: a chain being laid piece by piece, and four players taking turns. */
+.domino { width: 100%; max-width: 340px; }
+.domino svg, .dtable svg { width: 100%; height: auto; display: block; overflow: visible; }
+.domino .pc { animation: lay 9s cubic-bezier(.2,.7,.2,1) infinite backwards; animation-delay: var(--d, 0s); }
+.domino rect { fill: color-mix(in srgb, rgb(var(--acc)) 10%, #0b1428); stroke: rgba(var(--acc),.75); stroke-width: 1.5; }
+.domino line { stroke: rgba(var(--acc),.45); stroke-width: 1.4; stroke-linecap: round; }
+.domino circle { fill: var(--teal-2); }
+@keyframes lay { 0% { opacity: 0; transform: translateY(-26px) rotate(-8deg); } 7%, 78% { opacity: 1; transform: none; } 86%, 100% { opacity: 0; transform: translateY(14px); } }
+.dtable { width: 100%; max-width: 300px; }
+.dtable .top { fill: color-mix(in srgb, rgb(var(--acc)) 14%, #0b1428); stroke: rgba(var(--acc),.55); stroke-width: 1.5; }
+.dtable .bone { fill: rgba(var(--acc2),.16); stroke: rgba(var(--acc2),.8); stroke-width: 1.2; }
+.dtable .bg { fill: var(--bg-2); stroke: var(--line-2); stroke-width: 1.5; }
+.dtable .me { fill: rgba(200,212,245,.55); }
+.dtable .ring { fill: none; stroke: var(--teal); stroke-width: 2; opacity: 0; animation: myturn 6s ease-in-out infinite; animation-delay: var(--d, 0s); filter: drop-shadow(0 0 8px var(--teal)); }
+@keyframes myturn { 0%, 2% { opacity: 0; } 6%, 22% { opacity: 1; } 27%, 100% { opacity: 0; } }

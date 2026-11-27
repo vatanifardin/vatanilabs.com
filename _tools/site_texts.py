@@ -104,6 +104,9 @@ TX = {
 'cap_together': ('Together', 'Birlikdə', 'Вместе'),
 'cap_light': ('Light', 'Yüngül', 'Легко'),
 'cap_family': ('Family', 'Ailə', 'Семья'),
+'dm_chain_aria': ('A chain of dominoes being laid', 'Düzülən domino daşları', 'Цепочка костяшек домино'),
+'dm_table_aria': ('Four players around a table, taking turns', 'Masa ətrafında növbə ilə oynayan dörd oyunçu', 'Четыре игрока за столом ходят по очереди'),
+'dm_map_aria': ('World map with players in many cities', 'Bir çox şəhərdə oyunçuları göstərən dünya xəritəsi', 'Карта мира с игроками во многих городах'),
 # The two "-Rulers" apps (owner, 26 and 27 November 2026): measuring and
 # camera tools only. The reference content is in their "-Gram" partner
 # (PetroGram, OreGram), so that the stores do not see copies of one app.

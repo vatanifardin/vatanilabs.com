@@ -19,7 +19,11 @@ other languages.
   list. The "-Gram" apps are reference books; the "-Rulers" apps are
   measuring and camera tools only (ruler, protractor, camera scanner and a
   short guide), each the partner of a "-Gram" app (owner, 26 and
-  27 November 2026).
+  27 November 2026). Every tab shows moving tiles in the app's own
+  colour, like PetroGram's (`panel_tiles` in `_tools/build.py`; the
+  colours are `ACCENT`, each app's examples are `VSET`, shared with the
+  app's page). The two domino games have their own drawings: a chain of
+  dominoes being laid and four players taking turns.
   The apps still being made are the `SOON` list in `_tools/build.py`.
   Icons and logo come from the PetroGram repository's `branding/` folder
   (PetroGram's icon since 26 November 2026: a hexagon with an oil drop and
