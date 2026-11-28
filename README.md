@@ -39,6 +39,17 @@ other languages.
   `branding/icon.png` of its repository; the Quran Guardians icon
   (`assets/img/hafiz-icon.png`, 256 × 256) from
   `branding/quran_guardians_icon.png` of the hafiz repository.
+- `certificate/`: the page that shows one certificate of completion
+  (28 November 2026). The PetroGram app links to it as
+  `/certificate/?id=pg-...` (also from a person's LinkedIn profile).
+  `assets/certificate.js` reads that one record in the visitor's browser
+  from the app's public database (Firebase project `petrogram-9bc6a`,
+  collection `certificates`; the rules are `firestore.rules` in the
+  PetroGram repository) and shows the name, result, date and number. The
+  page is closed to search engines and is not in the sitemap. A new app
+  with certificates gets a row in `APPS` at the top of that script. Never
+  move this page: its address is built into the app and saved on LinkedIn
+  profiles.
 - `petrogram/`: the PetroGram page, its privacy policy and terms of use
   (7 languages on one page; the app links to these).
 - `geo-rulers/`: the Geo-Rulers page (the app is still being made: no
@@ -119,7 +130,7 @@ other languages.
   after changing it there. Never edit `prices.json` by hand, and do not
   move it: each app has its address built in.
 
-The build reads a few privacy texts (sections 6b to 6g of each policy) from
+The build reads a few privacy texts (sections 6b to 6h of each policy; 6h, the certificate, only where the app has it) from
 the three app folders: PetroGram (`~/Developer/petrogram` on the Mac,
 `~/petrogram` on the PC), Geo-Rulers (`~/Developer/geo-rulers`,
 `~/geo-rulers`) and OreGram (`~/Developer/oregram`, `~/oregram`), from

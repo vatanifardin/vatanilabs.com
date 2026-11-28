@@ -1103,7 +1103,8 @@ def blocks_6c(app, heading):
     chunk = md[i:j if j > 0 else None]
     out = [f'<h2>{m.group(1).rstrip(".")}. {html.escape(m.group(2))}</h2>\n  <p>{html.escape(m.group(3))}</p>'
            for m in re.finditer(r'\*\*(6\S+?)\s(.+?)[.。]\*\*\s(.+)', chunk)]
-    assert len(out) == 5, (heading, len(out))
+    # 6c to 6g, and 6h (the certificate) in the apps that have it.
+    assert len(out) in (5, 6), (heading, len(out))
     return '\n\n  '.join(out)
 
 
@@ -1150,12 +1151,12 @@ geo_privacy_secs, geo_terms_secs = {}, {}
 for _slug, (_folder, _env, _h1) in PAGES.items():
     _dir = app_folder(_folder, _env)
     assert _dir, f'{NAME[_slug]} app folder not found'
-    geo_privacy_secs[_slug] = {l: geo_adapt(sec, GEO_PRIV[l], l, 25, NAME[_slug]) for l, sec in policy(_dir).items()}
+    geo_privacy_secs[_slug] = {l: geo_adapt(sec, GEO_PRIV[l], l, 28, NAME[_slug]) for l, sec in policy(_dir).items()}
     geo_terms_secs[_slug] = terms(NAME[_slug], GEO_TERMS)
 
 
 def geo_delete_secs(slug):
-    return {l: geo_adapt(sec, GEO_DELETE.get(l, []), l, 22, NAME[slug])
+    return {l: geo_adapt(sec, GEO_DELETE.get(l, []), l, 28, NAME[slug])
             for l, sec in delete_secs(slug).items()}
 
 
@@ -1164,6 +1165,43 @@ def notfound():
 <p class="label">404</p>
 <h1>{t('nf_h1')}</h1>
 <p><a href="{u('/')}">{t('nf_go')}</a></p>
+</main>'''
+
+
+def certificate():
+    """The page that shows one certificate of completion. The record is read
+    in the visitor's browser (assets/certificate.js) from the app's public
+    database, by the number in the address: /certificate/?id=pg-..."""
+    row = lambda key, cls: f'<div class="cert-row"><dt>{t(key)}</dt><dd class="{cls}"></dd></div>'
+    return f'''<main class="doc cert" data-noid="{e('cert_noid')}" data-none="{e('cert_none')}" data-error="{e('cert_error')}">
+<p class="label"><span class="n">Vatani Tech /</span> {t('cert_label')}</p>
+<div class="cert-state" data-state="loading">
+  <p class="cert-wait">{t('cert_loading')}</p>
+  <noscript><p>{t('cert_error')}</p></noscript>
+</div>
+<div class="cert-state" data-state="none" hidden>
+  <h1>{t('cert_h_none')}</h1>
+  <p class="cert-why"></p>
+</div>
+<div class="cert-state" data-state="ok" hidden>
+  <h1>{t('cert_h_ok')}</h1>
+  <p class="cert-valid"><span aria-hidden="true">✓</span> {t('cert_valid')}</p>
+  <dl class="cert-card">
+    <div class="cert-row cert-who"><dt>{t('cert_awarded')}</dt><dd class="c-name"></dd></div>
+    {row('cert_for', 'c-course')}
+    {row('cert_result', 'c-result')}
+    {row('cert_date', 'c-date')}
+    {row('cert_number', 'c-id')}
+    <div class="cert-row"><dt>{t('cert_issuer')}</dt><dd>Vatani Tech · <a class="c-app" href="{u('/petrogram/')}"></a></dd></div>
+  </dl>
+  <h2>{t('cert_about_h')}</h2>
+  <ul>
+    <li>{t('cert_about_1')}</li>
+    <li>{t('cert_about_2')}</li>
+    <li>{t('cert_about_3')}</li>
+    <li>{t('cert_about_4')}</li>
+  </ul>
+</div>
 </main>'''
 
 
@@ -1196,6 +1234,11 @@ for L in LANGS:
         wr(out / slug / 'index.html',
            page(SOON_BY[slug][2], solo(slug), f'/{slug}/', (['/assets/land.js'] if 'globe' in SOLO[slug][1] else []) + ['/assets/hero.js'] + JS, app=slug))
     wr(out / '404.html', page('nf', notfound(), '/404.html', JS, found=False))
+    # A certificate shows a person's name: search engines stay out, and the
+    # page is not in the sitemap.
+    wr(out / 'certificate/index.html',
+       page('cert', certificate(), '/certificate/', JS + ['/assets/certificate.js'])
+       .replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n<meta name="viewport"', 1))
 
 # The list of pages for search engines, each with its other languages.
 PATHS = ['/', '/petrogram/', '/petrogram/privacy/', '/petrogram/terms/', '/petrogram/delete-account/']

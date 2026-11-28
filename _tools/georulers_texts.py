@@ -28,7 +28,7 @@
 # the build stops if a text is not found exactly once, so a change in
 # PetroGram's policy cannot silently break this one.
 
-GEO_DAY = 25               # November 2026: the date of both pages (the same for OreGram)
+GEO_DAY = 28               # November 2026: the date of both pages (the same for OreGram)
 
 # How each language writes a date of November 2026.
 GEO_DATE = {

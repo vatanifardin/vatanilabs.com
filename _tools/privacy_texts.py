@@ -7,6 +7,8 @@
 # docs/PRIVACY_ADDITIONS.md: more counts and the approximate region.
 # 24 November 2026: section 6g (a message written in the app goes to
 # Sentry), also from docs/PRIVACY_ADDITIONS.md, in all seven languages.
+# 28 November 2026: section 6h (the certificate of completion a person can
+# put online, with their name, on /certificate/); the date of the policy.
 # 25 November 2026: five things the app already did are now said (found
 # while writing the Geo-Rulers policy). Here: the update check with Firebase
 # Remote Config (sections 1, 3 and 8) and section 2 (the data on the phone
@@ -24,7 +26,7 @@ PRIV = {
   sum_start='We, the developer,', sum_end='(section 6). ',
   summary='Your notes and progress stay on your phone, and in your phone\'s own backup if you have it turned on (section 2). Some optional features send data only when you choose to use them: the quiz scoreboard, where the name you choose and your quiz results are stored with <strong>Google Firebase</strong> and shown to other users (section 6), and an account with sign-in by email, Google or Apple and sync between your phones (sections 6b, 6e, 6f). Anonymous crash reports (<strong>Sentry</strong>) and usage statistics (<strong>PostHog</strong>) help us fix and improve the app; they contain no name, email or anything you type, and you can turn them off in Settings → Privacy (sections 6c, 6d). ',
   replace=[
-    ('19 November 2026', '25 November 2026'),
+    ('19 November 2026', '28 November 2026'),
     # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
     ('The Market page downloads public price data from the U.S. Energy Information Administration (EIA).', 'The Market page downloads public price data from the U.S. Energy Information Administration (EIA). When it starts, the app also asks Google Firebase whether an update is required (section 3).'),
     ('This information stays on your device and is never sent to us. We cannot see your notes or progress.', 'This information stays on your device. It is sent only if you use the optional features that need it: the scoreboard (section 6) and sync between your phones (section 6f). Otherwise we cannot see your notes or progress.'),
@@ -46,7 +48,7 @@ PRIV = {
   sum_start='Biz, tərtibatçı,', sum_end='(6-cı bənd). ',
   summary='Qeydləriniz və irəliləyişiniz telefonunuzda qalır; telefonun öz ehtiyat nüsxəsi aktivdirsə, orada da saxlanılır (2-ci bənd). Bəzi könüllü funksiyalar məlumatı yalnız onlardan istifadə etməyi seçdikdə göndərir: test reytinqi, burada seçdiyiniz ad və test nəticələriniz <strong>Google Firebase</strong>-də saxlanılır və digər istifadəçilərə göstərilir (6-cı bənd), həmçinin e-poçt, Google və ya Apple ilə daxil olunan və telefonlarınız arasında sinxronizasiya edən hesab (6b, 6e, 6f bəndləri). Anonim xəta hesabatları (<strong>Sentry</strong>) və istifadə statistikası (<strong>PostHog</strong>) tətbiqi düzəltməyə və yaxşılaşdırmağa kömək edir; onlarda ad, e-poçt və ya yazdıqlarınız olmur və onları Ayarlar → Məxfilik bölməsində söndürə bilərsiniz (6c, 6d bəndləri). ',
   replace=[
-    ('19 noyabr 2026', '25 noyabr 2026'),
+    ('19 noyabr 2026', '28 noyabr 2026'),
     # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
     ('«Bazar» səhifəsi ABŞ Energetika İnformasiya İdarəsindən (EIA) açıq qiymət məlumatlarını yükləyir.', '«Bazar» səhifəsi ABŞ Energetika İnformasiya İdarəsindən (EIA) açıq qiymət məlumatlarını yükləyir. Tətbiq açılanda həmçinin Google Firebase-dən yeniləmənin vacib olub-olmadığını soruşur (3-cü bənd).'),
     ('Bu məlumat cihazınızda qalır və bizə heç vaxt göndərilmir. Biz qeydlərinizi və irəliləyişinizi görə bilmirik.', 'Bu məlumat cihazınızda qalır. O, yalnız bunu tələb edən könüllü funksiyalardan istifadə etdikdə göndərilir: reytinq (6-cı bənd) və telefonlarınız arasında sinxronizasiya (6f bəndi). Əks halda biz qeydlərinizi və irəliləyişinizi görə bilmirik.'),
@@ -68,7 +70,7 @@ PRIV = {
   sum_start='Мы, разработчик,', sum_end='(раздел 6). ',
   summary='Ваши заметки и прогресс остаются на телефоне, а если включено резервное копирование телефона, то и в его резервной копии (раздел 2). Некоторые необязательные функции отправляют данные, только если вы решите ими пользоваться: рейтинг тестов, где выбранное вами имя и результаты хранятся в <strong>Google Firebase</strong> и видны другим пользователям (раздел 6), а также аккаунт со входом по почте, через Google или Apple и синхронизацией между вашими телефонами (разделы 6b, 6e, 6f). Анонимные отчёты о сбоях (<strong>Sentry</strong>) и статистика использования (<strong>PostHog</strong>) помогают нам исправлять и улучшать приложение; в них нет имени, почты или того, что вы вводите, и их можно отключить в разделе Настройки → Конфиденциальность (разделы 6c, 6d). ',
   replace=[
-    ('19 ноября 2026 г.', '25 ноября 2026 г.'),
+    ('19 ноября 2026 г.', '28 ноября 2026 г.'),
     # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
     ('Страница «Рынок» загружает общедоступные данные о ценах Управления энергетической информации США (EIA).', 'Страница «Рынок» загружает общедоступные данные о ценах Управления энергетической информации США (EIA). При запуске приложение также спрашивает у Google Firebase, не требуется ли обновление (раздел 3).'),
     ('Эти данные остаются на устройстве и никогда не передаются нам. Мы не видим ваших заметок и прогресса.', 'Эти данные остаются на устройстве. Они отправляются, только если вы пользуетесь необязательными функциями, которым они нужны: рейтингом (раздел 6) и синхронизацией между вашими телефонами (раздел 6f). В остальных случаях мы не видим ваших заметок и прогресса.'),
@@ -90,7 +92,7 @@ PRIV = {
   sum_start='نحن، المطوّر،', sum_end='(البند 6). ',
   summary='تبقى ملاحظاتك وتقدّمك على هاتفك، وكذلك في النسخة الاحتياطية الخاصة بهاتفك إذا كان النسخ الاحتياطي مفعّلًا (البند 2). بعض الميزات الاختيارية لا ترسل بيانات إلا إذا اخترت استخدامها: لوحة متصدري الاختبارات، حيث يُخزَّن الاسم الذي تختاره ونتائج اختباراتك لدى <strong>Google Firebase</strong> ويظهران للمستخدمين الآخرين (البند 6)، والحساب مع تسجيل الدخول بالبريد الإلكتروني أو Google أو Apple والمزامنة بين هواتفك (البنود 6ب و6هـ و6و). وتساعدنا تقارير الأعطال المجهولة (<strong>Sentry</strong>) وإحصاءات الاستخدام (<strong>PostHog</strong>) على إصلاح التطبيق وتحسينه؛ فهي لا تحتوي على اسم أو بريد إلكتروني أو أي شيء تكتبه، ويمكنك إيقافها من الإعدادات ← الخصوصية (البندان 6ج و6د). ',
   replace=[
-    ('19 نوفمبر 2026', '25 نوفمبر 2026'),
+    ('19 نوفمبر 2026', '28 نوفمبر 2026'),
     # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
     ('وتنزّل صفحة السوق بيانات أسعار عامة من إدارة معلومات الطاقة الأمريكية (EIA).', 'وتنزّل صفحة السوق بيانات أسعار عامة من إدارة معلومات الطاقة الأمريكية (EIA). وعند التشغيل يسأل التطبيق أيضًا Google Firebase عمّا إذا كان التحديث مطلوبًا (البند 3).'),
     ('تبقى هذه المعلومات على جهازك ولا تُرسل إلينا أبدًا، ولا يمكننا رؤية ملاحظاتك أو تقدّمك.', 'تبقى هذه المعلومات على جهازك. ولا تُرسَل إلا إذا استخدمت الميزات الاختيارية التي تحتاج إليها: لوحة المتصدرين (البند 6) والمزامنة بين هواتفك (البند 6و). وفيما عدا ذلك لا يمكننا رؤية ملاحظاتك أو تقدّمك.'),
@@ -112,7 +114,7 @@ PRIV = {
   sum_start='Nosotros, el desarrollador,', sum_end='(sección 6). ',
   summary='Tus notas y tu progreso se quedan en tu teléfono y, si la tienes activada, en la copia de seguridad del propio teléfono (sección 2). Algunas funciones opcionales envían datos solo si decides usarlas: la clasificación de tests, donde el nombre que elijas y tus resultados se guardan en <strong>Google Firebase</strong> y se muestran a otros usuarios (sección 6), y una cuenta con inicio de sesión por correo, Google o Apple y sincronización entre tus teléfonos (secciones 6b, 6e, 6f). Los informes de fallos anónimos (<strong>Sentry</strong>) y las estadísticas de uso (<strong>PostHog</strong>) nos ayudan a corregir y mejorar la app; no contienen nombre, correo ni nada de lo que escribes, y puedes desactivarlos en Ajustes → Privacidad (secciones 6c, 6d). ',
   replace=[
-    ('19 de noviembre de 2026', '25 de noviembre de 2026'),
+    ('19 de noviembre de 2026', '28 de noviembre de 2026'),
     # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
     ('La página Mercado descarga datos públicos de precios de la Administración de Información Energética de EE. UU. (EIA).', 'La página Mercado descarga datos públicos de precios de la Administración de Información Energética de EE. UU. (EIA). Al iniciarse, la aplicación también pregunta a Google Firebase si hace falta una actualización (sección 3).'),
     ('Esta información permanece en tu dispositivo y nunca se nos envía. No podemos ver tus notas ni tu progreso.', 'Esta información permanece en tu dispositivo. Solo se envía si usas las funciones opcionales que la necesitan: la clasificación (sección 6) y la sincronización entre tus teléfonos (sección 6f). En los demás casos no podemos ver tus notas ni tu progreso.'),
@@ -134,7 +136,7 @@ PRIV = {
   sum_start='Nous, le développeur,', sum_end='(section 6). ',
   summary='Vos notes et vos progrès restent sur votre téléphone, ainsi que dans la sauvegarde de votre téléphone si elle est activée (section 2). Certaines fonctions facultatives n’envoient des données que si vous choisissez de les utiliser : le classement des quiz, où le nom que vous choisissez et vos résultats sont enregistrés chez <strong>Google Firebase</strong> et affichés aux autres utilisateurs (section 6), et un compte avec connexion par e-mail, Google ou Apple et synchronisation entre vos téléphones (sections 6b, 6e, 6f). Les rapports de plantage anonymes (<strong>Sentry</strong>) et les statistiques d’utilisation (<strong>PostHog</strong>) nous aident à corriger et à améliorer l’app ; ils ne contiennent ni nom, ni e-mail, ni rien de ce que vous saisissez, et vous pouvez les désactiver dans Paramètres → Confidentialité (sections 6c, 6d). ',
   replace=[
-    ('19 novembre 2026', '25 novembre 2026'),
+    ('19 novembre 2026', '28 novembre 2026'),
     # 25 November 2026: the update check (sections 1, 3, 8) and what leaves the phone (section 2)
     ('La page Marché télécharge des données de prix publiques de l’Energy Information Administration des États-Unis (EIA).', 'La page Marché télécharge des données de prix publiques de l’Energy Information Administration des États-Unis (EIA). Au démarrage, l’application demande aussi à Google Firebase si une mise à jour est nécessaire (section 3).'),
     ('Ces informations restent sur votre appareil et ne nous sont jamais envoyées. Nous ne pouvons voir ni vos notes ni votre progression.', 'Ces informations restent sur votre appareil. Elles ne sont envoyées que si vous utilisez les fonctions facultatives qui en ont besoin : le classement (section 6) et la synchronisation entre vos téléphones (section 6f). Dans les autres cas, nous ne pouvons voir ni vos notes ni votre progression.'),
@@ -155,7 +157,7 @@ PRIV = {
 
 ZH_SECTION = '''<section id="zh" lang="zh-Hans">
   <h1>PetroGram 隐私政策</h1>
-  <p class="meta">生效日期：2026 年 11 月 25 日<br>
+  <p class="meta">生效日期：2026 年 11 月 28 日<br>
   开发者：Vatani Tech（Fardin Vatani），阿塞拜疆巴库</p>
 
   <h2>1. 概要</h2>

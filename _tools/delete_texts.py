@@ -34,7 +34,7 @@ for _k in ('delete-account', 'delete_title', 'delete_desc'):
 DEL = {
 'en': dict(
   h1='Delete your PetroGram account',
-  meta='App: PetroGram · Developer: Vatani Tech<br>\n  Last updated: 22 November 2026',
+  meta='App: PetroGram · Developer: Vatani Tech<br>\n  Last updated: 28 November 2026',
   intro='An account in the PetroGram app is optional. If you created one, you can delete it at any time: in the app, or by email if you no longer have the app. A deleted account cannot be brought back.',
   h_app='Way 1: in the app',
   app_steps=[
@@ -54,6 +54,8 @@ DEL = {
     '<strong>Your lines on the online scoreboard:</strong> the name you chose and your results.',
     '<strong>The synced copy of your app data in the cloud:</strong> your notes, favourites, flashcard progress, interview marks, quiz results, mistakes to review, badges, your other learning progress and some app settings.',
   ],
+  # Shown only for the apps that have the certificate (delete_secs).
+  del_cert='<strong>Your public certificate page,</strong> if you put a certificate of completion online: the name on it, your result, the date and its number. A link to it, for example on LinkedIn, stops working; remove the entry from your LinkedIn profile yourself.',
   h_keep='What is not deleted',
   keep_items=[
     '<strong>Data on your phone.</strong> Your notes, progress and settings stay in the app on your phone until you remove the app or clear its data. If your phone\'s own backup is turned on, it may hold a copy too; we cannot see it.',
@@ -69,7 +71,7 @@ DEL = {
 ),
 'az': dict(
   h1='PetroGram hesabınızın silinməsi',
-  meta='Tətbiq: PetroGram · Tərtibatçı: Vatani Tech<br>\n  Son yenilənmə: 22 noyabr 2026',
+  meta='Tətbiq: PetroGram · Tərtibatçı: Vatani Tech<br>\n  Son yenilənmə: 28 noyabr 2026',
   intro='PetroGram tətbiqində hesab könüllüdür. Hesab yaratmısınızsa, onu istənilən vaxt silə bilərsiniz: tətbiqdə və ya tətbiq artıq sizdə yoxdursa, e-poçtla. Silinmiş hesabı geri qaytarmaq olmur.',
   h_app='1-ci yol: tətbiqdə',
   app_steps=[
@@ -89,6 +91,8 @@ DEL = {
     '<strong>Onlayn reytinq cədvəlindəki sətirləriniz:</strong> seçdiyiniz ad və nəticələriniz.',
     '<strong>Tətbiq məlumatınızın buluddakı sinxron nüsxəsi:</strong> qeydləriniz, seçilmişlər, kartoçka irəliləyişiniz, müsahibə qeydləri, test nəticələri, təkrar ediləcək səhvlər, nişanlar, digər öyrənmə irəliləyişiniz və bəzi tətbiq ayarları.',
   ],
+  # Shown only for the apps that have the certificate (delete_secs).
+  del_cert='<strong>Açıq sertifikat səhifəniz,</strong> əgər bitirmə sertifikatını onlayn yerləşdirmisinizsə: oradakı ad, nəticəniz, tarix və nömrə. Ona aparan keçid, məsələn LinkedIn-də, işləməyəcək; LinkedIn profilinizdəki qeydi özünüz silin.',
   h_keep='Nə silinmir',
   keep_items=[
     '<strong>Telefonunuzdakı məlumat.</strong> Qeydləriniz, irəliləyişiniz və ayarlarınız tətbiqi silənə və ya onun məlumatını təmizləyənə qədər telefonunuzdakı tətbiqdə qalır. Telefonun öz ehtiyat nüsxəsi aktivdirsə, orada da nüsxə ola bilər; biz onu görə bilmirik.',
@@ -104,7 +108,7 @@ DEL = {
 ),
 'ru': dict(
   h1='Удаление аккаунта PetroGram',
-  meta='Приложение: PetroGram · Разработчик: Vatani Tech<br>\n  Обновлено: 22 ноября 2026 г.',
+  meta='Приложение: PetroGram · Разработчик: Vatani Tech<br>\n  Обновлено: 28 ноября 2026 г.',
   intro='Аккаунт в приложении PetroGram не обязателен. Если вы его создали, его можно удалить в любой момент: в приложении или по почте, если приложения у вас уже нет. Удалённый аккаунт нельзя восстановить.',
   h_app='Способ 1: в приложении',
   app_steps=[
@@ -124,6 +128,8 @@ DEL = {
     '<strong>Ваши строки в онлайн-таблице лидеров:</strong> выбранное вами имя и ваши результаты.',
     '<strong>Синхронизированная копия данных приложения в облаке:</strong> заметки, избранное, прогресс по карточкам, отметки к собеседованию, результаты тестов, ошибки для повторения, значки, остальной учебный прогресс и некоторые настройки приложения.',
   ],
+  # Shown only for the apps that have the certificate (delete_secs).
+  del_cert='<strong>Ваша публичная страница сертификата,</strong> если вы разместили сертификат о прохождении онлайн: имя на нём, результат, дата и номер. Ссылка на неё, например в LinkedIn, перестанет работать; запись в профиле LinkedIn удалите сами.',
   h_keep='Что не удаляется',
   keep_items=[
     '<strong>Данные на телефоне.</strong> Заметки, прогресс и настройки остаются в приложении на телефоне, пока вы не удалите приложение или не очистите его данные. Если включено резервное копирование телефона, копия может быть и там; мы её не видим.',
@@ -139,7 +145,7 @@ DEL = {
 ),
 'ar': dict(
   h1='حذف حسابك في PetroGram',
-  meta='التطبيق: PetroGram · المطوّر: Vatani Tech<br>\n  آخر تحديث: 22 نوفمبر 2026',
+  meta='التطبيق: PetroGram · المطوّر: Vatani Tech<br>\n  آخر تحديث: 28 نوفمبر 2026',
   intro='الحساب في تطبيق PetroGram اختياري. إذا أنشأت حسابًا، يمكنك حذفه في أي وقت: من داخل التطبيق، أو بالبريد الإلكتروني إذا لم يعد التطبيق لديك. لا يمكن استرجاع الحساب بعد حذفه.',
   h_app='الطريقة 1: من داخل التطبيق',
   app_steps=[
@@ -159,6 +165,8 @@ DEL = {
     '<strong>أسطرك في لوحة المتصدرين على الإنترنت:</strong> الاسم الذي اخترته ونتائجك.',
     '<strong>النسخة المتزامنة من بيانات التطبيق في السحابة:</strong> ملاحظاتك والمفضلة وتقدّمك في البطاقات التعليمية وعلامات المقابلات ونتائج الاختبارات والأخطاء المطلوب مراجعتها والشارات وبقية تقدّمك في التعلّم وبعض إعدادات التطبيق.',
   ],
+  # Shown only for the apps that have the certificate (delete_secs).
+  del_cert='<strong>صفحة شهادتك العامة،</strong> إذا وضعت شهادة الإتمام على الإنترنت: الاسم المكتوب عليها ونتيجتك والتاريخ ورقمها. يتوقف الرابط إليها، مثلًا على LinkedIn، عن العمل؛ احذف الإدخال من ملفك على LinkedIn بنفسك.',
   h_keep='ما الذي لا يُحذف',
   keep_items=[
     '<strong>البيانات الموجودة على هاتفك.</strong> تبقى ملاحظاتك وتقدّمك وإعداداتك في التطبيق على هاتفك إلى أن تحذف التطبيق أو تمسح بياناته. وإذا كان النسخ الاحتياطي الخاص بهاتفك مفعّلًا، فقد توجد نسخة فيه أيضًا، ولا يمكننا رؤيتها.',
@@ -174,7 +182,7 @@ DEL = {
 ),
 'es': dict(
   h1='Eliminar tu cuenta de PetroGram',
-  meta='Aplicación: PetroGram · Desarrollador: Vatani Tech<br>\n  Última actualización: 22 de noviembre de 2026',
+  meta='Aplicación: PetroGram · Desarrollador: Vatani Tech<br>\n  Última actualización: 28 de noviembre de 2026',
   intro='La cuenta en la app PetroGram es opcional. Si creaste una, puedes eliminarla en cualquier momento: en la app, o por correo si ya no tienes la app. Una cuenta eliminada no se puede recuperar.',
   h_app='Opción 1: en la app',
   app_steps=[
@@ -194,6 +202,8 @@ DEL = {
     '<strong>Tus líneas en la clasificación en línea:</strong> el nombre que elegiste y tus resultados.',
     '<strong>La copia sincronizada de tus datos de la app en la nube:</strong> tus notas, tus favoritos, tu progreso en las tarjetas, tus marcas de entrevista, tus puntuaciones de tests, los errores por repasar, tus insignias, el resto de tu progreso de aprendizaje y algunos ajustes de la app.',
   ],
+  # Shown only for the apps that have the certificate (delete_secs).
+  del_cert='<strong>Tu página pública del certificado,</strong> si pusiste un certificado de finalización en línea: el nombre que figura en él, tu resultado, la fecha y su número. El enlace a ella, por ejemplo en LinkedIn, deja de funcionar; quita tú mismo la entrada de tu perfil de LinkedIn.',
   h_keep='Qué no se elimina',
   keep_items=[
     '<strong>Los datos de tu teléfono.</strong> Tus notas, tu progreso y tus ajustes se quedan en la app de tu teléfono hasta que desinstales la app o borres sus datos. Si la copia de seguridad del propio teléfono está activada, puede haber una copia también allí; no podemos verla.',
@@ -209,7 +219,7 @@ DEL = {
 ),
 'fr': dict(
   h1='Supprimer votre compte PetroGram',
-  meta='Application : PetroGram · Développeur : Vatani Tech<br>\n  Dernière mise à jour : 22 novembre 2026',
+  meta='Application : PetroGram · Développeur : Vatani Tech<br>\n  Dernière mise à jour : 28 novembre 2026',
   intro='Le compte dans l’app PetroGram est facultatif. Si vous en avez créé un, vous pouvez le supprimer à tout moment : dans l’app, ou par e-mail si vous n’avez plus l’app. Un compte supprimé ne peut pas être récupéré.',
   h_app='Méthode 1 : dans l’app',
   app_steps=[
@@ -229,6 +239,8 @@ DEL = {
     '<strong>Vos lignes au classement en ligne :</strong> le nom que vous avez choisi et vos résultats.',
     '<strong>La copie synchronisée des données de l’app dans le cloud :</strong> vos notes, vos favoris, votre progression dans les cartes mémoire, vos marques d’entretien, vos scores aux quiz, les erreurs à revoir, vos badges, le reste de votre progression et quelques réglages de l’app.',
   ],
+  # Shown only for the apps that have the certificate (delete_secs).
+  del_cert='<strong>Votre page publique de certificat,</strong> si vous avez mis un certificat de réussite en ligne : le nom qui y figure, votre résultat, la date et son numéro. Le lien vers cette page, par exemple sur LinkedIn, ne fonctionne plus ; retirez vous-même l’entrée de votre profil LinkedIn.',
   h_keep='Ce qui n’est pas supprimé',
   keep_items=[
     '<strong>Les données sur votre téléphone.</strong> Vos notes, votre progression et vos réglages restent dans l’app sur votre téléphone jusqu’à ce que vous désinstalliez l’app ou effaciez ses données. Si la sauvegarde de votre téléphone est activée, une copie peut s’y trouver aussi ; nous ne pouvons pas la voir.',
@@ -244,7 +256,7 @@ DEL = {
 ),
 'zh': dict(
   h1='删除您的 PetroGram 账号',
-  meta='应用：PetroGram · 开发者：Vatani Tech<br>\n  最后更新：2026 年 11 月 22 日',
+  meta='应用：PetroGram · 开发者：Vatani Tech<br>\n  最后更新：2026 年 11 月 28 日',
   intro='PetroGram 应用中的账号是可选的。如果您创建了账号，可以随时删除：在应用内删除；如果您已经没有应用，也可以通过电子邮件申请。账号删除后无法恢复。',
   h_app='方法一：在应用内',
   app_steps=[
@@ -264,6 +276,8 @@ DEL = {
     '<strong>您在在线排行榜上的记录：</strong>您选择的名字和您的成绩。',
     '<strong>应用数据在云端的同步副本：</strong>您的笔记、收藏、抽认卡进度、面试标记、测验成绩、待复习的错题、徽章、其他学习进度以及部分应用设置。',
   ],
+  # Shown only for the apps that have the certificate (delete_secs).
+  del_cert='<strong>您的公开证书页面，</strong>如果您曾将结业证书放到网上：上面的姓名、您的成绩、日期和编号。指向它的链接（例如 LinkedIn 上的链接）将失效；请自行从 LinkedIn 个人资料中删除该条目。',
   h_keep='不会删除的内容',
   keep_items=[
     '<strong>手机上的数据。</strong>您的笔记、学习进度和设置会保留在手机上的应用中，直到您卸载应用或清除其数据。如果您开启了手机自带的备份，备份中也可能有一份；我们无法查看。',
@@ -282,6 +296,10 @@ assert list(DEL) == list(DOC_LANGS), 'delete_texts.py: one block per language, i
 for _l, _d in DEL.items():
     assert set(_d) == set(DEL['en']) and all(_d.values()), ('a text is missing in delete_texts.py', _l)
     assert all(len(_d[_k]) == len(DEL['en'][_k]) for _k in ('app_steps', 'mail_steps', 'del_items', 'keep_items')), _l
+
+
+# The apps where a person can put a certificate of completion online.
+CERT_APPS = ('petrogram', 'oregram')
 
 
 def delete_secs(app='petrogram'):
@@ -317,7 +335,7 @@ def delete_secs(app='petrogram'):
 
   <h2>{d['h_del']}</h2>
   <ul>
-{items(d['del_items'])}
+{items(d['del_items'] + ([d['del_cert']] if app in CERT_APPS else []))}
   </ul>
 
   <h2>{d['h_keep']}</h2>
